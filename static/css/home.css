@@ -1,0 +1,47 @@
+/* Style for the input field */
+input[type="text"] {
+    /* Your regular text color */
+    color: black;
+    width: 400px;
+    border: 0.2px solid rgb(255, 183, 0);
+}
+
+/* Style for the placeholder text */
+input[type="text"]::placeholder {
+    /* Your desired placeholder text color (in this case, grey) */
+    color: rgb(202, 202, 202);
+    text-align: center;
+}
+
+/* Style for the input field and icon container */
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style for the search icon */
+.iconify {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    color: rgb(255, 255, 255);
+    margin: 6px 9px 6px 9px;
+
+    /* Adjust the margin as needed to control spacing */
+}
+
+.iconForSearch {
+    border: 1px solid rgb(255, 183, 0);
+    background-color: rgb(255, 149, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0px;
+    border-radius: 0px;
+}
+
+.iconForSearch:hover{
+    transition: 0.3s;
+    background-color: rgb(255, 182, 79);
+}
