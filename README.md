@@ -12,4 +12,4 @@ pip3 install flask pymysql boto3
 python3 app.py
 
 # REMOVE REPOSITORY
-rm -fr aws-assignment
+rm -fr sem-assignment
