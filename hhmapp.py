@@ -22,6 +22,7 @@ db_conn = connections.Connection(
     db=customdb
 
 )
+
 output = {}
 table = 'focs'
 
