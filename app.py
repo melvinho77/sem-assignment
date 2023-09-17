@@ -188,18 +188,6 @@ def check_pending_requests(id):
         return str(e)
 
 # Update student profile (Function)
-
-
-<<<<<<< HEAD
-sddsdsdsdsdsdvsdvsdvsdvsdvv
-sdv
-send_filevsd
-varssdv
-vsd
-vs
-dv
-sdv
-=======
 @app.route('/update_student', methods=['GET', 'POST'])
 def update_student():
     id = session['loggedInStudent']
@@ -2828,4 +2816,3 @@ def approveCompany():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
->>>>>>> origin/kuxinyau
