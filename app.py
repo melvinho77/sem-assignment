@@ -36,7 +36,7 @@ def home_page():
 
 @app.route('/')
 def index():
-    return render_template('programmes/Doctor of Philosophy Mathematical Sciences.html', number=1)
+    return render_template('home.html', number=1)
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -51,37 +51,63 @@ def homeSearchProgramme():
     cursor.execute(select_sql)
     searchRange = cursor.fetchall()
 
-    url_set = {"programmes/Diploma in Computer Science.html"}
+    url_set = {
+        1: "programmes/Diploma in Computer Science.html",
+        2: "programmes/Diploma in Information Systems.html",
+        3: "programmes/Diploma in Information Technology.html",
+        4: "programmes/Diploma in Software Engineering.html",
+        5: "programmes/Management Mathematics with Computing.html",
+        6: "programmes/Interactive Software Technology.html",
+        7: "programmes/Data Science.html",
+        8: "programmes/Enterprise Information Systems.html",
+        9: "programmes/Information Security.html",
+        10: "programmes/Information Technology.html",
+        11: "programmes/Software Systems Development.html",
+        12: "programmes/Software Engineering.html",
+        13: "programmes/Master of Computer Science.html",
+        14: "programmes/Master of Information Technology.html",
+        15: "programmes/Master of Science in Mathematical Sciences.html",
+        16: "programmes/Doctor of Philosophy Computer Science.html",
+        17: "programmes/Doctor of Philosophy Information Technology.html",
+        18: "programmes/Doctor of Philosophy Mathematical Sciences.html"
+    }
+
+    # Convert the list into a set if needed
+    # url_set = set(url_list)
+    count = 0
+    for i in url_set:
+        count += 1
+        print(url_set.get(count))
+
     similarity_scores = []
 
     # Iterate through the program names in 'searchRange'
     for program in searchRange:
-        print(program)
+        program_id = program[0]
         program_name = program[1]
         similarity = difflib.SequenceMatcher(None, searchObj, program_name).ratio()
 
         if similarity > 0.1:
-            similarity_scores.append((program_name, similarity))
+            similarity_scores.append((program_id, program_name, similarity))
 
     # Sort the results by similarity in descending order
-    similarity_scores.sort(key=lambda x: x[1], reverse=True)
+    sorted_similarity_scores = sorted(similarity_scores, key=lambda x: x[2], reverse=True)
 
     # Get the top 5 most relevant results
-    top_5_results = similarity_scores[:5]
+    top_5_results = sorted_similarity_scores[:5]
 
     if not top_5_results:
         return("no relevant result")
     else:
+        relevantResults = []
+        for element in top_5_results:
+            count = 0
+            for url in url_set:
+                count += 1
+                if count == element[0]:
+                    relevantResults.append(url_set.get(count))
 
-
-
-
-
-
-
-        return top_5_results
-
-
+        return(relevantResults)
 
 
 
