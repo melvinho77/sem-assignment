@@ -1,4 +1,4 @@
-from flask import render_template, make_response
+from flask import render_template, make_response, jsonify
 from flask import redirect
 import mimetypes
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
@@ -107,7 +107,11 @@ def homeSearchProgramme():
                 if count == element[0]:
                     relevantResults.append(url_set.get(count))
 
-        return(relevantResults)
+    # Assuming you want to display a success message as a pop-up
+    result_message = "Search was successful!"
+    
+    # You can send a JSON response back to the client to trigger the pop-up
+    return jsonify({'message': result_message})
 
 
 

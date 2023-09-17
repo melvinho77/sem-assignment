@@ -1,0 +1,28 @@
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Your HTML Form -->
+<form action="/homeSearchProgramme" method="post">
+    <!-- Form inputs here -->
+    <button type="submit">Search</button>
+</form>
+
+<!-- JavaScript to handle the pop-up -->
+<script>
+    // Handle form submission
+    $('form').on('submit', function(event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/homeSearchProgramme',
+            data: $(this).serialize(),
+            success: function(response) {
+                // Display the pop-up with the response message
+                alert(response.message); // You can replace this with your pop-up logic
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    });
+</script>
