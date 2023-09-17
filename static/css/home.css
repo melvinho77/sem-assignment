@@ -45,3 +45,31 @@ input[type="text"]::placeholder {
     transition: 0.3s;
     background-color: rgb(255, 182, 79);
 }
+
+
+.tabs-custom.tabs-corporate .nav-tabs li a:after {
+    font-size: 25px;
+}
+
+.tabs-custom.tabs-corporate .nav-tabs li a:after {
+    font: 400 17px 'Material Design Icons', Arial, sans-serif;;
+    color: transparent;
+    position: relative;
+    top: -12px;
+    display: inline-block;
+    margin-left: 5px;
+    content: '\f236';
+    vertical-align: middle;
+    transition: .33s all ease;
+}
+
+.tabs-custom.tabs-corporate .nav-tabs li a:hover:after, .tabs-custom.tabs-corporate .nav-tabs li.active a:after {
+    top: -1px;
+    color: #c4872b;
+    background: url('https://api.iconify.design/ri/arrow-drop-down-line.svg') no-repeat center center / contain;
+    content: url('https://api.iconify.design/ri/arrow-drop-down-line.svg');
+}
+
+.tabs-custom.tabs-corporate .nav-tabs li a:after {
+    font-size: 25px;
+}
