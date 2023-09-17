@@ -188,8 +188,6 @@ def check_pending_requests(id):
         return str(e)
 
 # Update student profile (Function)
-
-
 @app.route('/update_student', methods=['GET', 'POST'])
 def update_student():
     id = session['loggedInStudent']
