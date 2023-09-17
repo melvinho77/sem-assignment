@@ -1586,13 +1586,6 @@ def LoginLec():
     return render_template('LecturerLogin.html', msg="Access Denied : Invalid email or password")
 
 
-@app.route("/logoutlec")
-def LogoutLec():
-    if 'loginLecturer' in session:
-        session.pop('loginLecturer', None)
-    return render_template('home.html')
-
-
 @app.route("/lecHome")
 def LecHome():
     if 'loginLecturer' in session:
