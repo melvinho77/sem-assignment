@@ -36,7 +36,9 @@ def index():
 def home():
     return render_template('home.html')
 
-
+@app.route('/homeSearchProgramme', methods=['POST'])
+def homeSearchProgramme():
+    print("hihi")
 
 
 
