@@ -46,6 +46,20 @@ input[type="text"]::placeholder {
     background-color: rgb(255, 182, 79);
 }
 
+.masterIconForSearch{
+    border: 1px solid rgb(104, 152, 255);
+    background-color: rgb(38, 32, 191);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0px;
+    border-radius: 0px;
+}
+
+.masterIconForSearch:hover{
+    transition: 0.3s;
+    background-color: rgb(81, 119, 255);
+}
 
 .tabs-custom.tabs-corporate .nav-tabs li a:after {
     font-size: 25px;
