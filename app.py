@@ -7,6 +7,7 @@ from pymysql import connections
 import boto3
 from config import *
 import datetime
+import difflib
 # from weasyprint import HTML
 
 app = Flask(__name__)
@@ -28,9 +29,14 @@ db_conn = connections.Connection(
 output = {}
 table = 'employee'
 
+@app.route('/home_page')
+def home_page():
+    # Add any logic here if needed
+    return render_template('home.html')
+
 @app.route('/')
 def index():
-    return render_template('home.html', number=1)
+    return render_template('programmes/Diploma in Information Systems.html', number=1)
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -38,7 +44,44 @@ def home():
 
 @app.route('/homeSearchProgramme', methods=['POST'])
 def homeSearchProgramme():
-    print("hihi")
+    searchObj = request.form['textInput']
+    
+    select_sql = f"SELECT * FROM availableProgramme"
+    cursor = db_conn.cursor()
+    cursor.execute(select_sql)
+    searchRange = cursor.fetchall()
+
+    url_set = {"programmes/Diploma in Computer Science.html"}
+    similarity_scores = []
+
+    # Iterate through the program names in 'searchRange'
+    for program in searchRange:
+        print(program)
+        program_name = program[1]
+        similarity = difflib.SequenceMatcher(None, searchObj, program_name).ratio()
+
+        if similarity > 0.1:
+            similarity_scores.append((program_name, similarity))
+
+    # Sort the results by similarity in descending order
+    similarity_scores.sort(key=lambda x: x[1], reverse=True)
+
+    # Get the top 5 most relevant results
+    top_5_results = similarity_scores[:5]
+
+    if not top_5_results:
+        return("no relevant result")
+    else:
+
+
+
+
+
+
+
+        return top_5_results
+
+
 
 
 
