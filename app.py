@@ -116,34 +116,33 @@ def homeSearchProgramme():
 @app.route('/compareProgramme', methods=['POST'])
 def compareProgramme():
 
-    all_course= "SELECT * FROM course "
+    all_course = "SELECT * FROM course "
     cursor_Allcourse = db_conn.cursor()
     
     try:
         cursor_Allcourse.execute(all_course)
-        allCourse=cursor_Allcourse.fetchall()
+        allCourse = cursor_Allcourse.fetchall()
 
-        course_list=[]
+        course_list = []
 
         for course in allCourse:
-            courseName = course[0]          
+            courseName = course[0]
 
+            try:
+                course_data = {
+                    "courseName": courseName              
+                }
 
-        try:
-            course_data = {
-                "courseName": courseName              
-            }
+                course_list.append(course_data)
 
-            course_list.append(course_data)
-
-        except Exception as e:
-            return str(e)
+            except Exception as e:
+                return str(e)
     
     except Exception as e:
         return str(e)
     
+    return render_template('compareProgramme.html', course_list=course_list)
 
-    return render_template('compareProgramme.html',course_list=course_list)
 
 # N8 - Retrieve network details
 def get_network_details():
