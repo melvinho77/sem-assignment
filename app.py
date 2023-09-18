@@ -144,7 +144,7 @@ def compareProgramme():
     
 
 
-    return render_template('compareProgramme.html', course_list=course_list,SameList=findSameCourse())
+    return render_template('compareProgramme.html', course_list=course_list,SameList=findSameCourse(),Diflist=findDifCourse())
 
 
 def findSameCourse():
@@ -175,6 +175,36 @@ def findSameCourse():
         return str(e)
     
     return course_list
+
+def findDifCourse():
+    #find all course
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken NO IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2);"
+    cursor_Allcourse = db_conn.cursor()
+    
+    try:
+        cursor_Allcourse.execute(all_course)
+        allCourse = cursor_Allcourse.fetchall()
+
+        course_list = []
+
+        for course in allCourse:
+            courseName = course[0]
+
+            try:
+                course_data = {
+                    "courseName": courseName              
+                }
+
+                course_list.append(course_data)
+
+            except Exception as e:
+                return str(e)
+    
+    except Exception as e:
+        return str(e)
+    
+    return course_list
+
 # N8 - Retrieve network details
 def get_network_details():
     try:

@@ -622,11 +622,15 @@
                                                     <span class="tick">&#10004;</span>
                                                     {% set i = 1 %}
                                                 {% endif %}
+                                            {% endfor %}
 
-                                                {% if SameList|length && sameCourse.courseName != course.courseName%}
-                                                <span style="font-size: 18px;">&#10060;</span>
+                                            {% for difCourse in Diflist %}
+                                                {% if difCourse.courseName == course.courseName %}
+                                                    <span class="tick">&#10060;</span>
+                                                    {% set i = 1 %}
                                                 {% endif %}
                                             {% endfor %}
+
                                             </td>
                                             {% if i == 0 %}
                                                 
