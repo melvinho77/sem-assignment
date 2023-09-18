@@ -98,6 +98,18 @@
                     max-width: 1000px;
                     padding-left: 20px;
                 }
+
+                .relResultBtn{
+                    border: none;
+                    background-color: transparent;
+                    color: rgb(0, 94, 255);
+                }
+
+                .relResultBtn:hover{
+                    transition: 0.3s;
+                    color: rgb(108, 162, 255);
+                }
+
             </style>
             <div class="rd-navbar-wrap">
                 <nav data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
@@ -521,24 +533,40 @@
         </section>
 
         <!-- req 1 -->
-        <div class="relevantResultContainer">
-            {% if relevantResults != "No relevant result." %}
-            <ul>
-                {% for result in relevantResults %}
-                <li>
-                    <form action="/relevantResult_display" autocomplete="on" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="result" value="{{ result }}">
-                        <button type="submit" class="rd-navbar-brand brand">
-                            <span style="float:left;"></span>
-                            {% set clean_result = result|replace('programmes/', '')|replace('.html', '')%}
-                            {{ clean_result }}
-                        </button>
-                    </form>
-                </li>
-                {% endfor %}
-            </ul>
+        <div class="relevantResultContainer">   
+            {% if relevantResults %}
+            <div style="margin-top: 20px; margin-bottom: 20px;">
+                <ul style="display: flex;
+                flex-direction: column;
+                align-content: space-around;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                justify-content: center;">
+                <h6>Relevant result : </h6>
+                    {% for result in relevantResults %}
+                    <li>
+                        <form action="/relevantResult_display" autocomplete="on" method="POST"
+                            enctype="multipart/form-data">
+                            <input type="hidden" name="result" value="{{ result }}">
+                            <button type="submit" class="relResultBtn">
+                                <span style="float:left;"></span>
+                                {% set clean_result = result|replace('programmes/', '')|replace('.html', '')%}
+                                {{ clean_result }}
+                            </button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
             {% else %}
-                {{ relevantResults }}           
+            <div>
+                <p style="display: fel;
+                display: flex;
+                justify-content: center;
+                align-content: space-around;
+                flex-direction: row; font-weight: bold;">No relevant result.</p>
+            </div>
+
             {% endif %}
         </div>
 

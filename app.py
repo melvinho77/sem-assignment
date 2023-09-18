@@ -84,7 +84,7 @@ def homeSearchProgramme():
         program_name = program[1]
         similarity = difflib.SequenceMatcher(None, searchObj, program_name).ratio()
 
-        if similarity > 0.2:
+        if similarity > 0.1:
             similarity_scores.append((program_id, program_name, similarity))
 
     # Sort the results by similarity in descending order
@@ -95,8 +95,7 @@ def homeSearchProgramme():
 
     relevantResults = []
     if not top_5_results:
-        relevantResults = "No relevant result."
-        render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults)
+        return render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults)
     else:
         for element in top_5_results:
             count = 0
