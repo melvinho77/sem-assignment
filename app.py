@@ -31,16 +31,20 @@ table = 'employee'
 
 @app.route('/home_page')
 def home_page():
-    # Add any logic here if needed
     return render_template('home.html')
 
 @app.route('/')
 def index():
-    return render_template('home.html', number=1)
+    return render_template('relevantProgrammeSearchResult.html', number=1)
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
+
+@app.route('/relevantResult_display', methods=['POST'])
+def relevantResult_display():
+    result = request.form['result']
+    return render_template(result)
 
 @app.route('/homeSearchProgramme', methods=['POST'])
 def homeSearchProgramme():
@@ -61,7 +65,7 @@ def homeSearchProgramme():
         7: "programmes/Data Science.html",
         8: "programmes/Enterprise Information Systems.html",
         9: "programmes/Information Security.html",
-        10: "programmes/Information Technology.html",
+        10: "programmes/Internet Technology.html",
         11: "programmes/Software Systems Development.html",
         12: "programmes/Software Engineering.html",
         13: "programmes/Master of Computer Science.html",
@@ -71,14 +75,7 @@ def homeSearchProgramme():
         17: "programmes/Doctor of Philosophy Information Technology.html",
         18: "programmes/Doctor of Philosophy Mathematical Sciences.html"
     }
-
-    # Convert the list into a set if needed
-    # url_set = set(url_list)
-    count = 0
-    for i in url_set:
-        count += 1
-        print(url_set.get(count))
-
+    
     similarity_scores = []
 
     # Iterate through the program names in 'searchRange'
@@ -96,10 +93,10 @@ def homeSearchProgramme():
     # Get the top 5 most relevant results
     top_5_results = sorted_similarity_scores[:5]
 
+    relevantResults = []
     if not top_5_results:
-        return("no relevant result")
+        render_template('relevantProgrammeSearchResult.html', relevantResults = "No relevant result.")
     else:
-        relevantResults = []
         for element in top_5_results:
             count = 0
             for url in url_set:
@@ -107,14 +104,7 @@ def homeSearchProgramme():
                 if count == element[0]:
                     relevantResults.append(url_set.get(count))
 
-    # Assuming you want to display a success message as a pop-up
-    result_message = "Search was successful!"
-    
-    # You can send a JSON response back to the client to trigger the pop-up
-    return jsonify({'message': result_message})
-
-
-
+        return render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
