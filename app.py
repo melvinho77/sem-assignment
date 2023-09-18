@@ -245,10 +245,10 @@ def findCourse(programmeId):
 
 def findCourseNoInclude(programmeId):
       #find all course
-    all_course = "SELECT DISTINCT courseName FROM course WHERE courseName NOT IN"\
-                "(SELECT courseTaken"\
-                "FROM programmeMainCourse"\
-                "WHERE programmeId = %s) ORDER BY courseName"
+    all_course = "SELECT DISTINCT courseName FROM course WHERE courseName NOT IN " \
+                "(SELECT courseTaken FROM programmeMainCourse WHERE programmeId = %s) " \
+                "ORDER BY courseName"
+
 
     cursor_Allcourse = db_conn.cursor()
     
