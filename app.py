@@ -142,7 +142,7 @@ def showAllProgramme():
     except Exception as e:
         return str(e)
     
-    all_electiveCourse = "SELECT DISTINCT courseTaken FROM programmeMainCourse ORDER BY courseTaken"
+    all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse ORDER BY electiveTaken"
     cursor_AllElectivecourse = db_conn.cursor()
     
     try:
@@ -166,8 +166,7 @@ def showAllProgramme():
     
     except Exception as e:
         return str(e)
-    
-    return electiveCourse_list
+
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            electiveCourse_list=electiveCourse_list,
