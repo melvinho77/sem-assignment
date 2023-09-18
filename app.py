@@ -175,6 +175,7 @@ def findSameCourse():
     except Exception as e:
         return str(e)
     
+    return course_list
 # N8 - Retrieve network details
 def get_network_details():
     try:
