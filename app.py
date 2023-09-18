@@ -142,8 +142,7 @@ def compareProgramme():
     except Exception as e:
         return str(e)
     
-   
-    return findSameCourse()
+
 
     return render_template('compareProgramme.html', course_list=course_list,SameList=findSameCourse())
 
