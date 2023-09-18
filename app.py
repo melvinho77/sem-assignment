@@ -117,7 +117,7 @@ def homeSearchProgramme():
 def showAllProgramme():
 
     #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 2 or programmeId = 1 ORDER BY courseTaken"
+    all_course = "SELECT courseName FROM course ORDER BY courseName"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -146,9 +146,14 @@ def showAllProgramme():
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            course1=findCourse(1),
-                           course1NoInclude=findCourseNoInclude(2,1),
-                           course2NoInclude=findCourseNoInclude(1,2),
-                           course2=findCourse(2))
+                           course1NoInclude=findCourseNoInclude(1),
+                           course2NoInclude=findCourseNoInclude(2),
+                           course2=findCourse(2),
+                           course3NoInclude=findCourseNoInclude(3),
+                           course3=findCourse(3),
+                           course4NoInclude=findCourseNoInclude(4),
+                           course4=findCourse(4)
+                           )
 
 
 def findSameCourse():
@@ -238,17 +243,17 @@ def findCourse(programmeId):
     
     return course_list
 
-def findCourseNoInclude(courseIdIn, compareId1):
+def findCourseNoInclude(programmeId):
       #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse " \
-             "WHERE programmeId = %s AND courseTaken NOT IN " \
-             "(SELECT courseTaken FROM programmeMainCourse WHERE programmeId = %s) " \
-             "ORDER BY courseTaken;"
+    all_course = "SELECT DISTINCT courseName FROM course WHERE courseName NOT IN"\
+                "(SELECT courseTaken"\
+                "FROM programmeMainCourse"\
+                "WHERE programmeId = %s) ORDER BY courseName"
 
     cursor_Allcourse = db_conn.cursor()
     
     try:
-        cursor_Allcourse.execute(all_course,(courseIdIn,compareId1))
+        cursor_Allcourse.execute(all_course,(programmeId,))
         allCourse = cursor_Allcourse.fetchall()
 
         course_list = []
