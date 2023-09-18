@@ -142,7 +142,6 @@ def showAllProgramme():
     except Exception as e:
         return str(e)
     
-    return findCourseNoInclude(2)
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            course1=findCourse(1),
