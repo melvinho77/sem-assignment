@@ -614,7 +614,15 @@
                                         </tr>
                                         {% for course in course_list %}
                                         <tr>
-                                            <td>{{ course.courseName}}</td>                                            
+                                            <td>{{ course.courseName}}</td>
+                                            {% for sameCourse in SameList %}
+                                                {% if sameCourse.courseName == course.courseName%}
+                                                <td><span class="tick">&#10004;</span></td>
+                                                {% else %}
+                                                <td>X</td>
+                                                {% endif%}
+                                            {% endfor%}
+                                                                                       
                                         </tr>
                                         {% endfor %}
                                     </tbody>

@@ -116,7 +116,8 @@ def homeSearchProgramme():
 @app.route('/compareProgramme', methods=['POST'])
 def compareProgramme():
 
-    all_course = "SELECT * FROM course "
+    #find all course
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 or programmeId=2"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -141,9 +142,38 @@ def compareProgramme():
     except Exception as e:
         return str(e)
     
-    return render_template('compareProgramme.html', course_list=course_list)
+   
+    
+    return render_template('compareProgramme.html', course_list=course_list,SameList=findSameCourse())
 
 
+def findSameCourse():
+    #find all course
+    all_course = "SELECT DISTINCT courseTakenFROM programmeMainCourse WHERE programmeId = 1 AND courseTaken IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2);"
+    cursor_Allcourse = db_conn.cursor()
+    
+    try:
+        cursor_Allcourse.execute(all_course)
+        allCourse = cursor_Allcourse.fetchall()
+
+        course_list = []
+
+        for course in allCourse:
+            courseName = course[0]
+
+            try:
+                course_data = {
+                    "courseName": courseName              
+                }
+
+                course_list.append(course_data)
+
+            except Exception as e:
+                return str(e)
+    
+    except Exception as e:
+        return str(e)
+    
 # N8 - Retrieve network details
 def get_network_details():
     try:
