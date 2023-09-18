@@ -311,7 +311,7 @@ def findCourseNoInclude(programmeId):
 
 def findElectiveCourse(programmeId):
       #find all course
-    all_course = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId = %s ORDER BY courseTaken"
+    all_course = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId = %s ORDER BY electiveTaken"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -340,9 +340,9 @@ def findElectiveCourse(programmeId):
 
 def findElectiveCourseNoInclude(programmeId):
       #find all course
-    all_course = "SELECT DISTINCT courseName FROM course WHERE courseName NOT IN " \
+    all_course = "SELECT DISTINCT  electiveTaken FROM programmeElectiveCourse WHERE electiveTaken NOT IN  " \
                 "(SELECT electiveTaken FROM programmeElectiveCourse WHERE programmeId = %s) " \
-                "ORDER BY courseName"
+                "ORDER BY electiveTaken"
 
 
     cursor_Allcourse = db_conn.cursor()
