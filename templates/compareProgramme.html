@@ -597,18 +597,7 @@
                                             <th>Software Engineering</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Monthly price</td>
-                                            <td><span class="txt-top">&pound;</span><span class="txt-l">6</span>
-                                            </td>
-                                            <td><span class="txt-top">&pound;</span><span class="txt-l">7</span>
-                                            </td>
-                                            <td class="default"><span class="txt-top">&pound;</span><span
-                                                    class="txt-l">15</span></td>
-                                            <td><span class="txt-top">&pound;</span><span class="txt-l">25</span>
-                                            </td>
-                                        </tr>
+                                    <tbody>                                       
                                         <tr>
                                             <td colspan="5" class="sep">Main Courses</td>
                                         </tr>                                    
@@ -666,10 +655,64 @@
                                             
                                         </tr>
                                     {% endfor %}
-                                    
-                                        
-                                        
-                                        
+
+                                        <tr>
+                                            <td colspan="5" class="sep">Elective Courses</td>
+                                        </tr> 
+                                        {% for course in electiveCourse_list %}
+                                        <tr>
+                                            <td>{{ course.courseName }}</td>
+                                            {% for sameCourse in electiveCourse1 %}
+                                                {% if sameCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10004;</span></td>                                                    
+                                                {% endif %}
+                                            {% endfor %}
+                                            
+                                            {% for noIncludeCourse in electiveCourse1NoInclude %}
+                                                {% if noIncludeCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10060;</span></td>                                                    
+                                                {% endif %}
+                                            {% endfor %}    
+                                            
+                                            {% for sameCourse in electiveCourse2 %}
+                                                {% if sameCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10004;</span></td>                                                    
+                                                {% endif %}
+                                            {% endfor %}
+                                            
+                                            {% for noIncludeCourse in electiveCourse2NoInclude %}
+                                                {% if noIncludeCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10060;</span></td>                                                    
+                                                {% endif %}
+                                            {% endfor %} 
+
+                                            {% for sameCourse in electiveCourse3 %}
+                                                {% if sameCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10004;</span></td>                                                    
+                                                {% endif %}
+                                            {% endfor %}
+                                            
+                                            {% for noIncludeCourse in electiveCourse3NoInclude %}
+                                                {% if noIncludeCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10060;</span></td>                                                    
+                                                {% endif %}
+                                            {% endfor %} 
+
+                                            {% for sameCourse in electiveCourse4 %}
+                                                {% if sameCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10004;</span></td>                                                    
+                                                {% endif %}
+                                            {% endfor %}
+                                            
+                                            {% for noIncludeCourse in electiveCourse4NoInclude %}
+                                                {% if noIncludeCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10060;</span></td>                                                    
+                                                {% endif %}
+                                            {% endfor %} 
+
+                                            
+                                        </tr>
+                                    {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

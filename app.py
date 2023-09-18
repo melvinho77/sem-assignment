@@ -142,8 +142,34 @@ def showAllProgramme():
     except Exception as e:
         return str(e)
     
+    all_electiveCourse = "SELECT DISTINCT courseTaken FROM programmeMainCourse ORDER BY courseTaken"
+    cursor_AllElectivecourse = db_conn.cursor()
+    
+    try:
+        cursor_AllElectivecourse.execute(all_electiveCourse)
+        allElectiveCourse = cursor_AllElectivecourse.fetchall()
+
+        electiveCourse_list = []
+
+        for elective in allElectiveCourse:
+            courseName = elective[0]
+
+            try:
+                elective_data = {
+                    "courseName": courseName              
+                }
+
+                electiveCourse_list.append(elective_data)
+
+            except Exception as e:
+                return str(e)
+    
+    except Exception as e:
+        return str(e)
+    
     return render_template('compareProgramme.html', 
                            course_list=course_list,
+                           electiveCourse_list=electiveCourse_list,
                            course1=findCourse(1),
                            course1NoInclude=findCourseNoInclude(1),
                            course2NoInclude=findCourseNoInclude(2),
@@ -151,7 +177,15 @@ def showAllProgramme():
                            course3NoInclude=findCourseNoInclude(3),
                            course3=findCourse(3),
                            course4NoInclude=findCourseNoInclude(4),
-                           course4=findCourse(4)
+                           course4=findCourse(4),
+                           electiveCourse1=findElectiveCourse(1),
+                           electiveCourse1NoInclude=findCourseNoInclude(1),
+                           electiveCourse2NoInclude=findCourseNoInclude(2),
+                           electiveCourse2=findElectiveCourse(2),
+                           electiveCourse3NoInclude=findCourseNoInclude(3),
+                           electiveCourse3=findElectiveCourse(3),
+                           electiveCourse4NoInclude=findCourseNoInclude(4),
+                           electiveCourse4=findElectiveCourse(4)
                            )
 
 
@@ -274,6 +308,69 @@ def findCourseNoInclude(programmeId):
         return str(e)
     
     return course_list
+
+def findElectiveCourse(programmeId):
+      #find all course
+    all_course = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId = %s ORDER BY courseTaken"
+    cursor_Allcourse = db_conn.cursor()
+    
+    try:
+        cursor_Allcourse.execute(all_course,(programmeId,))
+        allCourse = cursor_Allcourse.fetchall()
+
+        course_list = []
+
+        for course in allCourse:
+            courseName = course[0]
+
+            try:
+                course_data = {
+                    "courseName": courseName              
+                }
+
+                course_list.append(course_data)
+
+            except Exception as e:
+                return str(e)
+    
+    except Exception as e:
+        return str(e)
+    
+    return course_list
+
+def findElectiveCourseNoInclude(programmeId):
+      #find all course
+    all_course = "SELECT DISTINCT courseName FROM course WHERE courseName NOT IN " \
+                "(SELECT electiveTaken FROM programmeElectiveCourse WHERE programmeId = %s) " \
+                "ORDER BY courseName"
+
+
+    cursor_Allcourse = db_conn.cursor()
+    
+    try:
+        cursor_Allcourse.execute(all_course,(programmeId,))
+        allCourse = cursor_Allcourse.fetchall()
+
+        course_list = []
+
+        for course in allCourse:
+            courseName = course[0]
+
+            try:
+                course_data = {
+                    "courseName": courseName              
+                }
+
+                course_list.append(course_data)
+
+            except Exception as e:
+                return str(e)
+    
+    except Exception as e:
+        return str(e)
+    
+    return course_list
+
 
 # N8 - Retrieve network details
 def get_network_details():
