@@ -619,17 +619,17 @@
                                                 <td>{{ course.courseName }}</td>
                                                 {% set i = 0 %}
                                                 {% set checkFinish = 0 %}
-                                        
+                                                <td>
                                                 {% for sameCourse in SameList %}
                                                     {% if sameCourse.courseName == course.courseName %}
-                                                        <td><span class="tick">&#10004;</span></td>
+                                                        <span class="tick">&#10004;</span>
                                                         {% set i = 1 %}
                                                     {% endif %}
                                                 {% endfor %}   
-                                                {% if i == 0 %}
-                                                    <td>{{ i }}</td>
-                                                    <td><span style="font-size: 18px;">&#10060;</span></td>
-                                                {% endif %}                                                                                                                                                                        
+                                                {% if i == 0 %}                                               
+                                                   <span style="font-size: 18px;">&#10060;</span>
+                                                {% endif %} 
+                                                </td>                                                                                                                                                                       
                                             </tr>
                                         {% endfor %}
                                         
