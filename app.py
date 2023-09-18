@@ -117,7 +117,7 @@ def homeSearchProgramme():
 def showAllProgramme():
 
     #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 2  ORDER BY courseTaken"
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 2 or programmeId = 1 ORDER BY courseTaken"
     cursor_Allcourse = db_conn.cursor()
     
     try:
