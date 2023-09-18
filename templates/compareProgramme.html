@@ -627,10 +627,10 @@
                                                         {% set checkFinish = checkFinish + 1 %}
                                                     {% endif %}
 
-                                                    {% if i == 0 and sameListLength == checkFinish %}
+                                                    {% if i == 0 and sameListLength - 1 == checkFinish %}
                                                     <td><span style="font-size: 18px;">&#10060;</span></td>
                                                     {% endif %}
-                                                    
+
                                                 {% endfor %}
                                         
                                                 
