@@ -593,8 +593,8 @@
                                             <th></th>
                                             <th>Computer Science</th>
                                             <th>Information Systems</th>
-                                            <th>...</th>
-                                            <th>...</th>
+                                            <th>Information Technology</th>
+                                            <th>Software Engineering</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -627,7 +627,17 @@
                                                 {% endif %}
                                             {% endfor %}    
                                             
-                                          
+                                            {% for sameCourse in course2 %}
+                                                {% if sameCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10004;</span></td>                                                    
+                                                {% endif %}
+                                            {% endfor %}
+                                            
+                                            {% for noIncludeCourse in course2NoInclude %}
+                                                {% if noIncludeCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10060;</span></td>                                                    
+                                                {% endif %}
+                                            {% endfor %} 
                                         </tr>
                                     {% endfor %}
                                     
