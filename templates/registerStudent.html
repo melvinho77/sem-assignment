@@ -61,10 +61,10 @@
             color: #333;
         }
 
-        .form :where(.input-box input, .select-box, textarea, password) {
+        .form :where(.input-box input, .select-box, textarea) {
             position: relative;
             height: 50px;
-            width: 100%;
+            width: 90%;
             outline: none;
             font-size: 1rem;
             color: #707070;
@@ -117,7 +117,7 @@
             color: #707070;
         }
 
-        .address :where(input, .select-box, textarea, password) {
+        .address :where(input, .select-box, textarea) {
             margin-top: 15px;
         }
 
@@ -177,12 +177,12 @@
 
             <div class="column">
                 <div class="input-box">
-                    <label>Email Address</label>
-                    <input type="text" placeholder="Enter email address" name="register-email" required />
-                </div>
-                <div class="input-box">
                     <label>MyKad</label>
                     <input type="text" placeholder="Enter ic number" name="register-ic" required />
+                </div>
+                <div class="input-box">
+                    <label>Email Address</label>
+                    <input type="text" placeholder="Enter email address" name="register-email" required />
                 </div>
             </div>
 
@@ -201,7 +201,7 @@
                 <div class="gender-option">
                     <div class="gender">
                         <input type="radio" id="check-male" name="register-gender" value='M' checked />
-                        <label for="check-male">male</label>
+                        <label for="check-male">Male</label>
                     </div>
                     <div class="gender">
                         <input type="radio" id="check-female" name="register-gender" value="F" />

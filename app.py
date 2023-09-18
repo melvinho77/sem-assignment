@@ -138,8 +138,43 @@ def login_application():
 
 @app.route('/regitser_student')
 def regitser_student():
-        
+    try:
+        name = request.form['register-name']
+        ic=request.form['register-ic']
+        email = request.form['register-email']
+        phone = request.form['register-phone']
+        birth_date = request.form['register-birth-date']
+        gender = request.form['register-gender']
+        address = request.form['register-address']
+        password = request.form['register-password']
+
+        insert_sql = "INSERT INTO students (studentIc, studentName, studentEmail,studentPhone,studentBirthDate,studentGender,studentAddress,studentPassword) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+        cursor=db_conn.cursor()
+    
+        cursor.execute(insert_sql,(ic,name,email,phone,birth_date,gender,address,password))
+        db_conn.commit()
+    except Exception as e:
+        db_conn.rollback()
     return render_template('registerStudent.html')
+
+@app.route('/verifyLogin')
+def verifyLogin():
+    if request.method=='POST':
+        loginEmail=request.form['login-email']
+        loginPassword=request.form['login-password']
+
+        # Query the database to check if the email and IC number match a record
+        cursor = db_conn.cursor()
+        query = "SELECT * FROM student WHERE studentEmail = %s AND studentPassword = %s"
+        cursor.execute(query, (loginEmail, loginPassword))
+        user = cursor.fetchone()
+        cursor.close()
+
+        if user:
+            session['loggedInStudent']=user[0]
+            return render_template('application.html')
+        else:
+            return render_template('studentLogin.html', msg="Access Denied: Invalid Email or Password")
 
 
 if __name__ == '__main__':
