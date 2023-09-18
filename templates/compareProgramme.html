@@ -612,26 +612,28 @@
                                         <tr>
                                             <td colspan="5" class="sep">Main Courses</td>
                                         </tr>
-                                        {% set i = 0 %}                                        
-                                            <tr>
-                                                {% for course in course_list %}
-                                                    <td>{{ course.courseName }}</td>
-                                                    
-                                                    {% set checkFinish = 0 %}
-                                            
-                                                    {% for sameCourse in SameList %}
-                                                        {% if sameCourse.courseName == course.courseName %}
-                                                            <td><span class="tick">&#10004;</span></td>
-                                                            {% set i = 1 %}
-                                                        {% endif %}
-                                                    {% endfor %}                                                                                                                                                                                        
-                                                {% endfor %}
+                                        {% set sameListLength = SameList|length %}
 
+                                        {% for course in course_list %}
+                                            <tr>
+                                                <td>{{ course.courseName }}</td>
+                                                {% set i = 0 %}
+                                                {% set checkFinish = 0 %}
+                                        
+                                                {% for sameCourse in SameList %}
+                                                    {% if sameCourse.courseName == course.courseName %}
+                                                        <td><span class="tick">&#10004;</span></td>
+                                                        {% set i = 1 %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                        
+                                              
+                                        
                                                 {% if i == 0 %}
-                                                        <td><span style="font-size: 18px;">&#10060;</span></td>
+                                                    <td><span style="font-size: 18px;">&#10060;</span></td>
                                                 {% endif %}
                                             </tr>
-                                        
+                                        {% endfor %}
                                         
                                         
                                     </tbody>
