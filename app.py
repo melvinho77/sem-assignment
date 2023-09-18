@@ -36,23 +36,27 @@ def home_page():
 
 @app.route('/')
 def index():
-    return render_template('home.html', number=1)
+    network_details = get_network_details()
+    return render_template('home.html', number=1, network_details=network_details)
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('home.html')
+    network_details = get_network_details()
+    return render_template('home.html', network_details=network_details)
 
 # req1
 @app.route('/relevantResult_display', methods=['POST'])
 def relevantResult_display():
     result = request.form['result']
-    return render_template(result)
+    network_details = get_network_details()
+    return render_template(result, network_details=network_details)
 
 # req1
 @app.route('/homeSearchProgramme', methods=['POST'])
 def homeSearchProgramme():
     searchObj = request.form['textInput']
-    
+    network_details = get_network_details()
+
     select_sql = f"SELECT * FROM availableProgramme"
     cursor = db_conn.cursor()
     cursor.execute(select_sql)
@@ -98,7 +102,7 @@ def homeSearchProgramme():
 
     relevantResults = []
     if not top_5_results:
-        return render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults)
+        return render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults, network_details=network_details)
     else:
         for element in top_5_results:
             count = 0
@@ -107,7 +111,7 @@ def homeSearchProgramme():
                 if count == element[0]:
                     relevantResults.append(url_set.get(count))
         print(relevantResults)
-        return render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults)
+        return render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults, network_details=network_details)
 
 # N8 - Retrieve network details
 def get_network_details():
@@ -126,16 +130,6 @@ def get_network_details():
         }
     except Exception as e:
         return {'Error': str(e)}
-
-@app.route('/contactUs')
-def contact_us():
-    # Call the get_network_details function to retrieve network details
-    network_details = get_network_details()
-
-    # Pass the network_details to the contactUs.html template
-    return render_template('contactUs.html', network_details=network_details)
-
-
 
 
 

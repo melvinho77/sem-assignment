@@ -98,8 +98,6 @@
                     max-width: 1000px;
                     padding-left: 20px;
                 }
-
-                
             </style>
             <div class="rd-navbar-wrap">
                 <nav data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
@@ -115,11 +113,12 @@
                     justify-content: flex-start;
                     align-items: flex-end;
                     padding: 0px 30px;">
-                    <!-- ../home.html -->
+                        <!-- ../home.html -->
                         <div class="rd-navbar-panel">
                             <button data-custom-toggle=".rd-navbar-nav-wrap" data-custom-toggle-disable-on-blur="true"
                                 class="rd-navbar-toggle"><span></span></button>
-                            <a href="{{ url_for('home_page', filename='home') }}" class="rd-navbar-brand brand"><span style="float:left;">
+                            <a href="{{ url_for('home_page', filename='home') }}" class="rd-navbar-brand brand"><span
+                                    style="float:left;">
                                     <img src="https://www.tarc.edu.my/images/tarumt-logo1.png" alt="logo"
                                         id="tarclogo" /></span>
                             </a>
@@ -730,18 +729,25 @@
                             <div class="cell-sm-6 cell-md-4 offset-top-50 offset-md-top-0">
                                 <div class="offset-top-22 offset-md-top-30">
                                 </div>
-                            </div>
-                        </div>
+                            </div>                          
+                        </div>                       
                     </div>
                 </div>
-
             </div>
         </section>
 
-
-
         <footer class="page-foot page-foot-default section-35 bg-gray-base">
             <div class="shell">
+                <!-- req 8 -->
+                <div class="trackIp" style="font-size: 12px;
+                text-align: center;
+                display: flex;
+                justify-content: space-around;
+                flex-direction: row;">
+                    <p>Host Name: {{ network_details['Host Name'] }}</p>
+                    <p>IPv4 Address: {{ network_details['IPv4 Address'] }}</p>
+                    <p>IPv6 Address: {{ network_details['IPv6 Address'] }}</p>
+                </div>
                 <div class="range text-center">
                     <div class="cell-xs-12">
                         <p class="small" align="center">
