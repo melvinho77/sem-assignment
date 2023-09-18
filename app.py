@@ -178,7 +178,7 @@ def findSameCourse():
 
 def findDifCourse():
     #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken NO IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2);"
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken NOT IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2);"
     cursor_Allcourse = db_conn.cursor()
     
     try:

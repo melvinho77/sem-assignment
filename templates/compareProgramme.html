@@ -619,8 +619,7 @@
                                             <td>
                                             {% for sameCourse in SameList %}
                                                 {% if sameCourse.courseName == course.courseName %}
-                                                    <span class="tick">&#10004;</span>
-                                                    {% set i = 1 %}
+                                                    <span class="tick">&#10004;</span>                                                    
                                                 {% endif %}
                                             {% endfor %}
 
@@ -632,9 +631,6 @@
                                             {% endfor %}
 
                                             </td>
-                                            {% if i == 0 %}
-                                                
-                                            {% endif %}
                                         </tr>
                                     {% endfor %}
                                     
