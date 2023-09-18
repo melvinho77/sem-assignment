@@ -150,7 +150,7 @@ def compareProgramme():
 
 def findSameCourse():
     #find all course
-    all_course = "SELECT DISTINCT courseTakenFROM programmeMainCourse WHERE programmeId = 1 AND courseTaken IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2);"
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2);"
     cursor_Allcourse = db_conn.cursor()
     
     try:
