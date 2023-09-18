@@ -591,10 +591,10 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th>Self-Employed</th>
-                                            <th>Simple Start</th>
-                                            <th>Essentials</th>
-                                            <th>Plus</th>
+                                            <th>Computer Science</th>
+                                            <th>Information Systems</th>
+                                            <th>...</th>
+                                            <th>...</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -610,60 +610,13 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" class="sep">Get started easily</td>
+                                            <td colspan="5" class="sep">Main Courses</td>
                                         </tr>
+                                        {{% for course in course_list %}}
                                         <tr>
-                                            <td>Includes free updates and new features as they become available</td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td class="default"><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
+                                            <td>{{ course.courseName}}</td>                                            
                                         </tr>
-                                        <tr>
-                                            <td>No software to install — sign up online in moments</td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td class="default"><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Import customer & supplier details from Excel, Outlook and .csv</td>
-                                            <td></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td class="default"><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Accept card payments in QuickBooks Online</td>
-                                            <td></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td class="default"><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5" class="sep">Stay protected and get support</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Free telephone and online support</td>
-                                            <td></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td class="default"><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Strong encryption protects your business data</td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td class="default"><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Automatic data backups</td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                            <td class="default"><span class="tick">&#10004;</span></td>
-                                            <td><span class="tick">&#10004;</span></td>
-                                        </tr>
+                                        {{% endfor %}}
                                     </tbody>
                                 </table>
                             </div>
