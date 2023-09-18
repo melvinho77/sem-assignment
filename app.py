@@ -140,7 +140,7 @@ def login_application():
 def regitser_student():
     return render_template('registerStudent.html')
 
-@app.route('/regStudent')
+@app.route('/regStudent',methods=['POST'])
 def regStudent():
     try:
         name = request.form['register-name']
@@ -152,7 +152,7 @@ def regStudent():
         address = request.form['register-address']
         password = request.form['register-password']
 
-        insert_sql = "INSERT INTO students (studentIc, studentName, studentEmail,studentPhone,studentBirthDate,studentGender,studentAddress,studentPassword) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+        insert_sql = "INSERT INTO students (studentName, studentIc, studentEmail,studentPhone,studentBirthDate,studentGender,studentAddress,studentPassword) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor=db_conn.cursor()
     
         cursor.execute(insert_sql,(ic,name,email,phone,birth_date,gender,address,password))
@@ -161,7 +161,7 @@ def regStudent():
     except Exception as e:
         db_conn.rollback()
 
-@app.route('/verifyLogin')
+@app.route('/verifyLogin',methods=['POST'])
 def verifyLogin():
     if request.method=='POST':
         loginEmail=request.form['login-email']
