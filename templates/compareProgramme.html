@@ -622,10 +622,14 @@
                                                     <span class="tick">&#10004;</span>
                                                     {% set i = 1 %}
                                                 {% endif %}
+
+                                                {% if SameList|length && sameCourse.courseName != course.courseName%}
+                                                <span style="font-size: 18px;">&#10060;</span>
+                                                {% endif %}
                                             {% endfor %}
                                             </td>
                                             {% if i == 0 %}
-                                                <td><span style="font-size: 18px;">&#10060;</span></td>
+                                                
                                             {% endif %}
                                         </tr>
                                     {% endfor %}
