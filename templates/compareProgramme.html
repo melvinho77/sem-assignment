@@ -618,7 +618,8 @@
                                             {% for sameCourse in SameList %}
                                                 {% if sameCourse.courseName == course.courseName%}
                                                 <td><span class="tick">&#10004;</span></td>
-                                                
+                                                {% else %}
+                                                <td><span style="font-size: 18px;">&#10060</span></td>
                                                 {% endif%}
                                             {% endfor%}
                                                                                        
