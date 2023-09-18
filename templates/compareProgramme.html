@@ -617,16 +617,15 @@
                                             <td>{{ course.courseName }}</td>
                                             {% set i = 0 %}
                                             <td>
-                                            {% for sameCourse in SameList %}
+                                            {% for sameCourse in course1 %}
                                                 {% if sameCourse.courseName == course.courseName %}
                                                     <span class="tick">&#10004;</span>                                                    
                                                 {% endif %}
                                             {% endfor %}
 
-                                            {% for difCourse in Diflist %}
-                                                {% if difCourse.courseName == course.courseName %}
-                                                    <span class="tick">&#10060;</span>
-                                                    {% set i = 1 %}
+                                            {% for sameCourse in course2 %}
+                                                {% if sameCourse.courseName == course.courseName %}
+                                                    <span class="tick">&#10004;</span>                                                    
                                                 {% endif %}
                                             {% endfor %}
 

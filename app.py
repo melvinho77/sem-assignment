@@ -114,10 +114,10 @@ def homeSearchProgramme():
 
 # N5 compare Programme Structure
 @app.route('/compareProgramme', methods=['POST'])
-def compareProgramme():
+def showAllProgramme():
 
     #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 or programmeId=2"
+    all_course = "SELECT courseTaken FROM course"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -144,7 +144,10 @@ def compareProgramme():
     
 
 
-    return render_template('compareProgramme.html', course_list=course_list,SameList=findSameCourse(),Diflist=findDifCourse())
+    return render_template('compareProgramme.html', 
+                           course_list=course_list,
+                           course1=findCourse(1),
+                           course2=findCourse(2))
 
 
 def findSameCourse():
@@ -183,6 +186,35 @@ def findDifCourse():
     
     try:
         cursor_Allcourse.execute(all_course)
+        allCourse = cursor_Allcourse.fetchall()
+
+        course_list = []
+
+        for course in allCourse:
+            courseName = course[0]
+
+            try:
+                course_data = {
+                    "courseName": courseName              
+                }
+
+                course_list.append(course_data)
+
+            except Exception as e:
+                return str(e)
+    
+    except Exception as e:
+        return str(e)
+    
+    return course_list
+
+def findCourse(programmeId):
+      #find all course
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = %s"
+    cursor_Allcourse = db_conn.cursor()
+    
+    try:
+        cursor_Allcourse.execute(all_course,(programmeId,))
         allCourse = cursor_Allcourse.fetchall()
 
         course_list = []
