@@ -90,60 +90,13 @@
                     #tarclogo {
                         height: 70px;
                         margin-top: 10px;
+                        /* margin-bottom: -67px; */
                     }
                 }
 
                 #menuCon {
                     max-width: 1000px;
                     padding-left: 20px;
-                }
-
-                /* Style for the input field */
-                input[type="text"] {
-                    /* Your regular text color */
-                    color: black;
-                    width: 400px;
-                    border: 0.2px solid rgb(255, 183, 0);
-                }
-
-                /* Style for the placeholder text */
-                input[type="text"]::placeholder {
-                    /* Your desired placeholder text color (in this case, grey) */
-                    color: rgb(202, 202, 202);
-                    text-align: center;
-                }
-
-                /* Style for the input field and icon container */
-                .input-container {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-
-                /* Style for the search icon */
-                .iconify {
-                    cursor: pointer;
-                    width: 20px;
-                    height: 20px;
-                    color: rgb(255, 255, 255);
-                    margin: 6px 9px 6px 9px;
-
-                    /* Adjust the margin as needed to control spacing */
-                }
-
-                .iconForSearch {
-                    border: 1px solid rgb(255, 183, 0);
-                    background-color: rgb(255, 149, 0);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    margin-left: 0px;
-                    border-radius: 0px;
-                }
-
-                .iconForSearch:hover {
-                    transition: 0.3s;
-                    background-color: rgb(255, 182, 79);
                 }
             </style>
             <div class="rd-navbar-wrap">
@@ -160,11 +113,12 @@
                     justify-content: flex-start;
                     align-items: flex-end;
                     padding: 0px 30px;">
+                        <!-- ../home.html -->
                         <div class="rd-navbar-panel">
                             <button data-custom-toggle=".rd-navbar-nav-wrap" data-custom-toggle-disable-on-blur="true"
                                 class="rd-navbar-toggle"><span></span></button>
-                            <a href="{{ url_for('home_page', filename='../home.html') }}"
-                                class="rd-navbar-brand brand"><span style="float:left;">
+                            <a href="{{ url_for('home_page', filename='home') }}" class="rd-navbar-brand brand"><span
+                                    style="float:left;">
                                     <img src="https://www.tarc.edu.my/images/tarumt-logo1.png" alt="logo"
                                         id="tarclogo" /></span>
                             </a>
@@ -578,29 +532,32 @@
         <div class="container grid-system">
             <div class="row offset-top-50 offset-md-top-30 medbtn">
 
+
                 <div class="col-xs-6 col-md-2">
                     <article class="icon-box icon-box-top-line">
                         <div class="box-top">
                             <div class="box-icon"><a href="/login_application"><img
                                         src="{{ url_for('static', filename='images/application.png')}}" width="50%"
-                                        style="min-width:82px;"></a>
-                            </div>
+                                        style="min-width:82px;"></a></div>
                             <div class="box-header">
                                 <span style="font-size:16px; font-weight:bold;"><a href="/login_application"
-                                        target="_blank"></a>Application</span>
+                                        target="_blank">Why Choose
+                                        Us </a></span>
                             </div>
                         </div>
                     </article>
                 </div>
 
-
                 <div class="col-xs-6 col-md-2">
                     <article class="icon-box icon-box-top-line">
                         <div class="box-top">
-                            <div class="box-icon"><a href="https://www.tarc.edu.my/focs/a/why-choose-us/">
-                                <img src="files/focs/39E9DDCE-6E61-4C29-9CB7-0EF12F0BADAC.png" width="50%" style="min-width: 82px;"></a></div>
+                            <div class="box-icon"><a href="https://www.tarc.edu.my/focs/a/why-choose-us/"><img
+                                        src="https://www.tarc.edu.my/files/focs/39E9DDCE-6E61-4C29-9CB7-0EF12F0BADAC.png"
+                                        width="50%" style="min-width:82px;"></a></div>
                             <div class="box-header">
-                                <span style="font-size: 16px; font-weight: bold;"><a href="https://www.tarc.edu.my/focs/a/why-choose-us/" target="_blank">Why Choose Us </a></span>
+                                <span style="font-size:16px; font-weight:bold;"><a
+                                        href="https://www.tarc.edu.my/focs/a/why-choose-us/" target="_blank">Why Choose
+                                        Us </a></span>
                             </div>
                         </div>
                     </article>
@@ -792,14 +749,21 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-
-
         <footer class="page-foot page-foot-default section-35 bg-gray-base">
             <div class="shell">
+                <!-- req 8 -->
+                <div class="trackIp" style="font-size: 12px;
+                text-align: center;
+                display: flex;
+                justify-content: space-around;
+                flex-direction: row;">
+                    <p>Host Name: {{ network_details['Host Name'] }}</p>
+                    <p>IPv4 Address: {{ network_details['IPv4 Address'] }}</p>
+                    <p>IPv6 Address: {{ network_details['IPv6 Address'] }}</p>
+                </div>
                 <div class="range text-center">
                     <div class="cell-xs-12">
                         <p class="small" align="center">
