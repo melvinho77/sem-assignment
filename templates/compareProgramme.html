@@ -662,11 +662,13 @@
                                         {% for course in electiveCourse_list %}
                                         <tr>
                                             <td>{{ course.courseName }}</td>
-                                            {% for sameCourse in electiveCourse1 %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>                                                    
+
+                                            
+                                            {% for noIncludeCourse in electiveCourse1NoInclude %}
+                                                {% if noIncludeCourse.courseName == course.courseName %}
+                                                <td><span class="tick">&#10060;</span></td>                                                    
                                                 {% endif %}
-                                            {% endfor %}                                                                                                                        
+                                            {% endfor %}                                                                                   
 
                                             
                                         </tr>
