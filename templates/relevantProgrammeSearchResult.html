@@ -364,7 +364,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -474,7 +473,6 @@
                                         <span data-caption-animate="fadeInUp" data-caption-delay="100"
                                             class="slider-text-animate" style="color:#FFF;"></span>
                                         <br>
-
                                         <span
                                             class="group-xl-responsive offset-top-30 offset-sm-top-45"><!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
                                             <a data-caption-animate="fadeInUp" data-caption-delay="250"
@@ -482,14 +480,11 @@
                                                 class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
                                                 Info</a>
                                         </span>
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
 
                     <div data-slide-bg="https://www.tarc.edu.my/files/focs/6B3B6A89-6E28-4FEF-A56E-968A3EE45634.png"
                         class="swiper-slide">
@@ -524,6 +519,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- req 1 -->
         <div class="relevantResultContainer">
             {% if relevantResults != "No relevant result." %}
             <ul>
@@ -541,7 +538,7 @@
                 {% endfor %}
             </ul>
             {% else %}
-            {{ relevantResults }}
+                {{ relevantResults }}           
             {% endif %}
         </div>
 

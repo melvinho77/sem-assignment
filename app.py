@@ -75,7 +75,7 @@ def homeSearchProgramme():
         17: "programmes/Doctor of Philosophy Information Technology.html",
         18: "programmes/Doctor of Philosophy Mathematical Sciences.html"
     }
-    
+
     similarity_scores = []
 
     # Iterate through the program names in 'searchRange'
@@ -84,7 +84,7 @@ def homeSearchProgramme():
         program_name = program[1]
         similarity = difflib.SequenceMatcher(None, searchObj, program_name).ratio()
 
-        if similarity > 0.1:
+        if similarity > 0.2:
             similarity_scores.append((program_id, program_name, similarity))
 
     # Sort the results by similarity in descending order
@@ -95,7 +95,8 @@ def homeSearchProgramme():
 
     relevantResults = []
     if not top_5_results:
-        render_template('relevantProgrammeSearchResult.html', relevantResults = "No relevant result.")
+        relevantResults = "No relevant result."
+        render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults)
     else:
         for element in top_5_results:
             count = 0
@@ -103,7 +104,7 @@ def homeSearchProgramme():
                 count += 1
                 if count == element[0]:
                     relevantResults.append(url_set.get(count))
-
+        print(relevantResults)
         return render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults)
 
 if __name__ == '__main__':
