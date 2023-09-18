@@ -138,6 +138,10 @@ def login_application():
 
 @app.route('/regitser_student')
 def regitser_student():
+    return render_template('registerStudent.html')
+
+@app.route('/regStudent')
+def regStudent():
     try:
         name = request.form['register-name']
         ic=request.form['register-ic']
@@ -155,6 +159,7 @@ def regitser_student():
         db_conn.commit()
     except Exception as e:
         db_conn.rollback()
+
     return render_template('studentLogin.html')
 
 @app.route('/verifyLogin')
