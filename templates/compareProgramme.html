@@ -623,7 +623,7 @@
                                                 {% for sameCourse in SameList %}
                                                     {% if sameCourse.courseName != course.courseName %}
                                                         <td><span class="tick">&#10004;</span></td>
-                                                        {% set i = i + 1 %}
+                                                        {% i = i + 1 %}
                                                     {% endif %}
                                                 {% endfor %}
                                         
