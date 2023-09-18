@@ -34,7 +34,7 @@
         .container {
             position: relative;
             max-width: 700px;
-            width: 100%;
+            width: 90%;
             background: #fff;
             padding: 25px;
             border-radius: 8px;
@@ -61,7 +61,7 @@
             color: #333;
         }
 
-        .form :where(.input-box input, .select-box,textarea, password) {
+        .form :where(.input-box input, .select-box, textarea, password) {
             position: relative;
             height: 50px;
             width: 100%;
@@ -117,7 +117,7 @@
             color: #707070;
         }
 
-        .address :where(input, .select-box,textarea, password) {
+        .address :where(input, .select-box, textarea, password) {
             margin-top: 15px;
         }
 
@@ -172,42 +172,48 @@
         <form action="#" class="form">
             <div class="input-box">
                 <label>Full Name</label>
-                <input type="text" placeholder="Enter full name" required />
+                <input type="text" placeholder="Enter full name" name="register-name" required />
             </div>
 
-            <div class="input-box">
-                <label>Email Address</label>
-                <input type="text" placeholder="Enter email address" required />
+            <div class="column">
+                <div class="input-box">
+                    <label>Email Address</label>
+                    <input type="text" placeholder="Enter email address" name="register-email" required />
+                </div>
+                <div class="input-box">
+                    <label>MyKad</label>
+                    <input type="text" placeholder="Enter ic number" name="register-ic" required />
+                </div>
             </div>
 
             <div class="column">
                 <div class="input-box">
                     <label>Phone Number</label>
-                    <input type="number" placeholder="Enter phone number" required />
+                    <input type="text" placeholder="Enter phone number" name="register-phone" required />
                 </div>
                 <div class="input-box">
                     <label>Birth Date</label>
-                    <input type="date" placeholder="Enter birth date" required />
+                    <input type="date" placeholder="Enter birth date" name="register-birth-date" required />
                 </div>
             </div>
             <div class="gender-box">
                 <h3>Gender</h3>
                 <div class="gender-option">
                     <div class="gender">
-                        <input type="radio" id="check-male" name="gender" checked />
+                        <input type="radio" id="check-male" name="register-gender" value='M' checked />
                         <label for="check-male">male</label>
                     </div>
                     <div class="gender">
-                        <input type="radio" id="check-female" name="gender" />
+                        <input type="radio" id="check-female" name="register-gender" value="F" />
                         <label for="check-female">Female</label>
                     </div>
                 </div>
             </div>
             <div class="input-box address">
                 <label>Address</label>
-                <textarea id="address" name="register-address" rows="4" placeholder="Current Term Address"></textarea>
+                <textarea id="address" name="register-address" rows="3" placeholder="Current Term Address"></textarea>
                 <div class="column">
-                    <input type="password" placeholder="Enter Your Password" required />
+                    <input type="password" placeholder="Enter Your Password" name="register-password" required />
                     <input type="password" placeholder="Enter Your Confirm Password" required />
                 </div>
             </div>

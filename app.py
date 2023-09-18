@@ -138,6 +138,7 @@ def login_application():
 
 @app.route('/regitser_student')
 def regitser_student():
+        
     return render_template('registerStudent.html')
 
 
