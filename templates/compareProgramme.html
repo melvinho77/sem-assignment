@@ -672,19 +672,7 @@
                                                 {% if noIncludeCourse.courseName == course.courseName %}
                                                 <td><span class="tick">&#10060;</span></td>                                                    
                                                 {% endif %}
-                                            {% endfor %}    
-                                            
-                                            {% for sameCourse in electiveCourse2 %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                            {% for noIncludeCourse in electiveCourse2NoInclude %}
-                                                {% if noIncludeCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10060;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %} 
+                                            {% endfor %}                                                                                   
 
                                             
                                         </tr>
