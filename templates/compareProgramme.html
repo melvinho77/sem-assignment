@@ -624,7 +624,7 @@
                                                     {% if sameCourse.courseName == course.courseName %}
                                                         <td><span class="tick">&#10004;</span></td>
                                                         {% set i = 1 %}
-                                                        {% set checkFinish++ %}
+                                                        {% set checkFinish = checkFinish + 1 %}
                                                     {% endif %}
                                                 {% endfor %}
                                         
