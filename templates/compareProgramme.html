@@ -612,24 +612,28 @@
                                         <tr>
                                             <td colspan="5" class="sep">Main Courses</td>
                                         </tr>
+                                        {% set sameListLength = SameList|length %}
+
                                         {% for course in course_list %}
-                                        <tr>
-                                            <td>{{ course.courseName }}</td>
-                                            {% set i = 0 %}
-
-                                            {% for sameCourse in SameList %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>
-                                                {% set i = 1 %}
+                                            <tr>
+                                                <td>{{ course.courseName }}</td>
+                                                {% set i = 0 %}
+                                                {% set checkFinish =0 %}
+                                        
+                                                {% for sameCourse in SameList %}
+                                                    {% if sameCourse.courseName == course.courseName %}
+                                                        <td><span class="tick">&#10004;</span></td>
+                                                        {% set i = 1 %}
+                                                        {% set checkFinish++ %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                        
+                                                {% if i == 0 and sameListLength == checkFinish %}
+                                                    <td><span style="font-size: 18px;">&#10060;</span></td>
                                                 {% endif %}
-                                            {% endfor %}
-
-                                            {% if i == 0 %}
-                                            <td><span style="font-size: 18px;">&#10060;</span></td>
-                                            {% endif %}
-                                        </tr>
+                                            </tr>
                                         {% endfor %}
-
+                                        
                                     </tbody>
                                 </table>
                             </div>
