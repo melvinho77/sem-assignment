@@ -147,6 +147,7 @@ def showAllProgramme():
                            course_list=course_list,
                            course1=findCourse(1),
                            course1NoInclude=findCourseNoInclude(2,1),
+                           course2NoInclude=findCourseNoInclude(1,2),
                            course2=findCourse(2))
 
 
