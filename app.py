@@ -136,6 +136,9 @@ def get_network_details():
 def login_application():
     return render_template('studentLogin.html')
 
+@app.route('/regitser_student')
+def regitser_student():
+    return render_template('registerStudent.html')
 
 
 if __name__ == '__main__':
