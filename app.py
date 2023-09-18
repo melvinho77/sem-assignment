@@ -36,7 +36,11 @@ def home_page():
 
 @app.route('/')
 def index():
-    return render_template('studentLogin.html', number=1)
+    return render_template('home.html', number=1)
+
+@app.route('/login_application')
+def login_application():
+    return render_template('studentLogin.html')
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
