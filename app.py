@@ -157,10 +157,9 @@ def regStudent():
     
         cursor.execute(insert_sql,(ic,name,email,phone,birth_date,gender,address,password))
         db_conn.commit()
+        return render_template('studentLogin.html')
     except Exception as e:
         db_conn.rollback()
-
-    return render_template('studentLogin.html')
 
 @app.route('/verifyLogin')
 def verifyLogin():
