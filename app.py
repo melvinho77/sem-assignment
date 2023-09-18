@@ -117,7 +117,7 @@ def homeSearchProgramme():
 def showAllProgramme():
 
     #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 or programmeId = 2"
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 or programmeId = 2 ORDER BY courseTaken"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -152,7 +152,7 @@ def showAllProgramme():
 
 def findSameCourse():
     #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2);"
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2) ORDER BY courseTaken;"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -181,7 +181,7 @@ def findSameCourse():
 
 def findDifCourse():
     #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken NOT IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2);"
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken NOT IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2)ORDER BY courseTaken;"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -210,7 +210,7 @@ def findDifCourse():
 
 def findCourse(programmeId):
       #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = %s"
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = %s ORDER BY courseTaken"
     cursor_Allcourse = db_conn.cursor()
     
     try:
