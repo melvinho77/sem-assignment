@@ -614,22 +614,22 @@
                                         </tr>
                                         {% for course in course_list %}
                                         <tr>
-                                            <td>{{ course.courseName}}</td>
-                                            {% int i = 0 %}
+                                            <td>{{ course.courseName }}</td>
+                                            {% set i = 0 %}
 
                                             {% for sameCourse in SameList %}
-                                                {% if sameCourse.courseName == course.courseName%}
+                                                {% if sameCourse.courseName == course.courseName %}
                                                 <td><span class="tick">&#10004;</span></td>
-                                                {% i=1 %}
-                                                {% endif%}
-                                            {% endfor%}
+                                                {% set i = 1 %}
+                                                {% endif %}
+                                            {% endfor %}
 
                                             {% if i == 0 %}
                                             <td><span style="font-size: 18px;">&#10060;</span></td>
-                                            {% endif}
-
+                                            {% endif %}
                                         </tr>
                                         {% endfor %}
+
                                     </tbody>
                                 </table>
                             </div>
