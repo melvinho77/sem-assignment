@@ -155,7 +155,7 @@ def regitser_student():
         db_conn.commit()
     except Exception as e:
         db_conn.rollback()
-    return render_template('registerStudent.html')
+    return render_template('studentLogin.html')
 
 @app.route('/verifyLogin')
 def verifyLogin():
@@ -165,7 +165,7 @@ def verifyLogin():
 
         # Query the database to check if the email and IC number match a record
         cursor = db_conn.cursor()
-        query = "SELECT * FROM student WHERE studentEmail = %s AND studentPassword = %s"
+        query = "SELECT * FROM students WHERE studentEmail = %s AND studentPassword = %s"
         cursor.execute(query, (loginEmail, loginPassword))
         user = cursor.fetchone()
         cursor.close()
