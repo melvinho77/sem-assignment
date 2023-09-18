@@ -131,8 +131,10 @@ def get_network_details():
         return {'Error': str(e)}
 
 
-
-
+#GWEE YONG SEAN
+@app.route('/login_application')
+def login_application():
+    return render_template('studentLogin.html')
 
 
 
