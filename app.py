@@ -36,7 +36,7 @@ def home_page():
 
 @app.route('/')
 def index():
-    return render_template('programmes/Diploma in Information Systems.html', number=1)
+    return render_template('studentLogin.html', number=1)
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
