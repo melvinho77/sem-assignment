@@ -146,6 +146,7 @@ def showAllProgramme():
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            course1=findCourse(1),
+                           course1NoInclude=findCourseNoInclude(1,2),
                            course2=findCourse(2))
 
 
@@ -214,6 +215,39 @@ def findCourse(programmeId):
     
     try:
         cursor_Allcourse.execute(all_course,(programmeId,))
+        allCourse = cursor_Allcourse.fetchall()
+
+        course_list = []
+
+        for course in allCourse:
+            courseName = course[0]
+
+            try:
+                course_data = {
+                    "courseName": courseName              
+                }
+
+                course_list.append(course_data)
+
+            except Exception as e:
+                return str(e)
+    
+    except Exception as e:
+        return str(e)
+    
+    return course_list
+
+def findCourseNoInclude(courseIdIn, compareId1):
+      #find all course
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse " \
+             "WHERE programmeId = %s AND courseTaken NOT IN " \
+             "(SELECT courseTaken FROM programmeMainCourse WHERE programmeId = %s) " \
+             "ORDER BY courseTaken;"
+
+    cursor_Allcourse = db_conn.cursor()
+    
+    try:
+        cursor_Allcourse.execute(all_course,(courseIdIn,compareId1))
         allCourse = cursor_Allcourse.fetchall()
 
         course_list = []
