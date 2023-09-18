@@ -626,13 +626,13 @@
                                                         {% set i = 1 %}                                                        
                                                     {% endif %}
 
-                                                    {% set checkFinish = checkFinish + 1 %}
-                                                    {% if i == 0 %}
-                                                    <td><span style="font-size: 18px;">{{ checkFinish }}</span></td>
-                                                    {% endif %}
+                                                    {% set checkFinish = checkFinish + 1 %}                                                   
 
                                                 {% endfor %}
-                                        
+                                                
+                                                {% if i == 0 %}
+                                                <td><span style="font-size: 18px;">{{ checkFinish }}</span></td>
+                                                {% endif %}
                                                 
                                             </tr>
                                         {% endfor %}
