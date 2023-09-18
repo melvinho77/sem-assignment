@@ -621,13 +621,14 @@
                                                 {% set checkFinish = 0 %}
                                         
                                                 {% for sameCourse in SameList %}
+                                                {% set checkFinish = checkFinish + 1 %}  {# Increment outside of the inner loop for each row #}
                                                     {% if sameCourse.courseName == course.courseName %}
                                                         <td><span class="tick">&#10004;</span></td>
                                                         {% set i = 1 %}
                                                     {% endif %}
                                                 {% endfor %}
                                         
-                                                {% set checkFinish = checkFinish + 1 %}  {# Increment outside of the inner loop for each row #}
+                                              
                                         
                                                 {% if i == 0 %}
                                                     <td><span style="font-size: 18px;">{{ checkFinish }}</span></td>
