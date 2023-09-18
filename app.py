@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, s
 from botocore.exceptions import ClientError
 from pymysql import connections
 import boto3
+import socket
 from config import *
 import datetime
 import difflib
@@ -35,17 +36,19 @@ def home_page():
 
 @app.route('/')
 def index():
-    return render_template('relevantProgrammeSearchResult.html', number=1)
+    return render_template('home.html', number=1)
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
 
+# req1
 @app.route('/relevantResult_display', methods=['POST'])
 def relevantResult_display():
     result = request.form['result']
     return render_template(result)
 
+# req1
 @app.route('/homeSearchProgramme', methods=['POST'])
 def homeSearchProgramme():
     searchObj = request.form['textInput']
@@ -105,6 +108,40 @@ def homeSearchProgramme():
                     relevantResults.append(url_set.get(count))
         print(relevantResults)
         return render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults)
+
+# N8 - Retrieve network details
+def get_network_details():
+    try:
+        # Get the host name of the local machine
+        host_name = socket.gethostname()
+
+        # Get both IPv4 and IPv6 addresses associated with the host
+        ipv4_address = socket.gethostbyname(host_name)
+        ipv6_address = socket.getaddrinfo(host_name, None, socket.AF_INET6)[0][4][0]
+
+        return {
+            'Host Name': host_name,
+            'IPv4 Address': ipv4_address,
+            'IPv6 Address': ipv6_address
+        }
+    except Exception as e:
+        return {'Error': str(e)}
+
+@app.route('/contactUs')
+def contact_us():
+    # Call the get_network_details function to retrieve network details
+    network_details = get_network_details()
+
+    # Pass the network_details to the contactUs.html template
+    return render_template('contactUs.html', network_details=network_details)
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
