@@ -113,7 +113,7 @@ def homeSearchProgramme():
         return render_template('relevantProgrammeSearchResult.html', relevantResults = relevantResults, network_details=network_details)
 
 # N5 compare Programme Structure
-@app.route('/homeSearchProgramme', methods=['POST'])
+@app.route('/compareProgramme', methods=['POST'])
 def compareProgramme():
 
     all_course= "SELECT * FROM course "
