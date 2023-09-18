@@ -625,15 +625,12 @@
                                                         <td><span class="tick">&#10004;</span></td>
                                                         {% set i = 1 %}
                                                     {% endif %}
-                                                {% endfor %}
-                                        
-                                              
-                                        
-                                                {% if i == 0 %}
-                                                    <td><span style="font-size: 18px;">&#10060;</span></td>
-                                                {% endif %}
+                                                {% endfor %}                                                                                                                                                                          
                                             </tr>
                                         {% endfor %}
+                                        {% if i == 0 %}
+                                                    <td><span style="font-size: 18px;">&#10060;</span></td>
+                                                {% endif %}
                                         
                                         
                                     </tbody>
