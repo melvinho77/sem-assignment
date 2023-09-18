@@ -58,7 +58,6 @@
             padding: 50px 35px;
             backdrop-filter: blur(1px);
             color: black;
-            text-align: center;
             /* Center the form content */
         }
 
@@ -83,7 +82,7 @@
         .container input {
             height: 50px;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.4);
             border-radius: 3px;
             padding: 0 10px;
             margin-top: 8px;
@@ -117,7 +116,19 @@
         .container .sign-up-link {
             border-radius: 3px;
             padding: 5px 10px 10px 5px;
-            background-color: rgba(255, 255, 255, 0.27);
+            color: #CF7;
+            text-shadow: 1px 0px 1px rgba(0, 0, 0, 0.25);
+            font-weight: 500px;
+            font-size: 15px;
+        }
+
+        .login-title{
+            text-align: center;
+            font-size: 30px;
+        }
+
+        hr{
+            border: 1px solid #C3C3C3;
         }
     </style>
 </head>
@@ -133,7 +144,7 @@
         </div>
         <div class="container">
             <h4>User Login</h4>
-            <hr>
+        </hr>
             <label for="username">Email</label>
             <input type="text" placeholder="Email" name="login-email">
             <label for="password">Password</label>
