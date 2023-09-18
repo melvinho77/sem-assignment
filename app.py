@@ -179,12 +179,12 @@ def showAllProgramme():
                            course4NoInclude=findCourseNoInclude(4),
                            course4=findCourse(4),
                            electiveCourse1=findElectiveCourse(1),
-                           electiveCourse1NoInclude=findCourseNoInclude(1),
-                           electiveCourse2NoInclude=findCourseNoInclude(2),
+                           electiveCourse1NoInclude=findElectiveCourseNoInclude(1),
+                           electiveCourse2NoInclude=findElectiveCourseNoInclude(2),
                            electiveCourse2=findElectiveCourse(2),
-                           electiveCourse3NoInclude=findCourseNoInclude(3),
+                           electiveCourse3NoInclude=findElectiveCourseNoInclude(3),
                            electiveCourse3=findElectiveCourse(3),
-                           electiveCourse4NoInclude=findCourseNoInclude(4),
+                           electiveCourse4NoInclude=findElectiveCourseNoInclude(4),
                            electiveCourse4=findElectiveCourse(4)
                            )
 
