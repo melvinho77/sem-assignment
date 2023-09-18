@@ -117,7 +117,7 @@ def homeSearchProgramme():
 def showAllProgramme():
 
     #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse ORDER BY courseTaken"
+    all_course = "SELECT DISTINCT courseName FROM course ORDER BY courseName"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -210,7 +210,7 @@ def findDifCourse():
 
 def findCourse(programmeId):
       #find all course
-    all_course = "SELECT DISTINCT courseName FROM course WHERE programmeId = %s ORDER BY courseTaken"
+    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = %s ORDER BY courseTaken"
     cursor_Allcourse = db_conn.cursor()
     
     try:
