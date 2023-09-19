@@ -31,7 +31,11 @@ table = 'employee'
 
 @app.route('/home_page')
 def home_page():
+    return render_template('home.html')
 
+@app.route('/')
+def index():
+    
     select_level="SELECT DISTINCT level FROM availableProgramme"
     cursorLevel = db_conn.cursor()
 
@@ -59,11 +63,6 @@ def home_page():
         return str(e)
     
     return level_list
-
-    return render_template('home.html',level_list=level_list)
-
-@app.route('/')
-def index():
     network_details = get_network_details()
     return render_template('home.html', number=1, network_details=network_details)
 
