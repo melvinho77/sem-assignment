@@ -169,6 +169,8 @@ def showAllProgramme():
 
     progId=request.form.getlist('progId[]')    
     programmeList=[]
+    course_list = []
+    electiveCourse_list = []
 
     #find selected programme
     for id in progId:
@@ -194,15 +196,14 @@ def showAllProgramme():
                 return str(e) 
                             
     #find all course
-
+    for id in progId:
         all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId=%s ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
         
         try:
             cursor_Allcourse.execute(all_course,(id,))
             allCourse = cursor_Allcourse.fetchall()
-
-            course_list = []
+            
 
             for course in allCourse:
                 courseName = course[0]
@@ -220,6 +221,9 @@ def showAllProgramme():
         except Exception as e:
             return str(e)
         
+        return course_list
+    
+    for id in progId:    
         all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
         cursor_AllElectivecourse = db_conn.cursor()
         
@@ -227,7 +231,7 @@ def showAllProgramme():
             cursor_AllElectivecourse.execute(all_electiveCourse,(id,))
             allElectiveCourse = cursor_AllElectivecourse.fetchall()
 
-            electiveCourse_list = []
+            
 
             for elective in allElectiveCourse:
                 courseName = elective[0]
