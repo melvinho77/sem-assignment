@@ -613,13 +613,13 @@
                                                     {% endif %}
                                                 {% endfor %}
                                                 
-
+                                                {% if i == 0 %}
+                                                <td><span class="tick">X</span></td>
+                                                {% endif %}
 
                                             {% endfor %}  
                                             
-                                            {% if i == 0 %}
-                                    <td><span class="tick">X</span></td>
-                                    {% endif %}
+                                            
                                         </tr>
                                     {% endfor %}
                                     
