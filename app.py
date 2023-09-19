@@ -183,9 +183,7 @@ def showAllProgramme():
             cursorProgramme= db_conn.cursor()
 
             cursorProgramme.execute(select_programme,(id,))
-            programmes=cursorProgramme.fetchall()
-            
-            i=0
+            programmes=cursorProgramme.fetchall()                        
 
             for programme in programmes:
                 progId=programme[0]
@@ -201,13 +199,14 @@ def showAllProgramme():
                     programmeList.append(level_date)
                     
                 except Exception as e:
-                    return str(e) 
-                
-                notCourses_for_program = findNotExistsCourse(id,progName)
-                courseNotExits.extend(notCourses_for_program)  
+                    return str(e)                                   
                 
         courses_for_program = findCourse(id)
-        courseExits.extend(courses_for_program)      
+        courseExits.extend(courses_for_program)
+
+        notCourses_for_program = findNotExistsCourse(id)
+        courseNotExits.extend(notCourses_for_program)  
+            
     return courseNotExits
 
     #     all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
@@ -338,7 +337,7 @@ def findSameCourse():
     
     return course_list
 
-def findNotExistsCourse(programmeId,progName):
+def findNotExistsCourse(programmeId):
     
     # Do something with progName
 
