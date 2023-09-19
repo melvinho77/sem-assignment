@@ -205,7 +205,7 @@ def showAllProgramme():
                 
                 notCourses_for_program = findNotExistsCourse(id,progName)
                 courseNotExits.extend(notCourses_for_program)  
-                return progName
+                
         courses_for_program = findCourse(id)
         courseExits.extend(courses_for_program)      
     return courseNotExits
