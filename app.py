@@ -193,7 +193,7 @@ def showAllProgramme():
 
                     exsit = 0 
                     for courseExsit in course_list:
-                        if course_list.courseName == course_data.courseName:
+                        if course_data.courseName in course_list:
                             exsit =1 
                     
                     if exsit == 0:
