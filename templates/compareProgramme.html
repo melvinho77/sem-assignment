@@ -615,12 +615,14 @@
                                                 
 
 
-                                            {% endfor %}                                                                                    
+                                            {% endfor %}  
+                                            
+                                            {% if i == 0 %}
+                                    <td><span class="tick">X</span></td>
+                                    {% endif %}
                                         </tr>
                                     {% endfor %}
-                                    {% if i == 0 %}
-                                    <tr><td><span class="tick">X</span></td></tr>
-                                    {% endif %}
+                                    
                                         <tr>
                                             <td colspan="5" class="sep">Elective Courses</td>
                                         </tr> 
