@@ -259,8 +259,9 @@ def showAllProgramme():
         # Sort course_list alphabetically by courseName
         electiveCourse_list = sorted(electiveCourse_list, key=lambda x: x['courseName']) 
         
+        
         course1=findCourse(id)
-
+        course1 = sorted(course1, key=lambda x: x['courseName']) 
         
 
     return course1
