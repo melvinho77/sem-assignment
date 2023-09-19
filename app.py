@@ -184,8 +184,28 @@ def showAllProgramme():
         notCourses_for_program = findNotExistsCourse(id)
         courseNotExits.extend(notCourses_for_program)        
 
-        programme_selected= findSelectedProgramme(id)
-        programmeList.extend(programme_selected)
+        for id in progId:
+            select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
+            cursorProgramme= db_conn.cursor()
+
+            cursorProgramme.execute(select_programme,(id,))
+            programmes=cursorProgramme.fetchall()
+
+            for programme in programmes:
+                progId=programme[0]
+                progName=programme[1]
+
+                try:
+                    level_date={
+                    "progId" :progId,
+                    "progName":progName                    
+                    }
+
+                    programmeList.append(level_date)
+                    
+                except Exception as e:
+                    return str(e) 
+        return programmeList
 
         return programmeList
         all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
