@@ -233,7 +233,7 @@ def showAllProgramme():
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            electiveCourse_list=electiveCourse_list,
-                           programmeList=findSelectedProgramme(progId=request.form.getlist('progId[]')),
+                           programmeList=programmeList,
                            course1=findCourse(1),
                            course1NoInclude=findCourseNoInclude(1),
                            course2NoInclude=findCourseNoInclude(2),
