@@ -178,35 +178,37 @@ def showAllProgramme():
         courseNotExits=[]
         programmeList=[]
 
-        #show what the programme
-        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
-        cursorProgramme= db_conn.cursor()
+ #loop for check the programme
+        for id in progId:
+            select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
+            cursorProgramme= db_conn.cursor()
 
-        cursorProgramme.execute(select_programme,(id,))
-        programmes=cursorProgramme.fetchall()
-
-        for programme in programmes:
-            progId=programme[0]
-            progName=programme[1]
+            cursorProgramme.execute(select_programme,(id,))
+            programmes=cursorProgramme.fetchall()
             
+            i=0
 
-            try:
-                level_date={
-                "progId" :progId,
-                "progName":progName                    
-                }
-
-                programmeList.append(level_date)
+            for programme in programmes:
+                progId=programme[0]
+                progName=programme[1]
                 
-            except Exception as e:
-                return str(e) 
+
+                try:
+                    level_date={
+                    "progId" :progId,
+                    "progName":progName                    
+                    }
+
+                    programmeList.append(level_date)
                     
+                except Exception as e:
+                    return str(e) 
+                
+                notCourses_for_program = findNotExistsCourse(id,programmeList[i]["progName"])
+                courseNotExits.extend(notCourses_for_program)  
 
         courses_for_program = findCourse(id)
-        courseExits.extend(courses_for_program)
-
-        notCourses_for_program = findNotExistsCourse(id,programmeList)
-        courseNotExits.extend(notCourses_for_program)        
+        courseExits.extend(courses_for_program)      
 
         return programmeList
         all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
@@ -337,7 +339,7 @@ def findSameCourse():
     
     return course_list
 
-def findNotExistsCourse(programmeId,programmeList):
+def findNotExistsCourse(programmeId,progName):
     
     # Do something with progName
 
@@ -365,7 +367,7 @@ def findNotExistsCourse(programmeId,programmeList):
 
             try:
                 course_data = {
-                    "progName": programmeList["progName"],
+                    "progName": progName,
                     "courseName": courseName
                 }
 
