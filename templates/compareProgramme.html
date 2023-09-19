@@ -600,8 +600,9 @@
                                         <tr>
                                             <td colspan="5" class="sep">Main Courses</td>
                                         </tr>                                    
-                                        {% for course in course_list %}
+                                        
                                         <tr>
+                                        {% for course in course_list %}
                                             <td>{{ course.courseName }}</td>
                                             {% set i = 0 %}
                                             {% for prog in programmeList%}                                                                               
@@ -615,12 +616,13 @@
 
 
                                             {% endfor %}
+                                        {% endfor %}
                                             {% if i == 0 %}
                                             <td><span class="tick">X</span></td>
                                             {% endif %}
                                             
                                         </tr>
-                                    {% endfor %}
+                                    
 
                                         <tr>
                                             <td colspan="5" class="sep">Elective Courses</td>
