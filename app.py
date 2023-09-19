@@ -173,7 +173,32 @@ def showAllProgramme():
     electiveCourse_list = []
     courseExits=[]
     
-    for id in progId:    
+    for id in progId:  
+        courses_for_program = findCourse(id)
+        courseExits.extend(courses_for_program)
+    
+        
+        #find selected programme
+        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
+        cursorProgramme= db_conn.cursor()
+
+        cursorProgramme.execute(select_programme,(id,))
+        programmes=cursorProgramme.fetchall()
+
+        for programme in programmes:
+            progId=programme[0]
+            progName=programme[1]
+
+            try:
+                level_date={
+                "progId" :progId,
+                "progName":progName                    
+                }
+
+                programmeList.append(level_date)
+                
+            except Exception as e:
+                return str(e)   
     #find all course
 
         all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
@@ -206,7 +231,6 @@ def showAllProgramme():
         # Sort course_list alphabetically by courseName
         course_list = sorted(course_list, key=lambda x: x['courseName']) 
 
-        return course_list
     #find all elective
         all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
         cursor_AllElectivecourse = db_conn.cursor()
