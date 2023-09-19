@@ -176,7 +176,11 @@ def showAllProgramme():
     programmeList=[]
     
     for id in progId:  
+        courses_for_program = findCourse(id)
+        courseExits.extend(courses_for_program)      
 
+        return courseExits
+    
  #loop for check the programme
         for id in progId:
             select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
@@ -206,10 +210,7 @@ def showAllProgramme():
                 notCourses_for_program = findNotExistsCourse(id,progName)
                 courseNotExits.extend(notCourses_for_program)  
 
-        courses_for_program = findCourse(id)
-        courseExits.extend(courses_for_program)      
-
-        return courseExits
+        
         all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
                      "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
