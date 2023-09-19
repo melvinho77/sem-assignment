@@ -183,6 +183,7 @@ def showAllProgramme():
         notCourses_for_program = findNotExitsCourse(id)
         courseNotExits.extend(notCourses_for_program)        
     
+        return courseNotExits
         #find selected programme
         select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
         cursorProgramme= db_conn.cursor()
@@ -334,6 +335,15 @@ def findSameCourse():
     return course_list
 
 def findNotExitsCourse(programmeId):
+        
+         
+    select_programme="SELECT programmeName FROM availableProgramme WHERE avProgrammeId=%s"
+    cursorProgramme= db_conn.cursor()
+
+    programmes=cursorProgramme.execute(select_programme,(id,))
+
+    
+
       #find all course
     all_course = "SELECT programmeName, courseTaken FROM programmeMainCourse p , availableProgramme a "\
 "WHERE  p.programmeId=a.avProgrammeId AND  courseTaken NOT IN"\
@@ -357,6 +367,7 @@ def findNotExitsCourse(programmeId):
                 # If the course name doesn't exist, add it to course_list
                 if not exists:
                     course_data = {
+                        "progName" : programmes,
                         "courseName": courseName
                     }
                     course_list.append(course_data)
