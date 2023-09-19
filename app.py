@@ -58,7 +58,7 @@ def home_page():
     except Exception as e:
         return str(e)
     
-    return level_list
+    return level_date
 
     return render_template('home.html',level_list=level_list)
 
