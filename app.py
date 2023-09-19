@@ -341,6 +341,7 @@ def findNotExitsCourse(programmeId):
     cursorProgramme= db_conn.cursor()
 
     programmes=cursorProgramme.execute(select_programme,(id,))
+    programmes=cursorProgramme.fetchall()
 
     
 
