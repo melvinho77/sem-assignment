@@ -172,8 +172,9 @@ def showAllProgramme():
     course_list = []
     electiveCourse_list = []
 
-    #find selected programme
+    
     for id in progId:
+        #find selected programme
         select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
         cursorProgramme= db_conn.cursor()
 
@@ -258,26 +259,17 @@ def showAllProgramme():
         # Sort course_list alphabetically by courseName
         electiveCourse_list = sorted(electiveCourse_list, key=lambda x: x['courseName']) 
         
+        course1=findCourse(id)
+
+        
+
+    return course1
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            electiveCourse_list=electiveCourse_list,
                            programmeList=programmeList,
                            course1=findCourse(1),
-                           course1NoInclude=findCourseNoInclude(1),
-                           course2NoInclude=findCourseNoInclude(2),
-                           course2=findCourse(2),
-                           course3NoInclude=findCourseNoInclude(3),
-                           course3=findCourse(3),
-                           course4NoInclude=findCourseNoInclude(4),
-                           course4=findCourse(4),
-                           electiveCourse1=findElectiveCourse(1),
-                           electiveCourse1NoInclude=findElectiveCourseNoInclude(1),
-                           electiveCourse2NoInclude=findElectiveCourseNoInclude(2),
-                           electiveCourse2=findElectiveCourse(2),
-                           electiveCourse3NoInclude=findElectiveCourseNoInclude(3),
-                           electiveCourse3=findElectiveCourse(3),
-                           electiveCourse4NoInclude=findElectiveCourseNoInclude(4),
-                           electiveCourse4=findElectiveCourse(4)
+                           course1NoInclude=findCourseNoInclude(1)                           
                            )
 
 
