@@ -62,9 +62,8 @@ def index():
     except Exception as e:
         return str(e)
     
-    return level_list
     network_details = get_network_details()
-    return render_template('home.html', number=1, network_details=network_details)
+    return render_template('home.html', number=1, network_details=network_details,level_list=level_list)
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
