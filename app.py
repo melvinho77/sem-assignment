@@ -183,7 +183,33 @@ def showAllProgramme():
         notCourses_for_program = findNotExistsCourse(id)
         courseNotExits.extend(notCourses_for_program)        
     
-        return courseNotExits
+        programmeList = []
+    
+        # Fetch the program name based on the given programmeId
+        select_programme = "SELECT programmeName FROM availableProgramme WHERE avProgrammeId = %s"
+        cursorProgramme = db_conn.cursor()
+        
+        try:
+            cursorProgramme.execute(select_programme, (id,))
+            programmes = cursorProgramme.fetchall()
+
+            for programme in programmes:
+                progName = programme[0]
+
+                try:
+                    level_data = {
+                        "progName": progName
+                    }
+
+                    programmeList.append(level_data)
+
+                except Exception as e:
+                    return str(e)
+
+        except Exception as e:
+            return str(e)
+        
+        return programmeList
         #find selected programme
         select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
         cursorProgramme= db_conn.cursor()
@@ -335,35 +361,8 @@ def findSameCourse():
     return course_list
 
 def findNotExistsCourse(programmeId):
-    programmeList = []
     
-    # Fetch the program name based on the given programmeId
-    select_programme = "SELECT programmeName FROM availableProgramme WHERE avProgrammeId = %s"
-    cursorProgramme = db_conn.cursor()
-    
-    try:
-        cursorProgramme.execute(select_programme, (programmeId,))
-        programmes = cursorProgramme.fetchall()
-
-        for programme in programmes:
-            progName = programme[0]
-
-            try:
-                level_data = {
-                    "progName": progName
-                }
-
-                programmeList.append(level_data)
-
-            except Exception as e:
-                return str(e)
-
-    except Exception as e:
-        return str(e)
-    
-    for program in programmeList:
-        progName = program["progName"]
-        # Do something with progName
+    # Do something with progName
 
     # Find all courses that do not exist in the given programmeId
     all_course_query = """
