@@ -180,6 +180,8 @@ def showAllProgramme():
 
         notCourses_for_program = findNotExitsCourse(id)
         courseNotExits.extend(notCourses_for_program)
+
+        return courseNotExits
     
         #find selected programme
         select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
