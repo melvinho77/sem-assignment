@@ -44,15 +44,15 @@ def home_page():
         for level in levels:
             programmeLevel=level[0]
 
-        try:
-            level_date={
-            "level" :programmeLevel
-            }
+            try:
+                level_date={
+                "level" :programmeLevel
+                }
 
-            level_list.append(level_date)
-            
-        except Exception as e:
-            return str(e)   
+                level_list.append(level_date)
+                
+            except Exception as e:
+                return str(e)   
         
 
     except Exception as e:
