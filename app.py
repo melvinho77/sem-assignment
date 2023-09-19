@@ -334,52 +334,71 @@ def findSameCourse():
     
     return course_list
 
-def findNotExitsCourse(programmeId):
-        
-         
-    select_programme="SELECT programmeName FROM availableProgramme WHERE avProgrammeId=%s"
-    cursorProgramme= db_conn.cursor()
-
-    programmes=cursorProgramme.execute(select_programme,(id,))
-    programmes=cursorProgramme.fetchall()
-
+def findNotExistsCourse(programmeId):
+    programmeList = []
     
+    # Fetch the program name based on the given programmeId
+    select_programme = "SELECT programmeName FROM availableProgramme WHERE avProgrammeId = %s"
+    cursorProgramme = db_conn.cursor()
+    
+    try:
+        cursorProgramme.execute(select_programme, (programmeId,))
+        programmes = cursorProgramme.fetchall()
 
-      #find all course
-    all_course = "SELECT programmeName, courseTaken FROM programmeMainCourse p , availableProgramme a "\
-"WHERE  p.programmeId=a.avProgrammeId AND  courseTaken NOT IN"\
- "( SELECT distinct courseTaken FROM programmeMainCourse WHERE programmeId =%s ) ORDER BY courseTaken"
+        for programme in programmes:
+            progName = programme[0]
+
+            try:
+                level_data = {
+                    "progName": progName
+                }
+
+                programmeList.append(level_data)
+
+            except Exception as e:
+                return str(e)
+
+    except Exception as e:
+        return str(e)
+    
+    # Find all courses that do not exist in the given programmeId
+    all_course_query = """
+    SELECT courseTaken 
+    FROM course
+    WHERE courseTaken NOT IN (
+        SELECT DISTINCT courseTaken
+        FROM programmeMainCourse
+        WHERE programmeId = %s
+    )
+    ORDER BY courseTaken
+    """
     cursor_Allcourse = db_conn.cursor()
     
     try:
-        cursor_Allcourse.execute(all_course,(programmeId,))
+        cursor_Allcourse.execute(all_course_query, (programmeId,))
         allCourse = cursor_Allcourse.fetchall()
 
         course_list = []
 
         for course in allCourse:
-            
-            courseName = course[1]
+            courseName = course[0]
 
             try:
-                # Check if the course name already exists in course_list
-                exists = any(course_data['courseName'] == courseName for course_data in course_list)
-                
-                # If the course name doesn't exist, add it to course_list
-                if not exists:
-                    course_data = {
-                        "progName" : programmes,
-                        "courseName": courseName
-                    }
-                    course_list.append(course_data)
+                course_data = {
+                    "progName": programmeList,
+                    "courseName": courseName
+                }
+
+                course_list.append(course_data)
 
             except Exception as e:
                 return str(e)
-    
+
     except Exception as e:
         return str(e)
-    
+
     return course_list
+
 
 def findCourse(programmeId):
       #find all course
