@@ -201,7 +201,9 @@ def showAllProgramme():
                     return str(e)
         except Exception as e:
             return str(e)
-
+    # Sort course_list alphabetically by courseName
+    course_list = sorted(course_list, key=lambda x: x['courseName'])
+    
     return course_list
 
     all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
