@@ -174,8 +174,11 @@ def showAllProgramme():
 
     
     for id in progId:
-        course_list.extend(findCourse(id))
-        course1 = sorted(course1, key=lambda x: x['courseName']) 
+        courses_for_program = findCourse(id)
+        course_list.extend(courses_for_program)
+
+    # Sort the course_list alphabetically by courseName
+    course_list = sorted(course_list, key=lambda x: x['courseName'])
         
     #     #find selected programme
     #     select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
