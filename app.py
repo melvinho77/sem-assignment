@@ -176,31 +176,6 @@ def showAllProgramme():
     programmeList=[]
     
     for id in progId:  
-
- #loop for check the programme
-        for id in progId:
-            select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
-            cursorProgramme= db_conn.cursor()
-
-            cursorProgramme.execute(select_programme,(id,))
-            programmes=cursorProgramme.fetchall()                        
-
-            for programme in programmes:
-                progId=programme[0]
-                progName=programme[1]
-                
-
-                try:
-                    level_date={
-                    "progId" :progId,
-                    "progName":progName                    
-                    }
-
-                    programmeList.append(level_date)
-                    
-                except Exception as e:
-                    return str(e)                                   
-                
         courses_for_program = findCourse(id)
         courseExits.extend(courses_for_program)
 
