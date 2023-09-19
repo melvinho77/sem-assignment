@@ -202,74 +202,74 @@ def showAllProgramme():
                 notCourses_for_program = findNotExistsCourse(id,progName)
                 courseNotExits.extend(notCourses_for_program)                                              
 
-    for id in progId:  
-        courses_for_program = findCourse(id)
-        courseExits.extend(courses_for_program)
 
-        all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
-                     "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
-        cursor_Allcourse = db_conn.cursor()
+            courses_for_program = findCourse(id)
+            courseExits.extend(courses_for_program)
 
-        try:
-            cursor_Allcourse.execute(all_course)
-            allCourse = cursor_Allcourse.fetchall()
+            all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
+                        "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
+            cursor_Allcourse = db_conn.cursor()
 
-            for course in allCourse:
-                courseName = course[0]
+            try:
+                cursor_Allcourse.execute(all_course)
+                allCourse = cursor_Allcourse.fetchall()
 
-                try:
-                    # Check if the course name already exists in course_list
-                    exists = any(course_data['courseName'] == courseName for course_data in course_list)
-                    
-                    # If the course name doesn't exist, add it to course_list
-                    if not exists:
-                        course_data = {
-                            "courseName": courseName
-                        }
-                        course_list.append(course_data)
+                for course in allCourse:
+                    courseName = course[0]
 
-                except Exception as e:
-                    return str(e)
-        except Exception as e:
-            return str(e)
+                    try:
+                        # Check if the course name already exists in course_list
+                        exists = any(course_data['courseName'] == courseName for course_data in course_list)
+                        
+                        # If the course name doesn't exist, add it to course_list
+                        if not exists:
+                            course_data = {
+                                "courseName": courseName
+                            }
+                            course_list.append(course_data)
 
-        # Sort course_list alphabetically by courseName
-        course_list = sorted(course_list, key=lambda x: x['courseName']) 
+                    except Exception as e:
+                        return str(e)
+            except Exception as e:
+                return str(e)
 
-    #find all elective
-        all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
-        cursor_AllElectivecourse = db_conn.cursor()
-        
-        try:
-            cursor_AllElectivecourse.execute(all_electiveCourse,(id,))
-            allElectiveCourse = cursor_AllElectivecourse.fetchall()
+            # Sort course_list alphabetically by courseName
+            course_list = sorted(course_list, key=lambda x: x['courseName']) 
 
+        #find all elective
+            all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
+            cursor_AllElectivecourse = db_conn.cursor()
             
+            try:
+                cursor_AllElectivecourse.execute(all_electiveCourse,(id,))
+                allElectiveCourse = cursor_AllElectivecourse.fetchall()
 
-            for elective in allElectiveCourse:
-                courseName = elective[0]
+                
 
-                try:
-                    # Check if the course name already exists in course_list
-                    exists = any(elective_data['courseName'] == courseName for elective_data in course_list)
-                    
-                    # If the course name doesn't exist, add it to course_list
-                    if not exists:
-                        elective_data = {
-                            "courseName": courseName
-                        }
-                        electiveCourse_list.append(elective_data)
+                for elective in allElectiveCourse:
+                    courseName = elective[0]
 
-                except Exception as e:
-                    return str(e)                          
-        
-        except Exception as e:
-            return str(e)
-        # Sort course_list alphabetically by courseName
-        electiveCourse_list = sorted(electiveCourse_list, key=lambda x: x['courseName']) 
-        
-    #Sort the course_list alphabetically by courseName
-    courseExits = sorted(courseExits, key=lambda x: x['progName'])
+                    try:
+                        # Check if the course name already exists in course_list
+                        exists = any(elective_data['courseName'] == courseName for elective_data in course_list)
+                        
+                        # If the course name doesn't exist, add it to course_list
+                        if not exists:
+                            elective_data = {
+                                "courseName": courseName
+                            }
+                            electiveCourse_list.append(elective_data)
+
+                    except Exception as e:
+                        return str(e)                          
+            
+            except Exception as e:
+                return str(e)
+            # Sort course_list alphabetically by courseName
+            electiveCourse_list = sorted(electiveCourse_list, key=lambda x: x['courseName']) 
+            
+        #Sort the course_list alphabetically by courseName
+        courseExits = sorted(courseExits, key=lambda x: x['progName'])
         
 
     return render_template('compareProgramme.html', 
