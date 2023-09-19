@@ -1,64 +1,66 @@
-<form action="/compareProgramme" autocomplete="on" method="POST" enctype="multipart/form-data">
-    <!-- Radio buttons for level selection -->
-    {% for level in level_list %}
-    {% if level.level == 'diploma'%}
-     <input type="radio" name="level" value="diploma" id="level_diploma" checked>
-     <label for="level_{{ level.level }}">{{ level.level }}</label>
-    {% else %}
-    <input type="radio" name="level" value="{{ level.level }}" id="level_{{ level.level }}">
-    <label for="level_{{ level.level }}">{{ level.level }}</label>
-    {% endif %}    
+    <form action="/compareProgramme" autocomplete="on" method="POST" enctype="multipart/form-data">
+        <!-- Radio buttons for level selection -->
+        {% for level in level_list %}
+        {% if level.level == 'diploma'%}
+        <input type="radio" name="level" value="diploma" id="level_diploma" checked>
+        <label for="level_{{ level.level }}">{{ level.level }}</label>
+        {% else %}
+        <input type="radio" name="level" value="{{ level.level }}" id="level_{{ level.level }}">
+        <label for="level_{{ level.level }}">{{ level.level }}</label>
+        {% endif %}    
 
-    {% endfor %}
+        {% endfor %}
 
-    <input type="submit">
-</form>
+        <input type="submit">
 
-<!-- Radio button groups for different levels -->
-<div id="diploma_group" class="radio-group">
-    <!-- Add your diploma-level radio buttons here -->
-    {% for prog in programmeList %}
-        {% if prog.level == 'diploma' %}
-        <input type="checkbox" name="progId" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">       
-        <label for="prog_{{ prog.progId }}">{{ prog.progName }}</label>
-        {% endif %}
-    {% endfor %}
-</div>
 
-<div id="degree_group" class="radio-group">
-    <!-- Add your degree-level radio buttons here -->
-    {% for prog in programmeList %}
-        {% if prog.level == 'degree' %}
-        <input type="checkbox" name="progId" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">       
-        <label for="prog_{{ prog.progId }}">{{ prog.progName }}</label>
-        {% endif %}
-    {% endfor %}
-</div>
+    <!-- Radio button groups for different levels -->
+    <div id="diploma_group" class="radio-group">
+        <!-- Add your diploma-level radio buttons here -->
+        {% for prog in programmeList %}
+            {% if prog.level == 'diploma' %}
+            <input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">       
+            <label for="prog_{{ prog.progId }}">{{ prog.progName }}</label>
+            {% endif %}
+        {% endfor %}
+    </div>
 
-<div id="master_group" class="radio-group">
-    <!-- Add your master-level radio buttons here -->
-</div>
+    <div id="degree_group" class="radio-group">
+        <!-- Add your degree-level radio buttons here -->
+        {% for prog in programmeList %}
+            {% if prog.level == 'degree' %}
+            <input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">       
+            <label for="prog_{{ prog.progId }}">{{ prog.progName }}</label>
+            {% endif %}
+        {% endfor %}
+    </div>
 
-<div id="doctor_group" class="radio-group">
-    <!-- Add your doctor-level radio buttons here -->
-</div>
+    <div id="master_group" class="radio-group">
+        <!-- Add your master-level radio buttons here -->
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    // Initially, hide all radio button groups except for the selected level
-    $('.radio-group').hide();
-    $('#diploma_group').show(); // Show the initial group
+    <div id="doctor_group" class="radio-group">
+        <!-- Add your doctor-level radio buttons here -->
+    </div>
 
-    // Handle the click event on level radio buttons
-    $('input[name="level"]').click(function () {
-        // Hide all groups
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Initially, hide all radio button groups except for the selected level
         $('.radio-group').hide();
+        $('#diploma_group').show(); // Show the initial group
 
-        // Get the selected level
-        var selectedLevel = $(this).val();
+        // Handle the click event on level radio buttons
+        $('input[name="level"]').click(function () {
+            // Hide all groups
+            $('.radio-group').hide();
 
-        // Show the corresponding group based on the selected level
-        $('#' + selectedLevel + '_group').show();
-    });
-</script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+            // Get the selected level
+            var selectedLevel = $(this).val();
+
+            // Show the corresponding group based on the selected level
+            $('#' + selectedLevel + '_group').show();
+        });
+    </script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

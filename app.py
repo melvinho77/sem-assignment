@@ -169,6 +169,9 @@ def homeSearchProgramme():
 @app.route('/compareProgramme', methods=['POST'])
 def showAllProgramme():
 
+    progId=request.form['progId[]']
+
+    return progId
     #find all course
     all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse ORDER BY courseTaken"
     cursor_Allcourse = db_conn.cursor()
