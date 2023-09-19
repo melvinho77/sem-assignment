@@ -176,9 +176,8 @@ def showAllProgramme():
     for id in progId:    
     #find all course
 
-        all_course = "SELECT courseTaken FROM programmeMainCourse p, availableProgramme a " \
-                      "WHERE p.programmeId=a.avProgrammeId AND level='diploma' ORDER BY programmeName"
-
+        all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
+                     "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
 
         try:
