@@ -207,10 +207,10 @@ def showAllProgramme():
         courses_for_program = findCourse(id)
         courseExits.extend(courses_for_program)
 
-        notCourses_for_program = findNotExistsCourse(id,programmeName=programmeList["progName"])
+        notCourses_for_program = findNotExistsCourse(id)
         courseNotExits.extend(notCourses_for_program)        
 
-        return programmeList["progName"]
+        return programmeList
         all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
                      "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
