@@ -67,11 +67,13 @@ def index():
             programmes=cursorProgramme.fetchall()
 
             for programme in programmes:
-                prog=programme[0]
+                progId=programme[0]
+                progName=programme[1]
 
                 try:
                     level_date={
-                    "prog" :prog
+                    "progId" :progId,
+                    "progName":progName                    
                     }
 
                     level_list.append(level_date)
