@@ -196,56 +196,57 @@ def showAllProgramme():
                 return str(e) 
                             
     #find all course
+    course_list = []
+
+    for id in progId:
         all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId=%s ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
-        
+
         try:
-            cursor_Allcourse.execute(all_course,(id,))
+            cursor_Allcourse.execute(all_course, (id,))
             allCourse = cursor_Allcourse.fetchall()
-            
 
             for course in allCourse:
                 courseName = course[0]
 
                 try:
                     course_data = {
-                        "courseName": courseName              
+                        "courseName": courseName
                     }
 
                     course_list.append(course_data)
 
                 except Exception as e:
                     return str(e)
-        
         except Exception as e:
-            return str(e)
-        
-        return course_list
+          return str(e)
+
+    return course_list
       
-        all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
-        cursor_AllElectivecourse = db_conn.cursor()
+    all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
+    cursor_AllElectivecourse = db_conn.cursor()
+    
+    try:
+        cursor_AllElectivecourse.execute(all_electiveCourse,(id,))
+        allElectiveCourse = cursor_AllElectivecourse.fetchall()
+
         
-        try:
-            cursor_AllElectivecourse.execute(all_electiveCourse,(id,))
-            allElectiveCourse = cursor_AllElectivecourse.fetchall()
 
-            
+        for elective in allElectiveCourse:
+            courseName = elective[0]
 
-            for elective in allElectiveCourse:
-                courseName = elective[0]
+            try:
+                elective_data = {
+                    "courseName": courseName              
+                }
 
-                try:
-                    elective_data = {
-                        "courseName": courseName              
-                    }
+                electiveCourse_list.append(elective_data)
 
-                    electiveCourse_list.append(elective_data)
-
-                except Exception as e:
-                    return str(e)
-        
-        except Exception as e:
-            return str(e)
+            except Exception as e:
+                return str(e)
+    
+    except Exception as e:
+        return str(e)
         
         
     return render_template('compareProgramme.html', 
