@@ -168,10 +168,33 @@ def homeSearchProgramme():
 def showAllProgramme():
 
     progId=request.form.getlist('progId[]')    
+    programmeList=[]
+
     #find selected programme
     for id in progId:
-                          
+        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
+        cursorProgramme= db_conn.cursor()
+
+        cursorProgramme.execute(select_programme,(id,))
+        programmes=cursorProgramme.fetchall()
+
+        for programme in programmes:
+            progId=programme[0]
+            progName=programme[1]
+
+            try:
+                level_date={
+                "progId" :progId,
+                "progName":progName                    
+                }
+
+                programmeList.append(level_date)
+                
+            except Exception as e:
+                return str(e) 
+                            
     #find all course
+
         all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId=%s ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
         
@@ -222,11 +245,11 @@ def showAllProgramme():
         except Exception as e:
             return str(e)
         
-    return   findSelectedProgramme(progId)
+        
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            electiveCourse_list=electiveCourse_list,
-                           programmeList=findSelectedProgramme(progId),
+                           programmeList=programmeList,
                            course1=findCourse(1),
                            course1NoInclude=findCourseNoInclude(1),
                            course2NoInclude=findCourseNoInclude(2),
@@ -246,8 +269,7 @@ def showAllProgramme():
                            )
 
 
-def findSelectedProgramme(progId):
-    progId=request.form.getlist('progId[]') 
+def findSelectedProgramme():
     programmeList=[]
     for id in progId:
         select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
