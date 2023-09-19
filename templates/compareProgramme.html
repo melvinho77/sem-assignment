@@ -604,8 +604,8 @@
                                         <tr>
                                             <td>{{ course.courseName }}</td>
                                             {% for prog in programmeList%}                                                                               
-                                                {% for course in courseExits %}  
-                                                    {% if prog.progName == course.progName%}                                          
+                                                {% for exitscourse in courseExits %}  
+                                                    {% if prog.progName == exitscourse.progName and course.courseName== exitscourse.courseName%}                                          
                                                     <td><span class="tick">&#10004;</span></td>
                                                     {% endif %}
                                                 {% endfor %}
