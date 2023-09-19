@@ -50,7 +50,16 @@ def index():
         for level in levels:
             programmeLevel=level[0]
         
+            try:
+                level_date={
+                "level" :programmeLevel,                       
+                }
 
+                level_list.append(level_date)
+                    
+            except Exception as e:
+                return str(e) 
+            
             select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE level=%s"
             cursorProgramme= db_conn.cursor()
 
@@ -63,7 +72,6 @@ def index():
 
                 try:
                     level_date={
-                    "level" :programmeLevel,
                     "progId" :progId,
                     "progName":progName                    
                     }
