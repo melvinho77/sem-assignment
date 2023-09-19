@@ -19,7 +19,7 @@
     <!-- Add your diploma-level radio buttons here -->
     {% for prog in programmeList %}
         {% if prog.level == 'diploma' %}
-        <input type="radio" name="progName" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">
+        <input type="checkbox" name="progName" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">       
         <label for="prog_{{ prog.progId }}">{{ prog.progName }}</label>
         {% endif %}
     {% endfor %}
@@ -29,7 +29,7 @@
     <!-- Add your degree-level radio buttons here -->
     {% for prog in programmeList %}
         {% if prog.level == 'degree' %}
-        <input type="radio" name="progName" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">
+        <input type="checkbox" name="progName" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">       
         <label for="prog_{{ prog.progId }}">{{ prog.progName }}</label>
         {% endif %}
     {% endfor %}
