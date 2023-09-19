@@ -175,14 +175,38 @@ def showAllProgramme():
     courseNotExits=[]
     programmeList=[]
     
+    #loop for check the programme
+    for id in progId:
+            select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
+            cursorProgramme= db_conn.cursor()
+
+            cursorProgramme.execute(select_programme,(id,))
+            programmes=cursorProgramme.fetchall()                        
+
+            for programme in programmes:
+                progId=programme[0]
+                progName=programme[1]
+                
+
+                try:
+                    level_date={
+                    "progId" :progId,
+                    "progName":progName                    
+                    }
+
+                    programmeList.append(level_date)
+                    
+                except Exception as e:
+                    return str(e) 
+
+                notCourses_for_program = findNotExistsCourse(id,progName)
+                courseNotExits.extend(notCourses_for_program)  
+            
+    return courseNotExits                                  
+                
     for id in progId:  
         courses_for_program = findCourse(id)
         courseExits.extend(courses_for_program)
-
-        notCourses_for_program = findNotExistsCourse(id)
-        courseNotExits.extend(notCourses_for_program)  
-            
-    return courseNotExits
 
     #     all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
     #                  "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
@@ -312,7 +336,7 @@ def findSameCourse():
     
     return course_list
 
-def findNotExistsCourse(programmeId):
+def findNotExistsCourse(programmeId,progName):
     
     # Do something with progName
 
@@ -338,6 +362,7 @@ def findNotExistsCourse(programmeId):
 
             try:
                 course_data = {
+                    "progName":progName,
                     "courseName": courseName
                 }
 
