@@ -361,6 +361,10 @@ def findNotExistsCourse(programmeId):
     except Exception as e:
         return str(e)
     
+    for program in programmeList:
+        progName = program["progName"]
+        # Do something with progName
+
     # Find all courses that do not exist in the given programmeId
     all_course_query = """
     SELECT courseTaken 
@@ -385,7 +389,7 @@ def findNotExistsCourse(programmeId):
 
             try:
                 course_data = {
-                    "progName": programmeList,
+                    "progName": progName,
                     "courseName": courseName
                 }
 
