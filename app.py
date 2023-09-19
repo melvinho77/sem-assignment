@@ -259,7 +259,7 @@ def showAllProgramme():
         # Sort course_list alphabetically by courseName
         electiveCourse_list = sorted(electiveCourse_list, key=lambda x: x['courseName']) 
         
-        
+
         course1=findCourse(id)
         course1 = sorted(course1, key=lambda x: x['courseName']) 
         
@@ -357,7 +357,7 @@ def findDifCourse():
 
 def findCourse(programmeId):
       #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = %s ORDER BY courseTaken"
+    all_course = "SELECT programmeName,courseTaken FROM programmeMainCourse p , availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND programmeId = %s ORDER BY programmeName"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -367,11 +367,13 @@ def findCourse(programmeId):
         course_list = []
 
         for course in allCourse:
-            courseName = course[0]
+            progName = course[0]
+            courseName = course[1]
 
             try:
                 course_data = {
-                    "courseName": courseName              
+                    "progName": progName, 
+                    "courseName":courseName           
                 }
 
                 course_list.append(course_data)
