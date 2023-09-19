@@ -611,6 +611,14 @@
                                                     <td><span class="tick">&#10004;</span></td>                                                                                                                                                 
                                                     {% endif %}
                                                 {% endfor %}
+
+                                                {% for notExits in courseNotExits %}
+                                                    {% if prog.progName == notExits.progName and course.courseName==
+                                                        courseNotExits.courseName%}
+                                                    <td><span>&#10060;</span></td>                                                                                                                                                 
+                                                    {% endif %}
+                                                {% endfor %}
+
                                             {% endfor %}
 
 
