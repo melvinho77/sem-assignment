@@ -1,8 +1,8 @@
 <form action="/compareProgramme" autocomplete="on" method = "POST" enctype="multipart/form-data">  
     {% for level in level_list %}     
 
-    <input type="radio" name="level" value={{level}} id="level">
-    <label for="level">{{ level }}</label>
+    <input type="radio" name="level" value={{level.level}} id="level">
+    <label for="level">{{ level.level }}</label>
     <input type="submit">
 
     {% endfor %}
