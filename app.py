@@ -174,6 +174,8 @@ def showAllProgramme():
     courseExits=[]
     courseNotExits=[]
     programmeList=[]
+    electiveExits=[]
+    electiveNotExits=[]
     
     #loop for check the programme
     for id in progId:
@@ -199,13 +201,22 @@ def showAllProgramme():
                 except Exception as e:
                     return str(e) 
 
+                #all not exits course in a particular programme
                 notCourses_for_program = findNotExistsCourse(id,progName)
-                courseNotExits.extend(notCourses_for_program)                                              
+                courseNotExits.extend(notCourses_for_program)     
 
-            
+                #all not exits elective in a particular programme
+                notElective_for_program = findNotExistsCourse(id,progName)
+                electiveNotExits.extend(notElective_for_program) 
+
+
+            #all exits course in a particular programme
             courses_for_program = findCourse(id)
             courseExits.extend(courses_for_program)
 
+            #all exits elective course in a particular programme
+            elective_for_program = findCourse(id)
+            electiveExits.extend(elective_for_program)
 
             #find main course
             all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
@@ -278,62 +289,13 @@ def showAllProgramme():
                            electiveCourse_list=electiveCourse_list,
                            programmeList=programmeList,
                            courseExits=courseExits,
-                           courseNotExits=courseNotExits                                              
+                           courseNotExits=courseNotExits,
+                           electiveExits=electiveExits,
+                           electiveNotExits=electiveNotExits                                              
                            )
 
 
-def findSelectedProgramme(progId):
-    programmeList=[]
-    for id in progId:
-        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
-        cursorProgramme= db_conn.cursor()
 
-        cursorProgramme.execute(select_programme,(id,))
-        programmes=cursorProgramme.fetchall()
-
-        for programme in programmes:
-            progId=programme[0]
-            progName=programme[1]
-
-            try:
-                level_date={
-                "progId" :progId,
-                "progName":progName                    
-                }
-
-                programmeList.append(level_date)
-                
-            except Exception as e:
-                return str(e) 
-    return programmeList
-def findSameCourse():
-    #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2) ORDER BY courseTaken;"
-    cursor_Allcourse = db_conn.cursor()
-    
-    try:
-        cursor_Allcourse.execute(all_course)
-        allCourse = cursor_Allcourse.fetchall()
-
-        course_list = []
-
-        for course in allCourse:
-            courseName = course[0]
-
-            try:
-                course_data = {
-                    "courseName": courseName              
-                }
-
-                course_list.append(course_data)
-
-            except Exception as e:
-                return str(e)
-    
-    except Exception as e:
-        return str(e)
-    
-    return course_list
 
 def findNotExistsCourse(programmeId,progName):
     
@@ -375,7 +337,6 @@ def findNotExistsCourse(programmeId,progName):
 
     return course_list
 
-
 def findCourse(programmeId):
       #find all course
     all_course = "SELECT programmeName,courseTaken FROM programmeMainCourse p , availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND programmeId = %s ORDER BY programmeName"
@@ -407,42 +368,9 @@ def findCourse(programmeId):
     
     return course_list
 
-def findCourseNoInclude(programmeId):
-      #find all course
-    all_course = "SELECT DISTINCT courseName FROM course WHERE courseName NOT IN " \
-                "(SELECT courseTaken FROM programmeMainCourse WHERE programmeId = %s) " \
-                "ORDER BY courseName"
-
-
-    cursor_Allcourse = db_conn.cursor()
-    
-    try:
-        cursor_Allcourse.execute(all_course,(programmeId,))
-        allCourse = cursor_Allcourse.fetchall()
-
-        course_list = []
-
-        for course in allCourse:
-            courseName = course[0]
-
-            try:
-                course_data = {
-                    "courseName": courseName              
-                }
-
-                course_list.append(course_data)
-
-            except Exception as e:
-                return str(e)
-    
-    except Exception as e:
-        return str(e)
-    
-    return course_list
-
 def findElectiveCourse(programmeId):
       #find all course
-    all_course = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId = %s ORDER BY electiveTaken"
+    all_course = "SELECT programmeName,electiveTaken FROM programmeElectiveCourse p , availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND programmeId = %s ORDER BY electiveTaken"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -452,11 +380,13 @@ def findElectiveCourse(programmeId):
         course_list = []
 
         for course in allCourse:
-            courseName = course[0]
+            progName = course[0]
+            courseName = course[1]
 
             try:
                 course_data = {
-                    "courseName": courseName              
+                    "progName": progName, 
+                    "courseName":courseName           
                 }
 
                 course_list.append(course_data)
@@ -469,17 +399,17 @@ def findElectiveCourse(programmeId):
     
     return course_list
 
-def findElectiveCourseNoInclude(programmeId):
-      #find all course
-    all_course = "SELECT DISTINCT  electiveTaken FROM programmeElectiveCourse WHERE electiveTaken NOT IN  " \
-                "(SELECT electiveTaken FROM programmeElectiveCourse WHERE programmeId = %s) " \
-                "ORDER BY electiveTaken"
+def findNotExistsCourse(programmeId,progName):
+    
+    # Do something with progName
 
+    # Find all courses that do not exist in the given programmeId
+    all_course = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE electiveTaken NOT IN (SELECT electiveTaken FROM programmeElectiveCourse WHERE programmeId = %s )ORDER BY electiveTaken"
 
     cursor_Allcourse = db_conn.cursor()
     
     try:
-        cursor_Allcourse.execute(all_course,(programmeId,))
+        cursor_Allcourse.execute(all_course, (programmeId,))
         allCourse = cursor_Allcourse.fetchall()
 
         course_list = []
@@ -489,19 +419,19 @@ def findElectiveCourseNoInclude(programmeId):
 
             try:
                 course_data = {
-                    "courseName": courseName              
+                    "progName":progName,
+                    "courseName": courseName
                 }
 
                 course_list.append(course_data)
 
             except Exception as e:
                 return str(e)
-    
+
     except Exception as e:
         return str(e)
-    
-    return course_list
 
+    return course_list
 
 # N8 - Retrieve network details
 def get_network_details():
