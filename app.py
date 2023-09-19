@@ -176,14 +176,12 @@ def showAllProgramme():
     for id in progId:  
         courseExits=[]
         courseNotExits=[]
-        
+
         courses_for_program = findCourse(id)
         courseExits.extend(courses_for_program)
 
         notCourses_for_program = findNotExitsCourse(id)
-        courseNotExits.extend(notCourses_for_program)
-
-        return courseNotExits
+        courseNotExits.extend(notCourses_for_program)        
     
         #find selected programme
         select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
