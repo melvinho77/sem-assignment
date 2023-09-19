@@ -182,57 +182,11 @@ def showAllProgramme():
 
         notCourses_for_program = findNotExistsCourse(id)
         courseNotExits.extend(notCourses_for_program)        
-    
-        programmeList = []
-    
-        # Fetch the program name based on the given programmeId
-        select_programme = "SELECT programmeName FROM availableProgramme WHERE avProgrammeId = %s"
-        cursorProgramme = db_conn.cursor()
-        
-        try:
-            cursorProgramme.execute(select_programme, (id,))
-            programmes = cursorProgramme.fetchall()
 
-            for programme in programmes:
-                progName = programme[0]
+        programme_selected= findSelectedProgramme(id)
+        programmeList.extend(programme_selected)
 
-                try:
-                    level_data = {
-                        "progName": progName
-                    }
-
-                    programmeList.append(level_data)
-
-                except Exception as e:
-                    return str(e)
-
-        except Exception as e:
-            return str(e)
-        
         return programmeList
-        #find selected programme
-        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
-        cursorProgramme= db_conn.cursor()
-
-        cursorProgramme.execute(select_programme,(id,))
-        programmes=cursorProgramme.fetchall()
-
-        for programme in programmes:
-            progId=programme[0]
-            progName=programme[1]
-
-            try:
-                level_date={
-                "progId" :progId,
-                "progName":progName                    
-                }
-
-                programmeList.append(level_date)
-                
-            except Exception as e:
-                return str(e)   
-    #find all course
-
         all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
                      "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
