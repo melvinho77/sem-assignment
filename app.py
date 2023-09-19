@@ -44,8 +44,6 @@ def index():
 
     level_list=[]
     programmeList=[]
-    diploma_pogramme=[]
-    degree_pogramme=[]
 
     try:
         for level in levels:
@@ -171,57 +169,58 @@ def showAllProgramme():
 
     progId=request.form.getlist('progId[]')
 
-    return progId
     #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse ORDER BY courseTaken"
-    cursor_Allcourse = db_conn.cursor()
-    
-    try:
-        cursor_Allcourse.execute(all_course)
-        allCourse = cursor_Allcourse.fetchall()
+    for id in progId :
 
-        course_list = []
+        all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId=%s ORDER BY courseTaken"
+        cursor_Allcourse = db_conn.cursor()
+        
+        try:
+            cursor_Allcourse.execute(all_course,(id,))
+            allCourse = cursor_Allcourse.fetchall()
 
-        for course in allCourse:
-            courseName = course[0]
+            course_list = []
 
-            try:
-                course_data = {
-                    "courseName": courseName              
-                }
+            for course in allCourse:
+                courseName = course[0]
 
-                course_list.append(course_data)
+                try:
+                    course_data = {
+                        "courseName": courseName              
+                    }
 
-            except Exception as e:
-                return str(e)
-    
-    except Exception as e:
-        return str(e)
-    
-    all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse ORDER BY electiveTaken"
-    cursor_AllElectivecourse = db_conn.cursor()
-    
-    try:
-        cursor_AllElectivecourse.execute(all_electiveCourse)
-        allElectiveCourse = cursor_AllElectivecourse.fetchall()
+                    course_list.append(course_data)
 
-        electiveCourse_list = []
+                except Exception as e:
+                    return str(e)
+        
+        except Exception as e:
+            return str(e)
+        
+        all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
+        cursor_AllElectivecourse = db_conn.cursor()
+        
+        try:
+            cursor_AllElectivecourse.execute(all_electiveCourse,(id,))
+            allElectiveCourse = cursor_AllElectivecourse.fetchall()
 
-        for elective in allElectiveCourse:
-            courseName = elective[0]
+            electiveCourse_list = []
 
-            try:
-                elective_data = {
-                    "courseName": courseName              
-                }
+            for elective in allElectiveCourse:
+                courseName = elective[0]
 
-                electiveCourse_list.append(elective_data)
+                try:
+                    elective_data = {
+                        "courseName": courseName              
+                    }
 
-            except Exception as e:
-                return str(e)
-    
-    except Exception as e:
-        return str(e)
+                    electiveCourse_list.append(elective_data)
+
+                except Exception as e:
+                    return str(e)
+        
+        except Exception as e:
+            return str(e)
 
     return render_template('compareProgramme.html', 
                            course_list=course_list,
