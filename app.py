@@ -187,25 +187,23 @@ def showAllProgramme():
                 courseName = course[0]
 
                 try:
-                    course_data = {
-                        "courseName": courseName
-                    }
-
-                    exsit = 0 
-                    for courseExsit in course_list:
-                        if course_data.courseName in course_list:
-                            exsit =1 
+                    # Check if the course name already exists in course_list
+                    exists = any(course_data['courseName'] == courseName for course_data in course_list)
                     
-                    if exsit == 0:
+                    # If the course name doesn't exist, add it to course_list
+                    if not exists:
+                        course_data = {
+                            "courseName": courseName
+                        }
                         course_list.append(course_data)
 
                 except Exception as e:
                     return str(e)
         except Exception as e:
-          return str(e)
+            return str(e)
 
     return course_list
-      
+
     all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
     cursor_AllElectivecourse = db_conn.cursor()
     
