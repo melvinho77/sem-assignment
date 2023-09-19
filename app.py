@@ -171,10 +171,12 @@ def showAllProgramme():
     programmeList=[]
     course_list = []
     electiveCourse_list = []
-    courseExits=[]
-    courseNotExits=[]
+    
     
     for id in progId:  
+        courseExits=[]
+        courseNotExits=[]
+        
         courses_for_program = findCourse(id)
         courseExits.extend(courses_for_program)
 
