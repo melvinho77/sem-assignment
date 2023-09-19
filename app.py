@@ -225,7 +225,7 @@ def showAllProgramme():
 
         # Sort course_list alphabetically by courseName
         course_list = sorted(course_list, key=lambda x: x['courseName']) 
-        
+
     #find all elective
         all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
         cursor_AllElectivecourse = db_conn.cursor()
@@ -240,18 +240,23 @@ def showAllProgramme():
                 courseName = elective[0]
 
                 try:
-                    elective_data = {
-                        "courseName": courseName              
-                    }
-
-                    electiveCourse_list.append(elective_data)
+                    # Check if the course name already exists in course_list
+                    exists = any(elective_data['courseName'] == courseName for elective_data in course_list)
+                    
+                    # If the course name doesn't exist, add it to course_list
+                    if not exists:
+                        elective_data = {
+                            "courseName": courseName
+                        }
+                        electiveCourse_list.append(elective_data)
 
                 except Exception as e:
-                    return str(e)
+                    return str(e)                          
         
         except Exception as e:
             return str(e)
-        
+        # Sort course_list alphabetically by courseName
+        electiveCourse_list = sorted(electiveCourse_list, key=lambda x: x['courseName']) 
         
     return render_template('compareProgramme.html', 
                            course_list=course_list,
