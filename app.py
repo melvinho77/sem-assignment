@@ -169,7 +169,7 @@ def homeSearchProgramme():
 @app.route('/compareProgramme', methods=['POST'])
 def showAllProgramme():
 
-    progId=request.form['progId[]']
+    progId=request.form.getlist('progId[]')
 
     return progId
     #find all course
