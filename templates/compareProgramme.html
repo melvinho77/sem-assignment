@@ -603,22 +603,21 @@
                                         {% for course in course_list %}
                                         <tr>
                                             <td>{{ course.courseName }}</td>
+                                            {% set i = 0 %}
                                             {% for prog in programmeList%}                                                                               
                                                 {% for exitscourse in courseExits %}  
                                                     {% if prog.progName == exitscourse.progName and course.courseName== exitscourse.courseName%}                                          
                                                     <td><span class="tick">&#10004;</span></td>
+                                                    {% set i = 1 %}
                                                     {% endif %}
                                                 {% endfor %}
+                                                
 
-                                                {% for notExitscourse in courseNotExits %}  
-                                                    {% if course.courseName == notExitscourse.courseName%}                                          
-                                                    <td><span class="tick">&#10060;</span></td>
-                                                    {% endif %}
-                                                {% endfor %}
 
                                             {% endfor %}
-                            
-
+                                            {% if i == 0 %}
+                                            <td><span class="tick">X</span></td>
+                                            {% endif %}
                                             
                                         </tr>
                                     {% endfor %}
