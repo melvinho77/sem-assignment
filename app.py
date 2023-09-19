@@ -168,6 +168,7 @@ def homeSearchProgramme():
 def showAllProgramme():
 
     progId=request.form.getlist('progId[]')
+    return progId
 
     #find all course
     for id in progId :
@@ -245,7 +246,7 @@ def showAllProgramme():
                 except Exception as e:
                     return str(e) 
             
-    return progId
+    
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            electiveCourse_list=electiveCourse_list,
