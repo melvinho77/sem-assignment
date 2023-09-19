@@ -599,119 +599,22 @@
                                     <tbody>                                       
                                         <tr>
                                             <td colspan="5" class="sep">Main Courses</td>
-                                        </tr>                                    
-                                        {% for course in course_list %}
-                                        <tr>
-                                            <td>{{ course.courseName }}</td>
-                                            {% for sameCourse in course1 %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                            {% for noIncludeCourse in course1NoInclude %}
-                                                {% if noIncludeCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10060;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}    
-                                            
-                                            {% for sameCourse in course2 %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                            {% for noIncludeCourse in course2NoInclude %}
-                                                {% if noIncludeCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10060;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %} 
-
-                                            {% for sameCourse in course3 %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                            {% for noIncludeCourse in course3NoInclude %}
-                                                {% if noIncludeCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10060;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %} 
-
-                                            {% for sameCourse in course4 %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                            {% for noIncludeCourse in course4NoInclude %}
-                                                {% if noIncludeCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10060;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %} 
-
-                                            
                                         </tr>
+                                        {% for prog in programmeList%}                                                                               
+                                            {% for course in courseExits %}  
+                                                {% if prog.progName == course.progName%}                                          
+                                                <td><span class="tick">&#10004;</span></td>
+                                                {% endif %}
+                                            {% endfor %}
                                         {% endfor %}
-
                                         <tr>
                                             <td colspan="5" class="sep">Elective Courses</td>
                                         </tr> 
                                         {% for course in electiveCourse_list %}
                                         <tr>
-                                            <td>{{ course.courseName }}</td>
-                                            {% for sameCourse in electiveCourse1 %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                            {% for noIncludeCourse in electiveCourse1NoInclude %}
-                                                {% if noIncludeCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10060;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}    
-                                            
-                                            {% for sameCourse in electiveCourse2 %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                            {% for noIncludeCourse in electiveCourse2NoInclude %}
-                                                {% if noIncludeCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10060;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %} 
-
-                                            {% for sameCourse in electiveCourse3 %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                            {% for noIncludeCourse in electiveCourse3NoInclude %}
-                                                {% if noIncludeCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10060;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %} 
-
-                                            {% for sameCourse in electiveCourse4 %}
-                                                {% if sameCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10004;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                            {% for noIncludeCourse in electiveCourse4NoInclude %}
-                                                {% if noIncludeCourse.courseName == course.courseName %}
-                                                <td><span class="tick">&#10060;</span></td>                                                    
-                                                {% endif %}
-                                            {% endfor %} 
-
-                                            
+                                       
                                         </tr>
-                                    {% endfor %}
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

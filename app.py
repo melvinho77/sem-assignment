@@ -171,110 +171,107 @@ def showAllProgramme():
     programmeList=[]
     course_list = []
     electiveCourse_list = []
-    course1=[]
+    courseExits=[]
     
     for id in progId:
         courses_for_program = findCourse(id)
-        course1.extend(courses_for_program)
-
-    # Sort the course_list alphabetically by courseName
-    course1 = sorted(course1, key=lambda x: x['progName'])
-        
-    #     #find selected programme
-    #     select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
-    #     cursorProgramme= db_conn.cursor()
-
-    #     cursorProgramme.execute(select_programme,(id,))
-    #     programmes=cursorProgramme.fetchall()
-
-    #     for programme in programmes:
-    #         progId=programme[0]
-    #         progName=programme[1]
-
-    #         try:
-    #             level_date={
-    #             "progId" :progId,
-    #             "progName":progName                    
-    #             }
-
-    #             programmeList.append(level_date)
-                
-    #         except Exception as e:
-    #             return str(e) 
+        courseExits.extend(courses_for_program)
     
-    # #find all course
-
-    #     all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId=%s ORDER BY courseTaken"
-    #     cursor_Allcourse = db_conn.cursor()
-
-    #     try:
-    #         cursor_Allcourse.execute(all_course, (id,))
-    #         allCourse = cursor_Allcourse.fetchall()
-
-    #         for course in allCourse:
-    #             courseName = course[0]
-
-    #             try:
-    #                 # Check if the course name already exists in course_list
-    #                 exists = any(course_data['courseName'] == courseName for course_data in course_list)
-                    
-    #                 # If the course name doesn't exist, add it to course_list
-    #                 if not exists:
-    #                     course_data = {
-    #                         "courseName": courseName
-    #                     }
-    #                     course_list.append(course_data)
-
-    #             except Exception as e:
-    #                 return str(e)
-    #     except Exception as e:
-    #         return str(e)
-
-    #     # Sort course_list alphabetically by courseName
-    #     course_list = sorted(course_list, key=lambda x: x['courseName']) 
-
-    # #find all elective
-    #     all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
-    #     cursor_AllElectivecourse = db_conn.cursor()
         
-    #     try:
-    #         cursor_AllElectivecourse.execute(all_electiveCourse,(id,))
-    #         allElectiveCourse = cursor_AllElectivecourse.fetchall()
+        #find selected programme
+        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
+        cursorProgramme= db_conn.cursor()
+
+        cursorProgramme.execute(select_programme,(id,))
+        programmes=cursorProgramme.fetchall()
+
+        for programme in programmes:
+            progId=programme[0]
+            progName=programme[1]
+
+            try:
+                level_date={
+                "progId" :progId,
+                "progName":progName                    
+                }
+
+                programmeList.append(level_date)
+                
+            except Exception as e:
+                return str(e) 
+    
+    #find all course
+
+        all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId=%s ORDER BY courseTaken"
+        cursor_Allcourse = db_conn.cursor()
+
+        try:
+            cursor_Allcourse.execute(all_course, (id,))
+            allCourse = cursor_Allcourse.fetchall()
+
+            for course in allCourse:
+                courseName = course[0]
+
+                try:
+                    # Check if the course name already exists in course_list
+                    exists = any(course_data['courseName'] == courseName for course_data in course_list)
+                    
+                    # If the course name doesn't exist, add it to course_list
+                    if not exists:
+                        course_data = {
+                            "courseName": courseName
+                        }
+                        course_list.append(course_data)
+
+                except Exception as e:
+                    return str(e)
+        except Exception as e:
+            return str(e)
+
+        # Sort course_list alphabetically by courseName
+        course_list = sorted(course_list, key=lambda x: x['courseName']) 
+
+    #find all elective
+        all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
+        cursor_AllElectivecourse = db_conn.cursor()
+        
+        try:
+            cursor_AllElectivecourse.execute(all_electiveCourse,(id,))
+            allElectiveCourse = cursor_AllElectivecourse.fetchall()
 
             
 
-    #         for elective in allElectiveCourse:
-    #             courseName = elective[0]
+            for elective in allElectiveCourse:
+                courseName = elective[0]
 
-    #             try:
-    #                 # Check if the course name already exists in course_list
-    #                 exists = any(elective_data['courseName'] == courseName for elective_data in course_list)
+                try:
+                    # Check if the course name already exists in course_list
+                    exists = any(elective_data['courseName'] == courseName for elective_data in course_list)
                     
-    #                 # If the course name doesn't exist, add it to course_list
-    #                 if not exists:
-    #                     elective_data = {
-    #                         "courseName": courseName
-    #                     }
-    #                     electiveCourse_list.append(elective_data)
+                    # If the course name doesn't exist, add it to course_list
+                    if not exists:
+                        elective_data = {
+                            "courseName": courseName
+                        }
+                        electiveCourse_list.append(elective_data)
 
-    #             except Exception as e:
-    #                 return str(e)                          
+                except Exception as e:
+                    return str(e)                          
         
-    #     except Exception as e:
-    #         return str(e)
-    #     # Sort course_list alphabetically by courseName
-    #     electiveCourse_list = sorted(electiveCourse_list, key=lambda x: x['courseName']) 
+        except Exception as e:
+            return str(e)
+        # Sort course_list alphabetically by courseName
+        electiveCourse_list = sorted(electiveCourse_list, key=lambda x: x['courseName']) 
+        
+    #Sort the course_list alphabetically by courseName
+    courseExits = sorted(courseExits, key=lambda x: x['progName'])
         
 
-        
-        
-
-    return course1
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            electiveCourse_list=electiveCourse_list,
                            programmeList=programmeList,
-                           course1=findCourse(1),
+                           courseExits=courseExits,
                            course1NoInclude=findCourseNoInclude(1)                           
                            )
 
