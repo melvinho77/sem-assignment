@@ -43,6 +43,7 @@ def index():
     levels=cursorLevel.fetchall()
 
     level_list=[]
+    programmeList=[]
     diploma_pogramme=[]
     degree_pogramme=[]
 
@@ -52,7 +53,7 @@ def index():
         
             try:
                 level_date={
-                "level" :programmeLevel,                       
+                "level" :programmeLevel,                  
                 }
 
                 level_list.append(level_date)
@@ -72,11 +73,12 @@ def index():
 
                 try:
                     level_date={
+                    "level" :programmeLevel,
                     "progId" :progId,
                     "progName":progName                    
                     }
 
-                    level_list.append(level_date)
+                    programmeList.append(level_date)
                     
                 except Exception as e:
                     return str(e) 
@@ -85,7 +87,9 @@ def index():
         return str(e)
     
     network_details = get_network_details()
-    return render_template('home.html', number=1, network_details=network_details,level_list=level_list)
+    return render_template('home.html', number=1, network_details=network_details,
+                           level_list=level_list,
+                           programmeList=programmeList)
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
