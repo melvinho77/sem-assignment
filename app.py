@@ -167,9 +167,33 @@ def homeSearchProgramme():
 @app.route('/compareProgramme', methods=['POST'])
 def showAllProgramme():
 
-    progId=request.form.getlist('progId[]')
-    return progId
+    progId=request.form.getlist('progId[]')    
+    programmeList=[]
 
+    #find selected programme
+    for id in progId:
+        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
+        cursorProgramme= db_conn.cursor()
+
+        cursorProgramme.execute(select_programme,(id,))
+        programmes=cursorProgramme.fetchall()
+
+        for programme in programmes:
+            progId=programme[0]
+            progName=programme[1]
+
+            try:
+                level_date={
+                "progId" :progId,
+                "progName":progName                    
+                }
+
+                programmeList.append(level_date)
+                
+            except Exception as e:
+                return str(e) 
+                
+    return programmeList
     #find all course
     for id in progId :
 
@@ -223,30 +247,7 @@ def showAllProgramme():
         except Exception as e:
             return str(e)
         
-        ## selected programme
-        programmeList=[]
-        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
-        cursorProgramme= db_conn.cursor()
-
-        cursorProgramme.execute(select_programme,(id,))
-        programmes=cursorProgramme.fetchall()
-
-        for programme in programmes:
-                progId=programme[0]
-                progName=programme[1]
-
-                try:
-                    programme_date={
-                    "progId" :progId,
-                    "progName":progName                    
-                    }
-
-                    programmeList.append(programme_date)
-                    
-                except Exception as e:
-                    return str(e) 
-            
-    
+        
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            electiveCourse_list=electiveCourse_list,
