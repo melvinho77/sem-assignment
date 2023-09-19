@@ -174,7 +174,7 @@ def showAllProgramme():
 
     
     for id in progId:
-        course1=findCourse(id)
+        course_list.extend(findCourse(id))
         course1 = sorted(course1, key=lambda x: x['courseName']) 
         
     #     #find selected programme
