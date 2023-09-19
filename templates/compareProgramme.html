@@ -599,11 +599,12 @@
                                     <tbody>                                       
                                         <tr>
                                             <td colspan="5" class="sep">Main Courses</td>
-                                        </tr>                                    
+                                        </tr>             
+                                        {% set i = 0 %}                       
                                         {% for course in course_list %}
                                         <tr>
                                             <td>{{ course.courseName }}</td>
-                                            {% set i = 0 %}
+                                            
                                             {% for prog in programmeList%}                                                                               
                                                 {% for exitscourse in courseExits %}  
                                                     {% if prog.progName == exitscourse.progName and course.courseName== exitscourse.courseName%}                                          
