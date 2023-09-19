@@ -591,10 +591,9 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th>Computer Science</th>
-                                            <th>Information Systems</th>
-                                            <th>Information Technology</th>
-                                            <th>Software Engineering</th>
+                                            {% for prog in programmeList%}
+                                            <th>prog.progName</th>
+                                            {% endfor %}                                      
                                         </tr>
                                     </thead>
                                     <tbody>                                       
