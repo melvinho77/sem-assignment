@@ -191,7 +191,13 @@ def showAllProgramme():
                         "courseName": courseName
                     }
 
-                    course_list.append(course_data)
+                    exsit = 0 
+                    for courseExsit in course_list:
+                        if course_list.courseName == course_data.courseName:
+                            exsit =1 
+                    
+                    if exsit == 0:
+                        course_list.append(course_data)
 
                 except Exception as e:
                     return str(e)
