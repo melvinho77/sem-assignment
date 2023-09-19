@@ -224,7 +224,7 @@ def showAllProgramme():
         
         ## selected programme
         programmeList=[]
-        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE level=%s"
+        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
         cursorProgramme= db_conn.cursor()
 
         cursorProgramme.execute(select_programme,(id,))
