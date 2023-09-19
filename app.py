@@ -177,31 +177,29 @@ def showAllProgramme():
         courseExits=[]
         courseNotExits=[]
         programmeList=[]
-        programmeName=None
 
- #loop for check the programme
-        for id in progId:
-            select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
-            cursorProgramme= db_conn.cursor()
+        #show what the programme
+        select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
+        cursorProgramme= db_conn.cursor()
 
-            cursorProgramme.execute(select_programme,(id,))
-            programmes=cursorProgramme.fetchall()
+        cursorProgramme.execute(select_programme,(id,))
+        programmes=cursorProgramme.fetchall()
 
-            for programme in programmes:
-                progId=programme[0]
-                progName=programme[1]
+        for programme in programmes:
+            progId=programme[0]
+            progName=programme[1]
+            
+
+            try:
+                level_date={
+                "progId" :progId,
+                "progName":progName                    
+                }
+
+                programmeList.append(level_date)
                 
-
-                try:
-                    level_date={
-                    "progId" :progId,
-                    "progName":progName                    
-                    }
-
-                    programmeList.append(level_date)
-                    
-                except Exception as e:
-                    return str(e) 
+            except Exception as e:
+                return str(e) 
                     
 
         courses_for_program = findCourse(id)
@@ -210,7 +208,7 @@ def showAllProgramme():
         notCourses_for_program = findNotExistsCourse(id,programmeList)
         courseNotExits.extend(notCourses_for_program)        
 
-        return programmeList
+        return programmeList[0]["progName"]
         all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
                      "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
