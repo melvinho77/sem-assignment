@@ -202,9 +202,7 @@ def showAllProgramme():
         except Exception as e:
             return str(e)
     # Sort course_list alphabetically by courseName
-    course_list = sorted(course_list, key=lambda x: x['courseName'])
-    
-    return course_list
+    course_list = sorted(course_list, key=lambda x: x['courseName'])   
 
     all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
     cursor_AllElectivecourse = db_conn.cursor()
@@ -235,7 +233,7 @@ def showAllProgramme():
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            electiveCourse_list=electiveCourse_list,
-                           programmeList=programmeList,
+                           programmeList=findSelectedProgramme(progId),
                            course1=findCourse(1),
                            course1NoInclude=findCourseNoInclude(1),
                            course2NoInclude=findCourseNoInclude(2),
@@ -255,7 +253,7 @@ def showAllProgramme():
                            )
 
 
-def findSelectedProgramme():
+def findSelectedProgramme(progId):
     programmeList=[]
     for id in progId:
         select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
