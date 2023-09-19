@@ -204,13 +204,13 @@ def showAllProgramme():
                 except Exception as e:
                     return str(e) 
                 
-                notCourses_for_program = findNotExistsCourse(id,programmeList[i]["progName"])
+                notCourses_for_program = findNotExistsCourse(id,progName)
                 courseNotExits.extend(notCourses_for_program)  
 
         courses_for_program = findCourse(id)
         courseExits.extend(courses_for_program)      
 
-        return courseNotExits
+        return programmeList
         all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
                      "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
