@@ -11,7 +11,12 @@
 <!-- Radio button groups for different levels -->
 <div id="diploma_group" class="radio-group">
     <!-- Add your diploma-level radio buttons here -->
-    
+    {% for level in level_list %}
+        {% if level.level == 'diploma' %}
+        <input type="radio" name="progName" value="{{ level.progId }}" id="prog_{{ level.progId }}">
+        <label for="prog_{{ level.progId }}">{{ level.progName }}</label>
+        {% endif %}
+    {% endfor %}
 </div>
 
 <div id="degree_group" class="radio-group">
