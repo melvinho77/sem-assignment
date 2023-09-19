@@ -206,10 +206,12 @@ def showAllProgramme():
             courses_for_program = findCourse(id)
             courseExits.extend(courses_for_program)
 
+
+            #find main course
             all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
                         "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
             cursor_Allcourse = db_conn.cursor()
-
+        
             try:
                 cursor_Allcourse.execute(all_course)
                 allCourse = cursor_Allcourse.fetchall()
@@ -251,7 +253,7 @@ def showAllProgramme():
 
                     try:
                         # Check if the course name already exists in course_list
-                        exists = any(elective_data['courseName'] == courseName for elective_data in course_list)
+                        exists = any(elective_data['courseName'] == courseName for elective_data in electiveCourse_list)
                         
                         # If the course name doesn't exist, add it to course_list
                         if not exists:
