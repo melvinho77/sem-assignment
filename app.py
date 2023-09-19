@@ -270,8 +270,7 @@ def showAllProgramme():
             
         #Sort the course_list alphabetically by courseName
             courseExits = sorted(courseExits, key=lambda x: x['progName'])
-        
-    return courseNotExits
+           
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            electiveCourse_list=electiveCourse_list,

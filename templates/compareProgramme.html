@@ -614,7 +614,7 @@
 
                                                 {% for notExits in courseNotExits %}
                                                     {% if prog.progName == notExits.progName and course.courseName==
-                                                        courseNotExits.courseName%}
+                                                        notExits.courseName%}
                                                     <td><span>&#10060;</span></td>                                                                                                                                                 
                                                     {% endif %}
                                                 {% endfor %}
