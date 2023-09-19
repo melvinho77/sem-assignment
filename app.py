@@ -181,7 +181,7 @@ def showAllProgramme():
         cursor_Allcourse = db_conn.cursor()
 
         try:
-            cursor_Allcourse.execute(all_course, (id,))
+            cursor_Allcourse.execute(all_course)
             allCourse = cursor_Allcourse.fetchall()
 
             for course in allCourse:
