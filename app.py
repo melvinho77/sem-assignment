@@ -196,7 +196,6 @@ def showAllProgramme():
                 return str(e) 
                             
     #find all course
-    for id in progId:
         all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId=%s ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
         
@@ -222,8 +221,7 @@ def showAllProgramme():
             return str(e)
         
         return course_list
-    
-    for id in progId:    
+      
         all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
         cursor_AllElectivecourse = db_conn.cursor()
         
