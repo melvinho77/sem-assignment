@@ -333,7 +333,9 @@ def findSameCourse():
 
 def findNotExitsCourse(programmeId):
       #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE courseTaken NOT IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = %s) ORDER BY courseTaken;"
+    all_course = "SELECT programmeName, courseTaken FROM programmeMainCourse p , availableProgramme a "\
+"WHERE  p.programmeId=a.avProgrammeId AND  courseTaken NOT IN"\
+ "( SELECT distinct courseTaken FROM programmeMainCourse WHERE programmeId =%s ) ORDER BY courseTaken"
     cursor_Allcourse = db_conn.cursor()
     
     try:
@@ -343,14 +345,19 @@ def findNotExitsCourse(programmeId):
         course_list = []
 
         for course in allCourse:
-            courseName = course[0]
+            
+            courseName = course[1]
 
             try:
-                course_data = {
-                    "courseName":courseName           
-                }
-
-                course_list.append(course_data)
+                # Check if the course name already exists in course_list
+                exists = any(course_data['courseName'] == courseName for course_data in course_list)
+                
+                # If the course name doesn't exist, add it to course_list
+                if not exists:
+                    course_data = {
+                        "courseName": courseName
+                    }
+                    course_list.append(course_data)
 
             except Exception as e:
                 return str(e)
