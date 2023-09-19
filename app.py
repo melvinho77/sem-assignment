@@ -192,8 +192,7 @@ def showAllProgramme():
                 
             except Exception as e:
                 return str(e) 
-                
-    return programmeList
+                            
     #find all course
     for id in progId :
 
