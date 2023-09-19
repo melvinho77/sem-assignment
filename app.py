@@ -31,7 +31,35 @@ table = 'employee'
 
 @app.route('/home_page')
 def home_page():
-    return render_template('home.html')
+
+    select_level="SELECT DISTINCT level FROM availableProgramme"
+    cursorLevel = db_conn.cursor()
+
+    cursorLevel.execute(select_level)
+    levels=cursorLevel.fetchall()
+
+    level_list=[]
+
+    try:
+        for level in levels:
+            programmeLevel=level[0]
+
+        try:
+            level_date={
+            "level" :programmeLevel
+            }
+
+            level_list.append(level_date)
+            
+        except Exception as e:
+            return str(e)   
+        
+
+    except Exception as e:
+        return str(e)
+    
+
+    return render_template('home.html',level_list=level_list)
 
 @app.route('/')
 def index():
