@@ -367,7 +367,6 @@ def findNotExistsCourse(programmeId,progName):
 
             try:
                 course_data = {
-                    "progName": progName,
                     "courseName": courseName
                 }
 
