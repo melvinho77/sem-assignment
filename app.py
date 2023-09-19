@@ -172,10 +172,14 @@ def showAllProgramme():
     course_list = []
     electiveCourse_list = []
     courseExits=[]
+    courseNotExits=[]
     
     for id in progId:  
         courses_for_program = findCourse(id)
         courseExits.extend(courses_for_program)
+
+        notCourses_for_program = findCourse(id)
+        courseNotExits.extend(notCourses_for_program)
     
         
         #find selected programme
@@ -272,7 +276,7 @@ def showAllProgramme():
                            electiveCourse_list=electiveCourse_list,
                            programmeList=programmeList,
                            courseExits=courseExits,
-                           course1NoInclude=findCourseNoInclude(1)                           
+                           courseNotExits=courseNotExits                                              
                            )
 
 
@@ -328,13 +332,13 @@ def findSameCourse():
     
     return course_list
 
-def findDifCourse():
-    #find all course
-    all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken NOT IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2)ORDER BY courseTaken;"
+def findNotExitsCourse(programmeId):
+      #find all course
+    all_course = "SELECT distinct courseTaken FROM programmeMainCourse p , availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND programmeId != 1 ORDER BY courseTaken"
     cursor_Allcourse = db_conn.cursor()
     
     try:
-        cursor_Allcourse.execute(all_course)
+        cursor_Allcourse.execute(all_course,(programmeId,))
         allCourse = cursor_Allcourse.fetchall()
 
         course_list = []
@@ -344,7 +348,7 @@ def findDifCourse():
 
             try:
                 course_data = {
-                    "courseName": courseName              
+                    "courseName":courseName           
                 }
 
                 course_list.append(course_data)
