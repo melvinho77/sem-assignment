@@ -231,6 +231,7 @@ def showAllProgramme():
         # Sort course_list alphabetically by courseName
         course_list = sorted(course_list, key=lambda x: x['courseName']) 
 
+        return course_list
     #find all elective
         all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
         cursor_AllElectivecourse = db_conn.cursor()
