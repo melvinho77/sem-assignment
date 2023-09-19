@@ -342,12 +342,14 @@ def findNotExistsCourse(programmeId):
     # Do something with progName
 
     # Find all courses that do not exist in the given programmeId
-    all_course = "SELECT DISTINCT courseTaken"\
-                "FROM programmeMainCourse"\
-                "WHERE courseTaken NOT IN ("\
-                    "SELECT courseTaken"\
-                    "FROM programmeMainCourse"\
-                    "WHERE programmeId = %s ) ORDER BY courseTaken;"
+    all_course = "SELECT DISTINCT courseTaken " \
+                "FROM programmeMainCourse " \
+                "WHERE courseTaken NOT IN (" \
+                    "SELECT courseTaken " \
+                    "FROM programmeMainCourse " \
+                    "WHERE programmeId = %s ) " \
+                "ORDER BY courseTaken;"
+
     cursor_Allcourse = db_conn.cursor()
     
     try:
