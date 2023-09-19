@@ -168,7 +168,7 @@ def homeSearchProgramme():
 def showAllProgramme():
 
     progId=request.form.getlist('progId[]')    
-    programmeList=[]
+    
     course_list = []
     electiveCourse_list = []
     
@@ -176,6 +176,7 @@ def showAllProgramme():
     for id in progId:  
         courseExits=[]
         courseNotExits=[]
+        programmeList=[]
 
         courses_for_program = findCourse(id)
         courseExits.extend(courses_for_program)
@@ -285,6 +286,7 @@ def findSelectedProgramme(progId):
                 
             except Exception as e:
                 return str(e) 
+    return programmeList
 def findSameCourse():
     #find all course
     all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId = 1 AND courseTaken IN ( SELECT courseTaken FROM programmeMainCourse WHERE programmeId = 2) ORDER BY courseTaken;"
