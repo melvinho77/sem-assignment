@@ -222,33 +222,35 @@ def showAllProgramme():
                     return str(e)
         except Exception as e:
             return str(e)
-    # Sort course_list alphabetically by courseName
-    course_list = sorted(course_list, key=lambda x: x['courseName'])   
 
-    all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
-    cursor_AllElectivecourse = db_conn.cursor()
-    
-    try:
-        cursor_AllElectivecourse.execute(all_electiveCourse,(id,))
-        allElectiveCourse = cursor_AllElectivecourse.fetchall()
-
+        # Sort course_list alphabetically by courseName
+        course_list = sorted(course_list, key=lambda x: x['courseName']) 
         
+    #find all elective
+        all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
+        cursor_AllElectivecourse = db_conn.cursor()
+        
+        try:
+            cursor_AllElectivecourse.execute(all_electiveCourse,(id,))
+            allElectiveCourse = cursor_AllElectivecourse.fetchall()
 
-        for elective in allElectiveCourse:
-            courseName = elective[0]
+            
 
-            try:
-                elective_data = {
-                    "courseName": courseName              
-                }
+            for elective in allElectiveCourse:
+                courseName = elective[0]
 
-                electiveCourse_list.append(elective_data)
+                try:
+                    elective_data = {
+                        "courseName": courseName              
+                    }
 
-            except Exception as e:
-                return str(e)
-    
-    except Exception as e:
-        return str(e)
+                    electiveCourse_list.append(elective_data)
+
+                except Exception as e:
+                    return str(e)
+        
+        except Exception as e:
+            return str(e)
         
         
     return render_template('compareProgramme.html', 
