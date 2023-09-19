@@ -335,7 +335,7 @@ def findSameCourse():
 
 def findNotExitsCourse(programmeId):
       #find all course
-    all_course = "SELECT distinct courseTaken FROM programmeMainCourse p , availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND programmeId != 1 ORDER BY courseTaken"
+    all_course = "SELECT distinct courseTaken FROM programmeMainCourse p , availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND programmeId != %s ORDER BY courseTaken"
     cursor_Allcourse = db_conn.cursor()
     
     try:
