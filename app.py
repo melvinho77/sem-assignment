@@ -43,11 +43,13 @@ def index():
     levels=cursorLevel.fetchall()
 
     level_list=[]
+    diploma_pogramme=[]
+    degree_pogramme=[]
 
     try:
         for level in levels:
             programmeLevel=level[0]
-
+            
             try:
                 level_date={
                 "level" :programmeLevel
@@ -57,11 +59,31 @@ def index():
                 
             except Exception as e:
                 return str(e)   
-        
 
+            select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE level=%s"
+            cursorProgramme= db_conn.cursor()
+
+            cursorProgramme.execute(select_programme,(programmeLevel,))
+            programmes=cursorProgramme.fetchall()
+
+            for programme in programmes:
+                prog=programme[0]
+
+                try:
+                    level_date={
+                    "prog" :prog
+                    }
+
+                    level_list.append(level_date)
+                    
+                except Exception as e:
+                    return str(e) 
+                
     except Exception as e:
         return str(e)
     
+
+    return level_list
     network_details = get_network_details()
     return render_template('home.html', number=1, network_details=network_details,level_list=level_list)
 
