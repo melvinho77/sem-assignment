@@ -171,12 +171,11 @@ def showAllProgramme():
     
     course_list = []
     electiveCourse_list = []
-    
+    courseExits=[]
+    courseNotExits=[]
+    programmeList=[]
     
     for id in progId:  
-        courseExits=[]
-        courseNotExits=[]
-        programmeList=[]
 
  #loop for check the programme
         for id in progId:
