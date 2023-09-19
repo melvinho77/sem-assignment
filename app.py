@@ -171,7 +171,7 @@ def showAllProgramme():
     programmeList=[]
     course_list = []
     electiveCourse_list = []
-    
+
     #find selected programme
     for id in progId:
         select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
@@ -197,7 +197,6 @@ def showAllProgramme():
     
     #find all course
 
-    for id in progId:
         all_course = "SELECT DISTINCT courseTaken FROM programmeMainCourse WHERE programmeId=%s ORDER BY courseTaken"
         cursor_Allcourse = db_conn.cursor()
 
