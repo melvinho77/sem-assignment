@@ -168,7 +168,7 @@ def homeSearchProgramme():
 def showAllProgramme():
 
     progId=request.form.getlist('progId[]')    
-    
+    level=request.form['level']
     course_list = []
     electiveCourse_list = []
     courseExits=[]
@@ -220,11 +220,11 @@ def showAllProgramme():
 
             #find main course
             all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
-                        "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='diploma' ORDER BY courseTaken"
+                        "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL='%s' ORDER BY courseTaken"
             cursor_Allcourse = db_conn.cursor()
         
             try:
-                cursor_Allcourse.execute(all_course)
+                cursor_Allcourse.execute(all_course,(level,))
                 allCourse = cursor_Allcourse.fetchall()
 
                 for course in allCourse:

@@ -1,15 +1,11 @@
     <form action="/compareProgramme" autocomplete="on" method="POST" enctype="multipart/form-data">
         <!-- Radio buttons for level selection -->
-        {% for level in level_list %}
-        {% if level.level == 'diploma'%}
+        
         <input type="radio" name="level" value="diploma" id="level_diploma" checked>
-        <label for="level_{{ level.level }}">{{ level.level }}</label>
-        {% else %}
-        <input type="radio" name="level" value="{{ level.level }}" id="level_{{ level.level }}">
-        <label for="level_{{ level.level }}">{{ level.level }}</label>
-        {% endif %}    
-
-        {% endfor %}
+        <label for="level_diploma">diploma</label>
+        
+        <input type="radio" name="level" value="degree" id="level_degree">
+        <label for="level_degree">degree</label>
 
         <input type="submit">
 
