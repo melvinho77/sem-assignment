@@ -631,7 +631,22 @@
                                         {% for course in electiveCourse_list %}
                                         <tr>
                                             <td>{{ course.courseName }}</td>
-                                           
+                                            {% for prog in programmeList%}
+                                                {% for exitscourse in electiveExits %}
+                                                    {% if prog.progName == exitscourse.progName and course.courseName==
+                                                    exitscourse.courseName%}
+                                                    <td><span class="tick">&#10004;</span></td>                                                                                                                                                 
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                                {% for notExits in electiveNotExits %}
+                                                    {% if prog.progName == notExits.progName and course.courseName==
+                                                        notExits.courseName%}
+                                                    <td><span>&#10060;</span></td>                                                                                                                                                 
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                            {% endfor %}
                                         </tr>
                                         {% endfor %}
                                     </tbody>

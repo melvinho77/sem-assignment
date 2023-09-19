@@ -206,7 +206,7 @@ def showAllProgramme():
                 courseNotExits.extend(notCourses_for_program)     
 
                 #all not exits elective in a particular programme
-                notElective_for_program = findNotExistsCourse(id,progName)
+                notElective_for_program = findNotElectiveExists(id,progName)
                 electiveNotExits.extend(notElective_for_program) 
 
 
@@ -215,7 +215,7 @@ def showAllProgramme():
             courseExits.extend(courses_for_program)
 
             #all exits elective course in a particular programme
-            elective_for_program = findCourse(id)
+            elective_for_program = findElectiveCourse(id)
             electiveExits.extend(elective_for_program)
 
             #find main course
@@ -399,7 +399,7 @@ def findElectiveCourse(programmeId):
     
     return course_list
 
-def findNotExistsCourse(programmeId,progName):
+def findNotElectiveExists(programmeId,progName):
     
     # Do something with progName
 
