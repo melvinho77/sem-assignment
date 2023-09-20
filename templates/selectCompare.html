@@ -636,7 +636,24 @@
                                         {% endif %}
                                         {% endfor %}
                                     </div>
-                                
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    -<script>
+                                        // Initially, hide all radio button groups except for the selected level
+                                        $('.radio-group').hide();
+                                        $('#diploma_group').show(); // Show the initial group
+                                    
+                                        // Handle the click event on level radio buttons
+                                        $('input[name="level"]').click(function () {
+                                            // Hide all groups
+                                            $('.radio-group').hide();
+                                    
+                                            // Get the selected level
+                                            var selectedLevel = $(this).val();
+                                    
+                                            // Show the corresponding group based on the selected level
+                                            $('#' + selectedLevel + '_group').show();
+                                        });
+                                    </script>
                                     <div id="master_group" class="radio-group">
                                         <!-- Add your master-level radio buttons here -->
                                     </div>
