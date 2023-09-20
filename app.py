@@ -130,7 +130,9 @@ def get_network_details():
     except Exception as e:
         return {'Error': str(e)}
 
-
+@app.route('/chatbot')
+def chatbot():
+    return render_template('chatbot.html')
 
 
 

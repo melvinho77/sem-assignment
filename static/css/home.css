@@ -87,3 +87,30 @@ input[type="text"]::placeholder {
 .tabs-custom.tabs-corporate .nav-tabs li a:after {
     font-size: 25px;
 }
+
+
+
+/* Style for the chatbot icon button */
+.chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Style for the chat window (initially hidden) */
+.chatbot-window {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+}

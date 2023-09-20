@@ -20,8 +20,6 @@
     <!-- NEW ADDED by ss-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}" />
-
-
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/colorbox.css">
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/bootstrap.css" />
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/font-awesome.css" />
@@ -63,6 +61,21 @@
         .my-float {
             margin-top: 16px;
             color: #FFFFFF;
+        }
+
+        .chatbot-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #fffb06;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 2px #999;
+            z-index: 50;
         }
     </style>
 </head>
@@ -729,12 +742,18 @@
                             <div class="cell-sm-6 cell-md-4 offset-top-50 offset-md-top-0">
                                 <div class="offset-top-22 offset-md-top-30">
                                 </div>
-                            </div>                          
-                        </div>                       
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Chatbot icon button -->
+        <a href="#" class="chatbot-float" id="open-chatbot">
+            <img src="{{ url_for('static', filename='images/tarbot-icon.jpg') }}" alt="tarbot"
+                style="border-radius: 50%;">
+        </a>
 
         <footer class="page-foot page-foot-default section-35 bg-gray-base">
             <div class="shell">
@@ -824,12 +843,38 @@
                 return false;
 
             } else {
-
                 document.getElementById('captcha').innerHTML = "";
-
             }
-
         }
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("open-chatbot").addEventListener("click", function (event) {
+                event.preventDefault();
+                // Define the URL of the "chatbot.html" page
+                var chatbotURL = "/chatbot";
+                // Define a unique name for the popup window
+                var windowName = "Chatbot Window";
+
+                // Define the size of the popup window
+                var width = 400; // Width of the popup window
+                var height = 300; // Height of the popup window
+
+                // Calculate the position of the popup window to display it at the bottom right
+                var left = window.innerWidth - width;
+                var top = window.innerHeight - height + 70;
+
+                // Check if a window with the same name is already open
+                var existingWindow = window.open(chatbotURL, windowName, "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top + ",resizable=0,location=0");
+
+                // If the window is already open, focus on it
+                if (existingWindow) {
+                    existingWindow.focus();
+                }
+            });
+        });
+
     </script>
 </body>
 
