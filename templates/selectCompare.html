@@ -1,6 +1,193 @@
 <!DOCTYPE html>
 <html lang="en" class="wide wow-animation">
 
+<style>
+    /* DIRTY Responsive pricing table CSS */
+
+    /* 
+- make mobile switch sticky
+*/
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        outline: 0;
+    }
+
+    body {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        padding: 14px;
+    }
+
+    article {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        height: 1000px;
+        position: relative;
+    }
+
+    ul {
+        display: flex;
+        top: 0px;
+        z-index: 10;
+        padding-bottom: 14px;
+    }
+
+    li {
+        list-style: none;
+        flex: 1;
+    }
+
+    li:last-child {
+        border-right: 1px solid #DDD;
+    }
+
+    button {
+        width: 100%;
+        border: 1px solid #DDD;
+        border-right: 0;
+        border-top: 0;
+        padding: 10px;
+        background: #FFF;
+        font-size: 14px;
+        font-weight: bold;
+        height: 60px;
+        color: #999
+    }
+
+    li.active button {
+        background: #F5F5F5;
+        color: #000;
+    }
+
+    table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    th {
+        background: #F5F5F5;
+        display: none;
+    }
+
+    td,
+    th {
+        height: 53px
+    }
+
+    td,
+    th {
+        border: 1px solid #DDD;
+        padding: 10px;
+        empty-cells: show;
+    }
+
+    td,
+    th {
+        text-align: left;
+    }
+
+    td+td,
+    th+th {
+        text-align: center;
+        display: none;
+    }
+
+    td.default {
+        display: table-cell;
+    }
+
+    .bg-purple {
+        border-top: 3px solid #A32362;
+    }
+
+    .bg-blue {
+        border-top: 3px solid #0097CF;
+    }
+
+    .sep {
+        background: #F5F5F5;
+        font-weight: bold;
+    }
+
+    .txt-l {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .txt-top {
+        position: relative;
+        top: -9px;
+        left: -2px;
+    }
+
+    .tick {
+        font-size: 18px;
+        color: #2CA01C;
+    }
+
+    .hide {
+        border: 0;
+        background: none;
+    }
+
+    @media (min-width: 640px) {
+        ul {
+            display: none;
+        }
+
+        td,
+        th {
+            display: table-cell !important;
+        }
+
+        td,
+        th {
+            width: 330px;
+
+        }
+
+        td+td,
+        th+th {
+            width: auto;
+        }
+    }
+</style>
+
+<script>
+    // DIRTY Responsive pricing table JS
+
+    $("ul").on("click", "li", function () {
+        var pos = $(this).index() + 2;
+        $("tr").find('td:not(:eq(0))').hide();
+        $('td:nth-child(' + pos + ')').css('display', 'table-cell');
+        $("tr").find('th:not(:eq(0))').hide();
+        $('li').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    // Initialize the media query
+    var mediaQuery = window.matchMedia('(min-width: 640px)');
+
+    // Add a listen event
+    mediaQuery.addListener(doSomething);
+
+    // Function to do something with the media query
+    function doSomething(mediaQuery) {
+        if (mediaQuery.matches) {
+            $('.sep').attr('colspan', 5);
+        } else {
+            $('.sep').attr('colspan', 2);
+        }
+    }
+
+    // On load
+    doSomething(mediaQuery);
+</script>
+
 <head>
     <title>Tunku Abdul Rahman University of Management & Technology - Faculty of Computing and Information Technology
     </title>
@@ -77,7 +264,7 @@
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/print.css" />
 
 
-    <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/gold-orange.css?d=2023/09/21 02:20:52">
+    <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/gold-orange.css?d=2023/09/18 13:18:34">
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/custom.css" />
 
     <!--[if lt IE 10]>
@@ -108,7 +295,7 @@
     </style>
 </head>
 
-<body style="">
+<body>
     <div class="page">
 
         <header class="page-head">
@@ -381,300 +568,251 @@
                                         src="https://www.tarc.edu.my/files/focs/78BD55AB-1C84-4D3B-A62E-B1F13CDB009C.JPG" />
                                 </div>
                                 <!-- Tabs -->
-                                <div id="tabs" class="tabs-custom tabs-corporate tabs-horizontal"
-                                    style="margin: 20px 0;"><!-- Tabs Menu -->
-                                    <ul class="nav nav-tabs" style="margin: 0;">
-                                        <li class="active"><a href="#tabs-0" data-toggle="tab">Doctor of Philosophy</a>
-                                        </li>
-                                        <li><a href="#tabs-1" data-toggle="tab">Master Degree</a></li>
-                                        <li><a href="#tabs-2" data-toggle="tab">Bachelor</a></li>
-                                        <li><a href="#tabs-3" data-toggle="tab">Diploma</a></li>
-                                        <!--
-<li><a href="#tabs-4" data-toggle="tab">Dual Awards</a></li>
--->
-                                    </ul>
-                                    <!-- End of Tabs Menu --> <!-- Tabs Content --> <!-- Tabs 0 -->
-                                    <div class="tab-content">
-                                        <div id="tabs-0" class="tab-pane fade active in">
-                                            <p>The Faculty of Computing and Information Technology (FOCS) offers the
-                                                following Doctor of Philosophy programmes:</p>
-                                            <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/doctor-of-philosophy-computer-science-kptjpsn481807881025/">Doctor
-                                                    of Philosophy (Computer Science)</a></p>
-                                            <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/doctor-of-philosophy-information-technology-kptjpsn482801690126/">Doctor
-                                                    of Philosophy (Information Technology)</a></p>
-                                            <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/doctor-of-philosophy-mathematical-sciences-n46180029-0426-mqapa-10773/">Doctor
-                                                    of Philosophy (Mathematical Sciences)</a></p>
-                                            <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/master-of-information-technology-kptjpsn48270156/"></a><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/master-of-science-in-mathematical-sciences-n46170030-0426-mqapa-10771/"></a>
-                                            </p>
-                                        </div>
-                                        <!-- Tabs 1 -->
-                                        <div id="tabs-1" class="tab-pane fade">
-                                            <p>The Faculty of Computing and Information Technology (FOCS) offers the
-                                                following Master Degree programmes:</p>
-                                            <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/master-of-computer-science/">Master
-                                                    of Computer Science</a></p>
-                                            <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/master-of-information-technology-kptjpsn48270156/">Master
-                                                    of Information Technology</a></p>
-                                            <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/master-of-science-in-mathematical-sciences-n46170030-0426-mqapa-10771/">Master
-                                                    of Science in Mathematical Sciences</a></p>
-                                        </div>
-                                        <!-- Tabs 2 -->
-                                        <div id="tabs-2" class="tab-pane fade">
-                                            <p>The Faculty of Computing and Information Technology (FOCS) offers the
-                                                following Bachelor Degree programmes:</p>
-                                            <h5><i class="fa fa-database gold-orange"></i> Bachelor of Science</h5>
-                                            <ul style="margin: 10px;">
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-science-honours-in-management-mathematics-with-computing/">Management
-                                                        Mathematics with Computing&nbsp;</a> <i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                            </ul>
-                                            <h5><i class="fa fa-database gold-orange"></i> Bachelor of Computer Science
-                                            </h5>
-                                            <ul style="margin: 10px;">
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-computer-science-honours-in-interactive-software-technology/">Interactive
-                                                        Software Technology</a> <i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-computer-science-honours-in-data-science/">Data
-                                                        Science</a> <i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                            </ul>
-                                            <h5><i class="fa fa-database gold-orange"></i> Bachelor of Information
-                                                Systems</h5>
-                                            <ul style="margin: 10px;">
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-information-systems-honours-in-enterprise-information-systems/">Enterprise
-                                                        Information Systems</a> <i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                            </ul>
-                                            <h5><i class="fa fa-database gold-orange"></i> Bachelor of Information
-                                                Technology</h5>
-                                            <ul style="margin: 10px;">
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-information-technology-honours-in-information-security/">Information
-                                                        Security</a> <i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-information-technology-honours-in-internet-technology/">Internet
-                                                        Technology </a> <i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-information-technology-honours-in-software-systems-development/">Software
-                                                        Systems Development </a> <i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                            </ul>
-                                            <h5><i class="fa fa-database gold-orange"></i> <a
-                                                    href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-computer-science-honours-in-software-engineering/">Bachelor
-                                                    of Software Engineering</a> <i
-                                                    class="fa fa-external-link-square gold-orange"> </i></h5>
-                                            <!--
-<ul style="margin: 10px;">
-<li><a href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-computer-science-honours-in-software-engineering/"> Bachelor of Software Engineering</a> <i class="fa fa-external-link-square gold-orange"></i></li>
-</ul>
--->
-                                        </div>
-                                        <!-- Tabs 3 -->
-                                        <div id="tabs-3" class="tab-pane fade">
-                                            <p>The Faculty of Computing and Information Technology (FOCS) offers the
-                                                following Diploma programmes:</p>
-                                            <h5><i class="fa fa-database gold-orange"></i> Diploma Programmes</h5>
-                                            <ul style="margin: 10px;">
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/diploma/diploma-in-computer-science/">Diploma
-                                                        in Computer Science&nbsp;</a><i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/diploma/diploma-in-information-systems/">Diploma
-                                                        in Information Systems&nbsp;</a><i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/diploma/diploma-in-information-technology/">Diploma
-                                                        in Information Technology&nbsp;</a><i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                                <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/diploma/diploma-in-software-engineering/">Diploma
-                                                        in Software Engineering&nbsp;</a><i
-                                                        class="fa fa-external-link-square gold-orange"></i></li>
-                                            </ul>
-                                        </div>
+                                <ul>
+                                    <li class="bg-purple">
+                                        <button>Gratis</button>
+                                    </li>
+                                    <li class="bg-blue">
+                                        <button>Starter</button>
+                                    </li>
+                                    <li class="bg-blue active">
+                                        <button>Finanzas</button>
+                                    </li>
+                                    <li class="bg-blue">
+                                        <button>Compra y venta</button>
+                                    </li>
+                                    <li class="bg-blue">
+                                        <button>Inventarios</button>
+                                    </li>
+                                </ul>
+
+                                <br>
+                                <!-- kl part -->
+                                <form action="/compareProgramme" autocomplete="on" method="POST" enctype="multipart/form-data">
+                                    <!-- Radio buttons for level selection -->
+                                
+                                    <input type="radio" name="level" value="diploma" id="level_diploma" checked>
+                                    <label for="level_diploma">diploma</label>
+                                
+                                    <input type="radio" name="level" value="degree" id="level_degree">
+                                    <label for="level_degree">degree</label>
+                                
+                                    <input type="submit">
+                                
+                                
+                                    <!-- Radio button groups for different levels -->
+                                    <div id="diploma_group" class="radio-group">
+                                        <!-- Add your diploma-level radio buttons here -->
+                                        {% for prog in programmeList %}
+                                        {% if prog.level == 'diploma' %}
+                                        <input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">
+                                        <label for="prog_{{ prog.progId }}">{{ prog.progName }}</label>
+                                        {% endif %}
+                                        {% endfor %}
                                     </div>
-                                </div>
-
-                                <!-- here coding kl-->
-
-                                <a action="compare">Compare Programme Structure </a><br>
-                                <div
-                                    style="width: 100%; padding: 50px 0; text-align: center; background-image: url('https://www.tarc.edu.my/files/focs/background/C8D273C9-6BB6-4977-953F-44EEBFDEB2C5.jpg'); background-size: cover;">
-                                    <a class="btn" style="margin: 5px;"
-                                        href="https://www.tarc.edu.my/admissions/a/intake-in-progress/">Enroll Now</a>
-                                </div>
+                                
+                                    <div id="degree_group" class="radio-group">
+                                        <!-- Add your degree-level radio buttons here -->
+                                        {% for prog in programmeList %}
+                                        {% if prog.level == 'degree' %}
+                                        <input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">
+                                        <label for="prog_{{ prog.progId }}">{{ prog.progName }}</label>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                
+                                    <div id="master_group" class="radio-group">
+                                        <!-- Add your master-level radio buttons here -->
+                                    </div>
+                                
+                                    <div id="doctor_group" class="radio-group">
+                                        <!-- Add your doctor-level radio buttons here -->
+                                    </div>
+                                
+                                </form>
+                                
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                    // Initially, hide all radio button groups except for the selected level
+                                    $('.radio-group').hide();
+                                    $('#diploma_group').show(); // Show the initial group
+                                
+                                    // Handle the click event on level radio buttons
+                                    $('input[name="level"]').click(function () {
+                                        // Hide all groups
+                                        $('.radio-group').hide();
+                                
+                                        // Get the selected level
+                                        var selectedLevel = $(this).val();
+                                
+                                        // Show the corresponding group based on the selected level
+                                        $('#' + selectedLevel + '_group').show();
+                                    });
+                                </script>
                             </div>
-                            <!-- End of Container -->
-                            <script
-                                src="https://www.tarc.edu.my/files/focs/script/859341DA-6C7F-4C41-927E-7AFAED293FD8.txt"
-                                type="text/javascript"></script>
-                            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-                            <script>// <![CDATA[
-                                $(() => {
-                                    $(`[href='${location.hash}']`).tab('show');
-                                });
-                                // ]]></script>
+                            <div
+                                style="width: 100%; padding: 50px 0; text-align: center; background-image: url('https://www.tarc.edu.my/files/focs/background/C8D273C9-6BB6-4977-953F-44EEBFDEB2C5.jpg'); background-size: cover;">
+                                <a class="btn" style="margin: 5px;"
+                                    href="https://www.tarc.edu.my/admissions/a/intake-in-progress/">Enroll Now</a>
+                            </div>
                         </div>
-
+                        <!-- End of Container -->
+                        <script src="https://www.tarc.edu.my/files/focs/script/859341DA-6C7F-4C41-927E-7AFAED293FD8.txt"
+                            type="text/javascript"></script>
+                        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                        <script>// <![CDATA[
+                            $(() => {
+                                $(`[href='${location.hash}']`).tab('show');
+                            });
+                            // ]]></script>
                     </div>
 
-
-
                 </div>
+
+
+
             </div>
-        </section>
+    </div>
+    </section>
 
 
-        <!-- basic scripts -->
+    <!-- basic scripts -->
 
-        <!--[if !IE]> -->
-        <script src="https://www.tarc.edu.my/assets/js/jquery.js"></script>
-        <!-- <![endif]-->
+    <!--[if !IE]> -->
+    <script src="https://www.tarc.edu.my/assets/js/jquery.js"></script>
+    <!-- <![endif]-->
 
-        <!--[if IE]>
+    <!--[if IE]>
 <script src="https://www.tarc.edu.my/assets/js/jquery1x.js"></script>
 <![endif]-->
-        <script type="text/javascript">
-            if ('ontouchstart' in document.documentElement) document.write("<script src='https://www.tarc.edu.my/assets/js/jquery.mobile.custom.js'>" + "<" + "/script>");
-        </script>
-        <!--checking in progress enabled by default<script src="https://www.tarc.edu.my/assets/js/bootstrap.js"></script>-->
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='https://www.tarc.edu.my/assets/js/jquery.mobile.custom.js'>" + "<" + "/script>");
+    </script>
+    <!--checking in progress enabled by default<script src="https://www.tarc.edu.my/assets/js/bootstrap.js"></script>-->
 
-        <!-- page specific plugin scripts -->
+    <!-- page specific plugin scripts -->
 
-        <!-- ace scripts -->
-        <script src="https://www.tarc.edu.my/assets/js/ace/elements.scroller.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/elements.colorpicker.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/elements.fileinput.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/elements.typeahead.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/elements.wysiwyg.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/elements.spinner.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/elements.treeview.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/elements.wizard.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/elements.aside.js"></script>
+    <!-- ace scripts -->
+    <script src="https://www.tarc.edu.my/assets/js/ace/elements.scroller.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/elements.colorpicker.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/elements.fileinput.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/elements.typeahead.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/elements.wysiwyg.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/elements.spinner.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/elements.treeview.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/elements.wizard.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/elements.aside.js"></script>
 
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.ajax-content.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.touch-drag.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.sidebar.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.sidebar-scroll-1.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.submenu-hover.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.widget-box.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.settings.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.settings-rtl.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.settings-skin.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.widget-on-reload.js"></script>
-        <script src="https://www.tarc.edu.my/assets/js/ace/ace.searchbox-autocomplete.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.ajax-content.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.touch-drag.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.sidebar.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.sidebar-scroll-1.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.submenu-hover.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.widget-box.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.settings.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.settings-rtl.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.settings-skin.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.widget-on-reload.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.searchbox-autocomplete.js"></script>
 
-        <!-- inline scripts related to this page -->
-        <div class="gcse-searchresults"></div>
-        <section class="separator">
-            <div class="text-sm-center">
-                <div class="group-sm group-middle">
-                    <ul class="list-inline list-inline-reset">
-                        <li><a target="_blank" href="https://www.facebook.com/tarumtkl"
-                                class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest fa fa-facebook"></a>
-                        </li>
-                        <li><a target="_blank" href="https://www.youtube.com/channel/UCqjsPpVnwjCRT5mgAgFo1ng"
-                                class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest fa fa-youtube"></a></li>
-                        <li><a target="_blank" href="https://www.instagram.com/tarumt.official/"
-                                class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest"><img
-                                    src="https://www.tarc.edu.my/images/instagram-2.png" /></a></li>
-                    </ul>
-                </div>
+    <!-- inline scripts related to this page -->
+    <div class="gcse-searchresults"></div>
+    <section class="separator">
+        <div class="text-sm-center">
+            <div class="group-sm group-middle">
+                <ul class="list-inline list-inline-reset">
+                    <li><a target="_blank" href="https://www.facebook.com/tarumtkl"
+                            class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest fa fa-facebook"></a></li>
+                    <li><a target="_blank" href="https://www.youtube.com/channel/UCqjsPpVnwjCRT5mgAgFo1ng"
+                            class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest fa fa-youtube"></a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/tarumt.official/"
+                            class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest"><img
+                                src="https://www.tarc.edu.my/images/instagram-2.png" /></a></li>
+                </ul>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section-40 section-sm-60 bg-cod-gray">
-            <div class="shell">
-                <div class="range range-xs-center">
-                    <div class="cell-xs-10 cell-sm-11 cell-md-12">
-                        <div class="range">
-                            <div class="cell-sm-6 cell-md-4">
-                                <div class="inset-md-right-30">
-                                    <h6 class="text-uppercase">Contact Us</h6>
-                                    <p class="offset-top-22 small"><br />
-                                        <strong> FACULTY OF COMPUTING AND INFORMATION TECHNOLOGY</strong><br />
-                                        TUNKU ABDUL RAHMAN UNIVERSITY OF MANAGEMENT AND TECHNOLOGY<br />
-                                        JALAN GENTING KELANG<br />
-                                        SETAPAK<br />
-                                        53300 KUALA LUMPUR<br />
-                                        <br />
-                                        TELEPHONE: 603-41450123 Ext no. 3233<br />
-                                        MOBILE PHONE: 6011-10758554<br />
-                                        FAX: 603-41423166 / 018 925 1001<br />
-                                        EMAIL : focs@tarc.edu.my<br />
-                                        <br />
-                                        OPENING HOURS<br />
-                                        8.30am - 5.30pm
-                                        (Monday - Friday)
-                                    </p>
-                                </div>
-                                <div class="offset-top-22">
-                                    <div class="group-md group-top">
-                                        <div>
-                                            <!--ul class="list-inline list-inline-reset">
+    <section class="section-40 section-sm-60 bg-cod-gray">
+        <div class="shell">
+            <div class="range range-xs-center">
+                <div class="cell-xs-10 cell-sm-11 cell-md-12">
+                    <div class="range">
+                        <div class="cell-sm-6 cell-md-4">
+                            <div class="inset-md-right-30">
+                                <h6 class="text-uppercase">Contact Us</h6>
+                                <p class="offset-top-22 small"><br />
+                                    <strong> FACULTY OF COMPUTING AND INFORMATION TECHNOLOGY</strong><br />
+                                    TUNKU ABDUL RAHMAN UNIVERSITY OF MANAGEMENT AND TECHNOLOGY<br />
+                                    JALAN GENTING KELANG<br />
+                                    SETAPAK<br />
+                                    53300 KUALA LUMPUR<br />
+                                    <br />
+                                    TELEPHONE: 603-41450123 Ext no. 3233<br />
+                                    MOBILE PHONE: 6011-10758554<br />
+                                    FAX: 603-41423166 / 018 925 1001<br />
+                                    EMAIL : focs@tarc.edu.my<br />
+                                    <br />
+                                    OPENING HOURS<br />
+                                    8.30am - 5.30pm
+                                    (Monday - Friday)
+                                </p>
+                            </div>
+                            <div class="offset-top-22">
+                                <div class="group-md group-top">
+                                    <div>
+                                        <!--ul class="list-inline list-inline-reset">
                           <li><a href="#" class="icon icon-round icon-gray-dark-filled icon-xxs-smallest fa fa-facebook"></a></li>
                           <li><a href="#" class="icon icon-round icon-gray-dark-filled icon-xxs-smallest fa fa-twitter"></a></li>
                         </ul-->
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="cell-sm-6 cell-md-4 offset-top-50 offset-sm-top-0">
-                                <h6 class="text-uppercase">Map to TAR UMT</h6>
-                                <div style="max-width: 340px;" class="row offset-top-22 offset-md-top-30">
-                                    <div class="col-xs-12">
-                                        <iframe style="width:100%;"
-                                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3983.5380217035718!2d101.7285053941956!3d3.2152015485914953!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2dc5e067aae3ab84!2sTunku+Abdul+Rahman+University+College!5e0!3m2!1sen!2sus!4v1436418290470"
-                                            width="100%" height="300" frameborder="0" allowfullscreen=""></iframe>
-                                    </div>
+                        </div>
+                        <div class="cell-sm-6 cell-md-4 offset-top-50 offset-sm-top-0">
+                            <h6 class="text-uppercase">Map to TAR UMT</h6>
+                            <div style="max-width: 340px;" class="row offset-top-22 offset-md-top-30">
+                                <div class="col-xs-12">
+                                    <iframe style="width:100%;"
+                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3983.5380217035718!2d101.7285053941956!3d3.2152015485914953!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2dc5e067aae3ab84!2sTunku+Abdul+Rahman+University+College!5e0!3m2!1sen!2sus!4v1436418290470"
+                                        width="100%" height="300" frameborder="0" allowfullscreen=""></iframe>
                                 </div>
                             </div>
-                            <div class="cell-sm-6 cell-md-4 offset-top-50 offset-md-top-0">
+                        </div>
+                        <div class="cell-sm-6 cell-md-4 offset-top-50 offset-md-top-0">
 
+                            <div class="offset-top-22 offset-md-top-30">
 
                             </div>
+
                         </div>
                     </div>
                 </div>
-
             </div>
-        </section>
+
+        </div>
+    </section>
 
 
 
-        <footer class="page-foot page-foot-default section-35 bg-gray-base">
-            <div class="shell">
-                <div class="range text-center">
-                    <div class="cell-xs-12">
-                        <p class="small" align="center">
-                            <span>TAR UMT &copy; 2023 All Rights Reserved <span id="notPrint"><a
-                                        href="https://www.tarc.edu.my/disclaimer.jsp"
-                                        class="link-primary-inverse">Disclaimer</a>
-                                    <a href="https://www.tarc.edu.my/privacy-policy.jsp"
-                                        class="link-primary-inverse">Privacy Policy</a>
-                                    and <a href="https://www.tarc.edu.my/abac-policy.jsp" class="link-primary-inverse"
-                                        target="_new">ABAC Policy</a>
-                                </span>
-                        </p>
-                    </div>
+    <footer class="page-foot page-foot-default section-35 bg-gray-base">
+        <div class="shell">
+            <div class="range text-center">
+                <div class="cell-xs-12">
+                    <p class="small" align="center">
+                        <span>TAR UMT &copy; 2023 All Rights Reserved <span id="notPrint"><a
+                                    href="https://www.tarc.edu.my/disclaimer.jsp"
+                                    class="link-primary-inverse">Disclaimer</a>
+                                <a href="https://www.tarc.edu.my/privacy-policy.jsp"
+                                    class="link-primary-inverse">Privacy Policy</a>
+                                and <a href="https://www.tarc.edu.my/abac-policy.jsp" class="link-primary-inverse"
+                                    target="_new">ABAC Policy</a>
+                            </span>
+                    </p>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
     </div>
     <div id="form-output-global" class="snackbars"></div>
@@ -747,7 +885,3 @@
 </body>
 
 </html>
-
-
-
-
