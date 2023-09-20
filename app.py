@@ -155,7 +155,7 @@ def regStudent():
         insert_sql = "INSERT INTO students (studentName, studentIc, studentEmail,studentPhone,studentBirthDate,studentGender,studentAddress,studentPassword) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor=db_conn.cursor()
     
-        cursor.execute(insert_sql,(ic,name,email,phone,birth_date,gender,address,password))
+        cursor.execute(insert_sql,(name,ic,email,phone,birth_date,gender,address,password))
         db_conn.commit()
         return render_template('studentLogin.html')
     except Exception as e:
@@ -176,9 +176,95 @@ def verifyLogin():
 
         if user:
             session['loggedInStudent']=user[0]
-            return render_template('application.html')
+            return render_template('applicationHome.html')
         else:
             return render_template('studentLogin.html', msg="Access Denied: Invalid Email or Password")
+
+@app.route('/applyProgramme',methods=['POST'])
+def applyProgramme():
+    return render_template('applicationIntake.html')
+
+@app.route('/showFirstProgramme', methods=['POST'])
+def showFirstProgramme():
+    # Set session variables to None when loading the page
+    session['first_selected_campus'] = None
+    session['first_selected_level'] = None
+
+    campus = request.form['first-choice-campus']
+    level = request.form['first-choice-level']
+
+    session['first_selected_campus'] = campus
+    session['first_selected_level'] = level
+    select_sql = """
+        SELECT programmeId AS programme_id, programmeName AS programme_name
+        FROM availableProgramme ap
+        LEFT JOIN programme p ON ap.avProgrammeId=p.programmeAvailable
+        WHERE campus=%s AND ap.level=%s
+        """
+    cursor = db_conn.cursor()
+    try:
+        cursor.execute(select_sql, (campus, level))
+        program = cursor.fetchall()
+
+        programme_objects = []
+        for programs in program:
+            programme_id = programs[0]
+            programme_name = programs[1]
+
+            programme_object = {
+                "programme_id": programme_id,
+                "programme_name": programme_name
+            }
+            programme_objects.append(programme_object)
+
+        # Return the program names as JSON
+        return render_template('applicationIntake.html', first_programme=programme_objects)
+    except Exception as e:
+        db_conn.rollback()
+    finally:
+        cursor.close()
+
+@app.route('/showSecondProgramme', methods=['POST'])
+def showSecondProgramme():
+    # Set session variables to None when loading the page
+    session['second_selected_campus'] = None
+    session['second_selected_level'] = None
+
+    campus = request.form['second-choice-campus']
+    level = request.form['second-choice-level']
+
+    session['second_selected_campus'] = campus
+    session['second_selected_level'] = level
+    select_sql = """
+        SELECT programmeId AS programme_id, programmeName AS programme_name
+        FROM availableProgramme ap
+        LEFT JOIN programme p ON ap.avProgrammeId=p.programmeAvailable
+        WHERE campus=%s AND ap.level=%s
+        """
+    cursor = db_conn.cursor()
+    try:
+        cursor.execute(select_sql, (campus, level))
+        program = cursor.fetchall()
+
+        programme_objects = []
+        for programs in program:
+            programme_id = programs[0]
+            programme_name = programs[1]
+
+            programme_object = {
+                "programme_id": programme_id,
+                "programme_name": programme_name
+            }
+            programme_objects.append(programme_object)
+
+        # Return the program names as JSON
+        return render_template('applicationIntake.html', second_programme=programme_objects)
+    except Exception as e:
+        db_conn.rollback()
+    finally:
+        cursor.close()
+
+        
 
 
 if __name__ == '__main__':

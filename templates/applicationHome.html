@@ -1,0 +1,223 @@
+<html>
+<header>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .application-header {
+            display: flex;
+            justify-content: space-between;
+            min-height: 45px;
+            background: #9a0000;
+            width: 100%;
+            color: white;
+        }
+
+        .header-title {
+            font-size: 20.4px;
+            margin-right: 10px;
+            margin-left: 0;
+            position: relative;
+            right: 250px;
+            margin-top: 10px;
+        }
+
+        .container-profile {
+            margin-right: 80px;
+        }
+
+        .container-profile i {
+            font-size: 25px;
+        }
+
+        .content {
+            display: flex;
+        }
+
+        .left-content {
+            width: 15%;
+            border-style: solid;
+            border-color: #cccccc;
+            border-width: 0 1px 0 0;
+            background-color: #f2f2f2;
+            color: #585858;
+            height: 95vh;
+        }
+
+        .left-content span {
+            text-decoration: none;
+            color: #585858;
+            margin-left: 10px;
+        }
+
+        .right-content {
+            width: 82.9%;
+        }
+
+        .fa-home:before {
+            content: "\f015";
+            color: #9a0000;
+            font-size: 25px;
+        }
+
+        .left-home {
+            background-color: #f8f8f8;
+            color: #585858;
+            padding: 15px;
+        }
+
+        .left-home a {
+            text-decoration: none;
+        }
+
+        .right-home {
+            color: #585858;
+            padding: 15px;
+            background-color: #f2f2f2;
+            width: 100%;
+            border-color: #cccccc;
+        }
+
+        .right-home a {
+            text-decoration: none;
+            color: #585858;
+        }
+
+        .right-home span {
+            margin-left: 10px;
+        }
+
+        .application-icon {
+            width: 28px;
+            height: 5px;
+            background-color: black;
+            margin: 6px 0;
+        }
+
+        .application-content {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+            margin-bottom: 15px;
+        }
+
+        .application-content h4 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .fa-plus:before {
+            content: "\f067";
+        }
+
+        .application-table-content {
+            width: 100%;
+            max-width: 100%;
+            margin: 10px;
+        }
+
+        .application-table-content {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .application-table-content th {
+            color: #707070;
+            font-weight: normal;
+            background: #F2F2F2;
+            border: 1px solid #dddddd;
+            border-left-color: #dddddd;
+            padding: 10px;
+
+        }
+
+        .application-table-content td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: top;
+        }
+
+        .apply-button {
+            padding: 10px 16px;
+            background: transparent;
+            border: 1px solid #8aafce;
+            color: #6688a6 !important;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .apply-button:hover {
+            background-color: #8aafce;
+            color: white;
+
+        }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+</header>
+
+<body>
+    <div class="application-header">
+        <img src="{{ url_for('static', filename='images/tarumt-logo.png')}}" style="width:10%;height:10%;">
+        <span class="header-title">Online Application for Admission(Pre-University and Undergraduate Programmes)</span>
+        <div class="container-profile">
+            <i class="fa fa-user bigger-180"></i>
+            <small>Welcome</small>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="left-content">
+            <div class="left-home">
+                <a href="#"><i class="menu-icon fa fa-home"></i><span>Home</span></a>
+            </div>
+        </div>
+        <div class="right-content">
+            <div class="right-home">
+                <a href="#"><i class="menu-icon fa fa-home"></i><span>Home</span></a>
+            </div>
+            <div class="application-content">
+                <div class="icon-menu">
+                    <div class="application-icon"></div>
+                    <div class="application-icon"></div>
+                    <div class="application-icon"></div>
+                </div>
+                <h4>Application</h4>
+            </div>
+            <table class="application-table-content">
+                <tr>
+                    <th>Application No</th>
+                    <th>Intake Session</th>
+                    <th>Programme Applied(1<sup>st</sup> Choice)</th>
+                    <th>Document Subsmission</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>aaaaaa</td>
+                    <td>aaaaaa</td>
+                    <td>aaaaaa</td>
+                    <td>aaaaaa</td>
+                    <td>aaaaaa</td>
+                </tr>
+            </table>
+
+            <form action="/applyProgramme" method="post">
+                <button type="submit" class="apply-button"><i class="fa fa-plus"></i> &nbsp;New Application</button>
+            </form>
+
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
