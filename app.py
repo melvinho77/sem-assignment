@@ -33,6 +33,11 @@ table = 'employee'
 def home_page():
     return render_template('home.html')
 
+@app.route('/compare')
+def home_page():
+    return render_template('selectCompare.html')
+
+
 @app.route('/')
 def index():
     
