@@ -591,6 +591,7 @@
                                     <thead>
                                         <tr>
                                             <th></th>
+                                            {% set colspan_value = programmeList|length + 1%}
                                             {% for prog in programmeList%}
                                             <th>{{prog.progName}}</th>
                                             {% endfor %}
@@ -598,7 +599,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td colspan="5" class="sep">Main Courses</td>
+                                            <td colspan="{{ colspan_value }}" class="sep">Main Courses</td>
                                         </tr>
                                         {% for course in course_list %}
                                         <tr>
@@ -626,7 +627,7 @@
                                         {% endfor %}
 
                                         <tr>
-                                            <td colspan="5" class="sep">Elective Courses</td>
+                                            <td colspan="{{ colspan_value }}" class="sep">Elective Courses</td>
                                         </tr>
                                         {% for course in electiveCourse_list %}
                                         <tr>
