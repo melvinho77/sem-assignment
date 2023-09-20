@@ -33,7 +33,7 @@ table = 'employee'
 def home_page():
     return render_template('home.html')
 
-@app.route('/compare')
+@app.route('/compare', methods=['GET', 'POST'])
 def selectCompare():
     return render_template('selectCompare.html')
 
