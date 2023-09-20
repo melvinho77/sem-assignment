@@ -323,7 +323,7 @@ def applyFilter():
                 session['loggedIn'] = 'css'
                 session['loggedInName'] = 'Cheong Soo Siew'
 
-        return render_template('adminContactUs.html', contact_details=contact_details, network_details=network_details, name=session['loggedInName'])
+        return render_template('adminContactUs.html', contact_details=contact_details, network_details=network_details)
 
     except Exception as e:
         db_conn.rollback()
