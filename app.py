@@ -35,12 +35,6 @@ def home_page():
 
 @app.route('/compare', methods=['GET', 'POST'])
 def selectCompare():
-    return render_template('selectCompare.html')
-
-
-@app.route('/')
-def index():
-    
     select_level="SELECT DISTINCT level FROM availableProgramme"
     cursorLevel = db_conn.cursor()
 
@@ -90,9 +84,16 @@ def index():
         return str(e)
     
     network_details = get_network_details()
-    return render_template('home.html', number=1, network_details=network_details,
+    return render_template('selectCompare.html',number=1, network_details=network_details,
                            level_list=level_list,
                            programmeList=programmeList)
+
+
+@app.route('/')
+def index():
+
+    network_details = get_network_details()
+    return render_template('home.html', number=1, network_details=network_details,)
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
