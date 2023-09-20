@@ -20,6 +20,8 @@
     <!-- NEW ADDED by ss-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}" />
+
+
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/colorbox.css">
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/bootstrap.css" />
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/font-awesome.css" />
@@ -62,21 +64,6 @@
             margin-top: 16px;
             color: #FFFFFF;
         }
-
-        .chatbot-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background-color: #fffb06;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 2px #999;
-            z-index: 50;
-        }
     </style>
 </head>
 
@@ -111,6 +98,18 @@
                     max-width: 1000px;
                     padding-left: 20px;
                 }
+
+                .relResultBtn{
+                    border: none;
+                    background-color: transparent;
+                    color: rgb(0, 94, 255);
+                }
+
+                .relResultBtn:hover{
+                    transition: 0.3s;
+                    color: rgb(108, 162, 255);
+                }
+
             </style>
             <div class="rd-navbar-wrap">
                 <nav data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
@@ -126,12 +125,11 @@
                     justify-content: flex-start;
                     align-items: flex-end;
                     padding: 0px 30px;">
-                        <!-- ../home.html -->
                         <div class="rd-navbar-panel">
                             <button data-custom-toggle=".rd-navbar-nav-wrap" data-custom-toggle-disable-on-blur="true"
                                 class="rd-navbar-toggle"><span></span></button>
-                            <a href="{{ url_for('home_page', filename='home') }}" class="rd-navbar-brand brand"><span
-                                    style="float:left;">
+                            <a href="{{ url_for('home_page', filename='../home.html') }}"
+                                class="rd-navbar-brand brand"><span style="float:left;">
                                     <img src="https://www.tarc.edu.my/images/tarumt-logo1.png" alt="logo"
                                         id="tarclogo" /></span>
                             </a>
@@ -378,7 +376,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -488,7 +485,6 @@
                                         <span data-caption-animate="fadeInUp" data-caption-delay="100"
                                             class="slider-text-animate" style="color:#FFF;"></span>
                                         <br>
-
                                         <span
                                             class="group-xl-responsive offset-top-30 offset-sm-top-45"><!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
                                             <a data-caption-animate="fadeInUp" data-caption-delay="250"
@@ -496,14 +492,11 @@
                                                 class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
                                                 Info</a>
                                         </span>
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
 
                     <div data-slide-bg="https://www.tarc.edu.my/files/focs/6B3B6A89-6E28-4FEF-A56E-968A3EE45634.png"
                         class="swiper-slide">
@@ -525,15 +518,11 @@
                                                 class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
                                                 Info</a>
                                         </span>
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
-
                 </div>
                 <div class="swiper-scrollbar"></div>
                 <div class="swiper-nav-wrap">
@@ -542,121 +531,44 @@
                 </div>
             </div>
         </section>
-        <div class="container grid-system">
-            <div class="row offset-top-50 offset-md-top-30 medbtn">
 
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a href="https://www.tarc.edu.my/focs/a/why-choose-us/"><img
-                                        src="https://www.tarc.edu.my/files/focs/39E9DDCE-6E61-4C29-9CB7-0EF12F0BADAC.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/a/why-choose-us/" target="_blank">Why Choose
-                                        Us </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a href="https://www.tarc.edu.my/focs/a/programmes/programmes/"><img
-                                        src="https://www.tarc.edu.my/files/focs/9D61CBF3-963F-431F-9408-BD702F58EAD9.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/a/programmes/programmes/"
-                                        target="_self">Programmes </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a
-                                    href="https://www.tarc.edu.my/focs/a/collaboration-partners/academic-collaboration/"><img
-                                        src="https://www.tarc.edu.my/files/focs/0760A92C-042C-48C0-BD41-CC3C4114D34B.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/a/collaboration-partners/academic-collaboration/"
-                                        target="_blank">Collaboration Partners </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a
-                                    href="https://www.tarc.edu.my/focs/news_archive.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=6425D81D-D6EC-4154-89E0-EB8F755EF868&ftype=subcontent"><img
-                                        src="https://www.tarc.edu.my/files/focs/478819E7-8DD4-4530-9EB1-EC45ABEAC2FC.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/news_archive.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=6425D81D-D6EC-4154-89E0-EB8F755EF868&ftype=subcontent"
-                                        target="_blank">Highlights </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a
-                                    href="https://www.tarc.edu.my/focs/a/industry-relevant/tar-umt-awarded-premier-digital-tech-university-status-again/"><img
-                                        src="https://www.tarc.edu.my/files/focs/44F36855-E6F5-4415-9D8D-7D9F9BD9E4F6.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/a/industry-relevant/tar-umt-awarded-premier-digital-tech-university-status-again/"
-                                        target="_self">Recognition </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a
-                                    href="https://www.tarc.edu.my/focs/a/testimonials/focs-alumni/"><img
-                                        src="https://www.tarc.edu.my/files/focs/61C7A072-9E3C-4AF3-BE59-62CA4CD974C9.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/a/testimonials/focs-alumni/"
-                                        target="_self">Testimonials </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <style>
-                    @media (min-width: 1200px) {
-                        .medbtn {
-                            margin-left: 0%;
-                        }
-                    }
-                </style>
+        <!-- req 1 -->
+        <div class="relevantResultContainer">   
+            {% if relevantResults %}
+            <div style="margin-top: 20px; margin-bottom: 20px;">
+                <ul style="display: flex;
+                flex-direction: column;
+                align-content: space-around;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                justify-content: center;">
+                <h6>Relevant result : </h6>
+                    {% for result in relevantResults %}
+                    <li>
+                        <form action="/relevantResult_display" autocomplete="on" method="POST"
+                            enctype="multipart/form-data">
+                            <input type="hidden" name="result" value="{{ result }}">
+                            <button type="submit" class="relResultBtn">
+                                <span style="float:left;"></span>
+                                {% set clean_result = result|replace('programmes/', '')|replace('.html', '')%}
+                                {{ clean_result }}
+                            </button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
-        <section>
-        </section>
+            {% else %}
+            <div>
+                <p style="display: fel;
+                display: flex;
+                justify-content: center;
+                align-content: space-around;
+                flex-direction: row; font-weight: bold;">No relevant result.</p>
+            </div>
 
+            {% endif %}
+        </div>
 
         <script src="https://www.tarc.edu.my/assets/js/jquery.js"></script>
 
@@ -746,14 +658,9 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
-
-        <!-- Chatbot icon button -->
-        <a href="#" class="chatbot-float" id="open-chatbot">
-            <img src="{{ url_for('static', filename='images/tarbot-icon.jpg') }}" alt="tarbot"
-                style="border-radius: 50%;">
-        </a>
 
         <footer class="page-foot page-foot-default section-35 bg-gray-base">
             <div class="shell">
@@ -843,38 +750,12 @@
                 return false;
 
             } else {
+
                 document.getElementById('captcha').innerHTML = "";
+
             }
+
         }
-
-
-
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("open-chatbot").addEventListener("click", function (event) {
-                event.preventDefault();
-                // Define the URL of the "chatbot.html" page
-                var chatbotURL = "/chatbot";
-                // Define a unique name for the popup window
-                var windowName = "Chatbot Window";
-
-                // Define the size of the popup window
-                var width = 400; // Width of the popup window
-                var height = 300; // Height of the popup window
-
-                // Calculate the position of the popup window to display it at the bottom right
-                var left = window.innerWidth - width;
-                var top = window.innerHeight - height + 70;
-
-                // Check if a window with the same name is already open
-                var existingWindow = window.open(chatbotURL, windowName, "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top + ",resizable=0,location=0");
-
-                // If the window is already open, focus on it
-                if (existingWindow) {
-                    existingWindow.focus();
-                }
-            });
-        });
-
     </script>
 </body>
 
