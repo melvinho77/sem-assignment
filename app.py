@@ -286,7 +286,7 @@ def replyQuestion():
     flash('Question submitted successfully', 'success')
 
     # Redirect back to the contactUs page
-    return redirect('/adminContactUs')
+    return redirect('adminContactUs.html')
 
 
 @app.route('/applyFilter', methods=['POST', 'GET'])
