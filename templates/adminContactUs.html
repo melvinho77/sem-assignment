@@ -416,7 +416,7 @@
                                     <tr>
                                         <td>{{ contact[6] }}</td>
                                         <td class="category-td"
-                                            style="color: {% if contact[1] == 'pending' %}orange{% elif contact[1] == 'completed' %}green{% else %}black{% endif %};">
+                                            style="color: {% if contact[1] == 'pending' %} orange {% elif contact[1] == 'completed' %} green {% else %} black {% endif %};">
                                             {{ contact[2] }}</td>
                                         <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
                                         <td><textarea class="form-control" name="reply" {% if contact[4] %} readonly {%
