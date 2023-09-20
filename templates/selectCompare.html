@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="wide wow-animation">
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
     /* DIRTY Responsive pricing table CSS */
 
@@ -645,26 +645,7 @@
                                         <!-- Add your doctor-level radio buttons here -->
                                     </div>
                                 
-                                </form>
-                                
-                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                <script>
-                                    // Initially, hide all radio button groups except for the selected level
-                                    $('.radio-group').hide();
-                                    $('#diploma_group').show(); // Show the initial group
-                                
-                                    // Handle the click event on level radio buttons
-                                    $('input[name="level"]').click(function () {
-                                        // Hide all groups
-                                        $('.radio-group').hide();
-                                
-                                        // Get the selected level
-                                        var selectedLevel = $(this).val();
-                                
-                                        // Show the corresponding group based on the selected level
-                                        $('#' + selectedLevel + '_group').show();
-                                    });
-                                </script>
+                                </form>                                                                
                             </div>
                             <div
                                 style="width: 100%; padding: 50px 0; text-align: center; background-image: url('https://www.tarc.edu.my/files/focs/background/C8D273C9-6BB6-4977-953F-44EEBFDEB2C5.jpg'); background-size: cover;">
