@@ -618,15 +618,16 @@
                                 <!-- kl part -->
                                 <script>
                                     function validateSelection() {
-                                        var checkboxes = document.querySelectorAll('input[name="progId[]"]:checked');
-                                        if (checkboxes.length < 2) {
-                                            alert("Please select at least two programs to compare.");
-                                            window.location.href = "/SelectError"; // Redirect to the error page
+                                        var diplomaCheckboxes = document.querySelectorAll('#diploma_group input[name="progId[]"]:checked');
+                                        var degreeCheckboxes = document.querySelectorAll('#degree_group input[name="progId[]"]:checked');
+                                
+                                        if (diplomaCheckboxes.length < 2 || degreeCheckboxes.length < 2) {
+                                            alert("Please select at least two programs from each group to compare.");
                                             return false;
                                         }
                                         return true;
                                     }
-                                </script> 
+                                </script>
                                 <form action="/compareProgramme" autocomplete="on" method="POST" enctype="multipart/form-data">
                                     <!-- Radio buttons for level selection -->
                             
