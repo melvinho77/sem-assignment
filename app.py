@@ -174,7 +174,7 @@ def homeSearchProgramme():
 def showAllProgramme():
 
     progId=request.form.getlist('progId[]')    
-    level=request.form['level']
+    level=request.form.getlist['level']
     course_list = []
     electiveCourse_list = []
     courseExits=[]
@@ -183,6 +183,37 @@ def showAllProgramme():
     electiveExits=[]
     electiveNotExits=[]
     
+    for levels in level:
+         #find main course
+            all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
+                        "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL= %s ORDER BY courseTaken"
+            cursor_Allcourse = db_conn.cursor()
+        
+            try:
+                cursor_Allcourse.execute(all_course,(levels,))
+                allCourse = cursor_Allcourse.fetchall()
+
+                for course in allCourse:
+                    courseName = course[0]
+
+                    try:
+                        # Check if the course name already exists in course_list
+                        exists = any(course_data['courseName'] == courseName for course_data in course_list)
+                        
+                        # If the course name doesn't exist, add it to course_list
+                        if not exists:
+                            course_data = {
+                                "courseName": courseName
+                            }
+                            course_list.append(course_data)
+
+                    except Exception as e:
+                        return str(e)
+            except Exception as e:
+                return str(e)
+            
+    return levels
+            
     #loop for check the programme
     for id in progId:
             select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
@@ -222,35 +253,7 @@ def showAllProgramme():
 
             #all exits elective course in a particular programme
             elective_for_program = findElectiveCourse(id)
-            electiveExits.extend(elective_for_program)
-
-            #find main course
-            all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
-                        "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL= %s ORDER BY courseTaken"
-            cursor_Allcourse = db_conn.cursor()
-        
-            try:
-                cursor_Allcourse.execute(all_course,(level,))
-                allCourse = cursor_Allcourse.fetchall()
-
-                for course in allCourse:
-                    courseName = course[0]
-
-                    try:
-                        # Check if the course name already exists in course_list
-                        exists = any(course_data['courseName'] == courseName for course_data in course_list)
-                        
-                        # If the course name doesn't exist, add it to course_list
-                        if not exists:
-                            course_data = {
-                                "courseName": courseName
-                            }
-                            course_list.append(course_data)
-
-                    except Exception as e:
-                        return str(e)
-            except Exception as e:
-                return str(e)
+            electiveExits.extend(elective_for_program)           
 
             # Sort course_list alphabetically by courseName
             course_list = sorted(course_list, key=lambda x: x['courseName']) 
