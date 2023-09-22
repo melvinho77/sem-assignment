@@ -619,26 +619,52 @@
                                     <!-- Radio button groups for different levels -->
                                     <div id="diploma_group" class="radio-group">
                                         <br>
+                                        
+                                        <table id="data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Diploma</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    {% for prog in programmeList %}
+                                                    {% if prog.level == 'diploma' %}
+                                                    <td><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
+                                                    <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
+                                                    <br>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
                                         <!-- Add your diploma-level radio buttons here -->
-                                        {% for prog in programmeList %}
-                                        {% if prog.level == 'diploma' %}
-                                        <input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">
-                                        <label for="prog_{{ prog.progId }}">{{ prog.progName }}</label>
-                                        <br>
-                                        {% endif %}
-                                        {% endfor %}
                                     </div>
                                 
                                     <div id="degree_group" class="radio-group">
                                         <br>
-                                        <!-- Add your degree-level radio buttons here -->
-                                        {% for prog in programmeList %}
-                                        {% if prog.level == 'degree' %}
-                                        <input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}">
-                                        <label for="prog_{{ prog.progId }}">{{ prog.progName }}</label>
-                                        <br>
-                                        {% endif %}
-                                        {% endfor %}
+                                        <table id="data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Degree</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    {% for prog in programmeList %}
+                                                    {% if prog.level == 'degree' %}
+                                                    <td><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
+                                                    <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
+                                                    <br>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                     -<script>
