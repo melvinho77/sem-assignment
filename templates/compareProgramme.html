@@ -7,6 +7,18 @@
     /* 
 - make mobile switch sticky
 */
+.confirm-filter-company {
+        background-color: #000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .confirm-filter-company {
+        background-color: #444;
+    }
+
     * {
         box-sizing: border-box;
         padding: 0;
@@ -592,7 +604,7 @@
                                 <script type="text/javascript" charset="utf8"
                                 src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
                                 
-                                {% if programmeList|length >2 %}
+                                {% if programmeList|length >= 2 %}
                                 <table id="data-table">
                                     <thead>
                                         <tr>
@@ -666,6 +678,10 @@
 
                                 {% else %}
                                 <h2 style="color: red;">Please Select At Least Two Programme To Compare </h2>          
+                                
+                                <form action="/compareProgramme" autocomplete="on" method="POST" enctype="multipart/form-data">
+                                <button type="submit" style="width: auto; height: 50px ;" class="confirm-filter-company">Back</button>
+                                </form>
                                 {% endif%}
                             </div>
                             <div
