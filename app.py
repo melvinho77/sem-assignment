@@ -101,7 +101,7 @@ def home():
     return render_template('home.html', network_details=network_details)
 
 @app.route("/SelectError", methods=['GET', 'POST'])
-def home():
+def selectProgrammeError():
     network_details = get_network_details()
     return render_template('selectProgrammeError.html', network_details=network_details)
 
