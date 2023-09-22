@@ -239,7 +239,7 @@
                     <form method="POST" action="/showFirstProgramme" name="first-choice" id="first-choice-form">
                         <span>1st Choice</span>
                         <div class="container-selection">
-                            <select class="choice-campus" name="first-choice-campus" id="first-choice-campus">
+                            <select class="choice-campus" name="campus" id="first-choice-campus">
                                 <option value="" selected>Select Campus</option>
                                 <option value="KL">Kuala Lumpur Branch</option>
                                 <option value="PN">Penang Branch</option>
@@ -256,7 +256,7 @@
                                 <option value="degree">Degree</option>
                             </select>
 
-                            <select class="choice-programm" name="first-choice-programm">
+                            <select class="choice-programm" name="first-choice-programm" id="first-choice-programm">
                                 <option value="" selected>Select Programme</option>
                                 {% for program in first_programme %}
                                 <option value="{{program.programme_id}}">{{program.programme_name}}</option>
@@ -270,7 +270,7 @@
                     <span>2nd Choice</span>
                     <form action="/showSecondProgramme" method="POST" name="second-choice" id="second-choice-form">
                         <div class="container-selection">
-                            <select class="choice-campus" name="second-choice-campus" id="second-choice-campus" disabled>
+                            <select class="choice-campus" name="second-choice-campus" id="second-choice-campus">
                                 <option value="" selected>Select Campus</option>
                                 <option value="KL">Kuala Lumpur Branch</option>
                                 <option value="PN">Penang Branch</option>
@@ -367,40 +367,19 @@
                 // Get the values from the Flask session
                 var first_selectedCampus = "{{ session.get('first_selected_campus', '') }}";
                 var first_selectedLevel = "{{ session.get('first_selected_level', '') }}";
+                var first_selectedProgramme = document.getElementById("first-choice-programm");
                 var second_selectedCampus = "{{ session.get('second_selected_campus', '') }}";
                 var second_selectedLevel = "{{ session.get('second_selected_level', '') }}";
+
 
                 // Set the selected options in the dropdowns
                 document.getElementById('first-choice-campus').value = first_selectedCampus;
                 document.getElementById('first-choice-level').value = first_selectedLevel;
+                document.getElementById("first-choice-programm").value=first_selectedProgramme;
                 document.getElementById('second-choice-campus').value = second_selectedCampus;
                 document.getElementById('second-choice-level').value = second_selectedLevel;
             });
 
-            document.getElementById("first-choice-programm").addEventListener("change", function () {
-            // Get the selected program
-            var firstSelectedProgram = document.getElementById("first-choice-programm").value;
-
-            // Enable or disable the second and third choice dropdowns based on the selected program
-            var secondChoiceCampus = document.getElementById("second-choice-campus");
-            var secondChoiceLevel = document.getElementById("second-choice-level");
-            var thirdChoiceCampus = document.getElementById("third-choice-campus");
-            var thirdChoiceLevel = document.getElementById("third-choice-level");
-
-            if (firstSelectedProgram !== "") {
-                // Disable the second and third choice dropdowns
-                secondChoiceCampus.disabled = true;
-                secondChoiceLevel.disabled = true;
-                thirdChoiceCampus.disabled = true;
-                thirdChoiceLevel.disabled = true;
-            } else {
-                // Enable the second and third choice dropdowns
-                secondChoiceCampus.disabled = false;
-                secondChoiceLevel.disabled = false;
-                thirdChoiceCampus.disabled = false;
-                thirdChoiceLevel.disabled = false;
-            }
-        });
     </script>
 
 </body>

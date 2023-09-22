@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    nav {
+        display: flex;
+        top: 0;
+        right: 0;
+        background-color: #1f1f1f;
+        padding: 15px;
+        justify-content: space-between;
+    }
+
+    .application-header {
+        display: flex;
+        justify-content: space-between;
+        min-height: 45px;
+        background: #9a0000;
+        width: 100%;
+        color: white;
+    }
+
+    .header-title {
+        font-size: 20.4px;
+        margin-right: 10px;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .header-title {
+        font-size: 20px;
+        margin: 20px;
+    }
+
+    .container-profile {
+        font-size: 20px;
+        margin: 20px;
+    }
+
+    .container-profile a {
+        text-decoration: none;
+        color: white;
+    }
+
+
+    table.programme-list {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    table.programme-list th {
+        background-color: #1f1f1f;
+        color: white;
+        padding: 10px;
+        text-align: left;
+    }
+
+    table.programme-list th,
+    table.programme-list td {
+        border: 1px solid #ccc;
+        padding: 12px;
+    }
+
+    table.programme-list tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    table.programme-list tr:hover {
+        background-color: #ddd;
+    }
+
+
+    .internship-header {
+        text-align: left;
+        margin: 20px;
+    }
+
+
+    .internship-header {
+        font-weight: bold;
+        color: #444444;
+    }
+
+    .content-company-name,
+    .content-company-title {
+        font-weight: bold;
+    }
+
+    button {
+        background-color: #000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin-left: 180px;
+    }
+
+    button:hover {
+        background-color: #444;
+    }
+
+    .programme-search-filter {
+        width: 300px;
+        height: 500px;
+        float: left;
+        margin-right: 20px;
+        margin-left: 40px;
+        padding: 10px;
+    }
+
+    .group-search-campus,
+    .group-search-level,
+    .group-search-intake {
+        margin-bottom: 30px;
+    }
+
+    .programme-search-filter label {
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #444444;
+    }
+
+    .programme-search-filter input {
+        width: 90%;
+        height: 20px;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .programme-search-filter select {
+        width: 95.5%;
+        height: 40px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+
+    .vl {
+        border-left: 1px solid #c3c3c3;
+        height: 500px;
+        margin-right: 10px;
+    }
+
+    .overall {
+        display: flex;
+    }
+
+    .div-line {
+        display: flex;
+    }
+
+    table.programme-content {
+        BORDER-SPACING: 0.5EM;
+    }
+
+    table.programme-content h1,
+    h2 {
+        font-weight: bold;
+    }
+
+    table.programme-content td,
+    th {
+        font-size: 18px;
+    }
+
+    .programme-listing {
+        margin: 0px 20px;
+    }
+
+    .confirm-filter-programme {
+        background-color: #000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .confirm-filter-programme {
+        background-color: #444;
+    }
+
+    .programme-content h2 {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .programme-content h3 {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .button-back {
+        display: inline-block;
+        padding: 10px 20px;
+        color: black;
+        /* Adjust the text color to your preference */
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Left Sidebar Styles */
+    .left-sidebar {
+        width: 300px;
+        float: left;
+    }
+
+    .left-sidebar ul li a {
+        text-decoration: none;
+        color: #337ab7;
+    }
+
+    .left-sidebar ul li a:hover {
+        color: #444;
+    }
+
+
+    button.button-apply {
+        float: right;
+    }
+
+    .button-apply {
+        background-color: #007bff;
+        /* Button background color */
+        color: #fff;
+        /* Button text color */
+        padding: 10px 20px;
+        /* Button padding */
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        /* Adjust the top margin as needed */
+        border-radius: 3px;
+        font-weight: bold;
+    }
+
+    .button-apply:hover {
+        background-color: #0056b3;
+        /* Hover background color */
+    }
+
+    .programme-list input[type="checkbox"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    /* Style the checked state of the checkboxes */
+    .programme-list input[type="checkbox"]:checked::before {
+        content: "\2713";
+        /* Unicode checkmark character */
+        display: block;
+        width: 18px;
+        height: 18px;
+        text-align: center;
+        line-height: 18px;
+        background-color: #007bff;
+        /* Color when checked */
+        color: #fff;
+        /* Text color when checked */
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        border-radius: 2px;
+    }
+
+    .container-choice {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-top: 20px;
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: none;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div class="application-header">
+        <img src="{{ url_for('static', filename='images/tarumt-logo.png')}}" style="width:10%;height:10%;">
+        <span class="header-title">Online Application for Admission(Pre-University and Undergraduate Programmes)</span>
+        <div class="container-profile">
+            <a href="#">Log Out</a>
+        </div>
+    </div>
+</head>
+
+<body>
+    <h1 class="internship-header">Select Programme</h1>
+    <small style="margin:20px; color: red;">***Please filter the intake,campus and level</small>
+
+    <div class="overall">
+        <div class="div-line">
+            <form action="/applyProgramme" autocomplete="on" method="post">
+                <div class="programme-search-filter">
+
+                    <div class="group-search-intake">
+                        <label class="label-search-intake">Intake</label>
+                        <select class="select-intake" name="intake">
+                            <option value="" selected>Select intake</option>
+                            <option value="1">OCT/NOV 2023</option>
+                            <option value="2">FEB 2024</option>
+                        </select>
+                    </div>
+                    <div class="group-search-campus">
+                        <label class="label-search-campus">Campus</label>
+                        <select class="choice-campus" name="campus" id="first-choice-campus">
+                            <option value="" selected>Select Campus</option>
+                            <option value="1">Kuala Lumpur Branch</option>
+                            <option value="2">Penang Branch</option>
+                            <option value="3">Perak Branch</option>
+                            <option value="4">Johor Branch</option>
+                            <option value="5">Pahang</option>
+                            <option value="6">Sabah</option>
+                        </select>
+                    </div>
+
+                    <div class="group-search-level">
+                        <label class="label-search-level">Level</label>
+                        <select class="choice-level" name="level" id="first-choice-level">
+                            <option value="" selected>Select Level</option>
+                            <option value="foundation">Foundation</option>
+                            <option value="diploma">Diploma</option>
+                            <option value="degree">Degree</option>
+                        </select>
+                        </select>
+                    </div>
+
+                    <div class="group-button">
+                        <button type="submit" name="button-filter" class="confirm-filter-programme">Filter</button>
+                    </div>
+
+                    <div class="left-sidebar">
+                        <div class="group-requirement">
+                            <p>List of Programmes Offered & Minimum Entry Requirements</p>
+                            <ul>
+                                <li><a href="https://www.tarc.edu.my/files/admissions/202401/8CC7B1AE-8F41-472F-BC8F-C6F0DE137E42.pdf"
+                                        target="_blank" rel="noopener noreferrer">Bachelor Degree</a></li>
+                                <li><a href="https://www.tarc.edu.my/files/admissions/202401/A9748DFC-152D-4E02-B5BF-07B925BC4092.pdf"
+                                        target="_blank" rel="noopener noreferrer">Diploma</a></li>
+                                <li><a href="https://www.tarc.edu.my/files/admissions/202401/10BF8F08-AEC7-4E1C-9C75-A22B676D2FEB.pdf"
+                                        target="_blank" rel="noopener noreferrer">Foundation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="vl"></div>
+        </div>
+        <div class="programme-container">
+            {{msg}}
+
+            <form action="/storeProgramme" autocomplete="on" name="programme" method="POST">
+                <div class="programme-listing">
+                    <table class="programme-list">
+                        <tr>
+                            <th>Select</th>
+                            <th>Programme Name</th>
+                            <th>Campus</th>
+                            <th>Level</th>
+                            <th>Intake Date</th>
+                        </tr>
+                        {% for programme in programmes %}
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="selected_programs" value="{{ programme.programme_Id }}">
+                            </td>
+                            <td>
+                                {% if programme.level == "degree" %}
+                                Bachelor of {{ programme.programme_name }}
+                                {% else %}
+                                {{ programme.programme_name }}
+                                {% endif %}
+                            </td>
+                            <td>{{programme.campus_name }}</td>
+                            <td>{{ programme.level }}</td>
+                            <td>{{ programme.intake_date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <div class="container-choice"></div>
+                    {% if programmes %}
+                    <button type="submit" class="button-apply">Save & Next</button>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+
+    <script>
+        var maxProgramChoices = 3; // Maximum number of program choices allowed
+        var selectedPrograms = []; // Array to store selected programs
+
+        // Function to count the number of checkboxes that are checked
+        function countCheckedCheckboxes() {
+            var checkboxes = document.querySelectorAll('input[name="selected_programs"]:checked');
+            return checkboxes.length;
+        }
+
+        // Function to handle the checkbox click event
+        function handleCheckboxClick() {
+            var checkboxes = document.querySelectorAll('input[name="selected_programs"]:checked');
+            selectedPrograms = [];
+
+            checkboxes.forEach(function (checkbox, index) {
+                if (index < maxProgramChoices) {
+                    selectedPrograms.push(checkbox.value);
+                } else {
+                    alert('You can only select a maximum of ' + maxProgramChoices + ' program choices.');
+                    // Uncheck the last clicked checkbox
+                    checkbox.checked = false;
+                }
+            });
+
+            updateChoicesContainer();
+        }
+
+        // Function to update the choices container and toggle its visibility
+        function updateChoicesContainer() {
+            var container = document.querySelector('.container-choice');
+            var numChecked = countCheckedCheckboxes();
+
+            if (numChecked > 0) {
+                container.style.display = 'block'; // Show the container if there are choices
+            } else {
+                container.style.display = 'none'; // Hide the container if there are no choices
+            }
+
+            container.innerHTML = '';
+
+            selectedPrograms.forEach(function (programId, index) {
+                var choiceNumber = index + 1;
+                var programName = document.querySelector('input[name="selected_programs"][value="' + programId + '"]').parentNode.nextElementSibling.textContent;
+
+                var choiceElement = document.createElement('div');
+                choiceElement.textContent = 'Choice ' + choiceNumber + ': ' + programName;
+                container.appendChild(choiceElement);
+            });
+        }
+
+        // Attach the event listener to the checkboxes
+        var checkboxes = document.querySelectorAll('input[name="selected_programs"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('click', handleCheckboxClick);
+        });
+    </script>
+
+    <hr>
+    <footer>
+        <p>© 2023 - TAR UMT FOCS ITP</p>
+    </footer>
+</body>
+
+</html>

@@ -7,8 +7,8 @@ from pymysql import connections
 import boto3
 import socket
 from config import *
-import datetime
 import difflib
+from datetime import datetime
 # from weasyprint import HTML
 
 app = Flask(__name__)
@@ -176,96 +176,157 @@ def verifyLogin():
 
         if user:
             session['loggedInStudent']=user[0]
-            return render_template('applicationHome.html')
+            return redirect(url_for("applicationHomeContent"))
         else:
             return render_template('studentLogin.html', msg="Access Denied: Invalid Email or Password")
+        
+@app.route('/programmePage',methods=['POST'])
+def programmePage():
+    apply_student_id = session.get('loggedInStudent')
+
+    # Get the student's name based on their student ID
+    student_name = get_student_name(apply_student_id)
+    return render_template('DisplayProgramme.html',student_name=student_name)
 
 @app.route('/applyProgramme',methods=['POST'])
 def applyProgramme():
-    return render_template('applicationIntake.html')
+    intake=request.form.get('intake','')
+    campus = request.form.get('campus','')
+    level = request.form.get('level','')
+    
+        # Get the student ID from the session
+    apply_student_id = session.get('loggedInStudent')
 
-@app.route('/showFirstProgramme', methods=['POST'])
-def showFirstProgramme():
-    # Set session variables to None when loading the page
-    session['first_selected_campus'] = None
-    session['first_selected_level'] = None
+    # Get the student's name based on their student ID
+    student_name = get_student_name(apply_student_id)
 
-    campus = request.form['first-choice-campus']
-    level = request.form['first-choice-level']
-
-    session['first_selected_campus'] = campus
-    session['first_selected_level'] = level
     select_sql = """
-        SELECT programmeId AS programme_id, programmeName AS programme_name
-        FROM availableProgramme ap
-        LEFT JOIN programme p ON ap.avProgrammeId=p.programmeAvailable
-        WHERE campus=%s AND ap.level=%s
-        """
-    cursor = db_conn.cursor()
+    SELECT ap.programmeName, ap.level, c.campusName, ch.intakeDate,p.programmeId
+    FROM programme p
+    LEFT JOIN availableProgramme ap ON p.programmeAvailable = ap.avProgrammeId
+    LEFT JOIN campus c ON c.campusId = p.campus
+    LEFT JOIN cohort ch ON ch.cohortId = p.intake
+    WHERE 1
+    """
+
+    if intake:
+        select_sql += f" AND p.intake = '{intake}'"
+    if campus:
+        select_sql += f" AND p.campus = '{campus}'"
+    if level:
+        select_sql += f" AND ap.level = '{level}'"
+
+
+    cursor=db_conn.cursor()
     try:
-        cursor.execute(select_sql, (campus, level))
-        program = cursor.fetchall()
+        cursor.execute(select_sql)
+        programmes=cursor.fetchall()
 
-        programme_objects = []
-        for programs in program:
-            programme_id = programs[0]
-            programme_name = programs[1]
+        programme_objects=[]
+        for programme in programmes:
+            programme_name=programme[0]
+            level=programme[1]
+            campus_name=programme[2]
+            intake_date=programme[3]
+            programme_Id=programme[4]
 
-            programme_object = {
-                "programme_id": programme_id,
-                "programme_name": programme_name
+            programme_object ={
+                "programme_name": programme_name,
+                "level":level,
+                "campus_name":campus_name,
+                "intake_date":intake_date,
+                "programme_Id":programme_Id
             }
             programme_objects.append(programme_object)
+        return render_template('DisplayProgramme.html',programmes=programme_objects,student_name=student_name)
 
-        # Return the program names as JSON
-        return render_template('applicationIntake.html', first_programme=programme_objects)
     except Exception as e:
+        # Log the exception for debugging
+        return render_template('DisplayProgramme.html',msg="Current does not have offer programme...")
+        
+def get_student_name(student_id):
+    cursor = db_conn.cursor()
+    select_sql = "SELECT studentName FROM students WHERE studentID = %s"
+    cursor.execute(select_sql, (student_id,))
+    student = cursor.fetchone()
+    if student:
+        return student[0]
+    else:
+        return "Unknown"
+
+@app.route('/storeProgramme', methods=['POST'])
+def storeProgramme():
+    selected_programs = request.form.getlist('selected_programs')
+    apply_student_id = session.get('loggedInStudent')
+    application_date=datetime.now()
+    cursor = db_conn.cursor()
+    choice=0
+    try:
+        for program_id in selected_programs:
+            choice+=1
+            insert_sql = "INSERT INTO programmeApplications (applicationDate,applicationStatus,applicationProgramme,student,choice) VALUES (%s, %s,%s,%s,%s)"
+            cursor.execute(insert_sql, (application_date,'pending',program_id,apply_student_id,choice))
+
+        db_conn.commit()  # Commit the changes after the loop completes successfully
+
+        return redirect(url_for("applicationHomeContent"))
+    
+    except Exception as e:
+        # Handle any errors that may occur
         db_conn.rollback()
+        # Log the error for debugging
+        print(f"An error occurred: {str(e)}")
+
     finally:
         cursor.close()
 
-@app.route('/showSecondProgramme', methods=['POST'])
-def showSecondProgramme():
-    # Set session variables to None when loading the page
-    session['second_selected_campus'] = None
-    session['second_selected_level'] = None
+    # Add a return statement here to return a valid response
+    return redirect(url_for("applicationHomeContent"))
 
-    campus = request.form['second-choice-campus']
-    level = request.form['second-choice-level']
-
-    session['second_selected_campus'] = campus
-    session['second_selected_level'] = level
-    select_sql = """
-        SELECT programmeId AS programme_id, programmeName AS programme_name
-        FROM availableProgramme ap
-        LEFT JOIN programme p ON ap.avProgrammeId=p.programmeAvailable
-        WHERE campus=%s AND ap.level=%s
-        """
+@app.route('/applicationHomeContent', methods=['GET', 'POST'])
+def applicationHomeContent():
+    apply_student_id = session.get('loggedInStudent')
     cursor = db_conn.cursor()
-    try:
-        cursor.execute(select_sql, (campus, level))
-        program = cursor.fetchall()
 
-        programme_objects = []
-        for programs in program:
-            programme_id = programs[0]
-            programme_name = programs[1]
+        # Get the student's name based on their student ID
+    student_name = get_student_name(apply_student_id)
 
-            programme_object = {
-                "programme_id": programme_id,
-                "programme_name": programme_name
-            }
-            programme_objects.append(programme_object)
+    select_sql="""
+    SELECT pa.applicationId, pa.applicationDate, pa.applicationStatus, av.programmeName, p.intake
+    FROM programmeApplications pa
+    LEFT JOIN programme p ON p.programmeId = pa.applicationProgramme
+    LEFT JOIN availableProgramme av ON av.avProgrammeId = p.programmeAvailable
+    WHERE pa.student = %s AND pa.choice = 1;
 
-        # Return the program names as JSON
-        return render_template('applicationIntake.html', second_programme=programme_objects)
-    except Exception as e:
-        db_conn.rollback()
-    finally:
-        cursor.close()
+    """
+    cursor.execute(select_sql, (apply_student_id,))
+    application=cursor.fetchall()
+    
+    application_objects = []
+    for row in application:
+        application_id=row[0]
+        application_date=row[1]
+        application_status=row[2]
+        application_programme=row[3]
+        application_intake=row[4]
+
+        application_object ={
+            "application_id":application_id,
+            "application_date":application_date,
+            "application_status": application_status,
+            "application_programme": application_programme,
+            "application_intake":application_intake
+        }
+
+        application_objects.append(application_object)
+    return render_template('applicationHome.html',applications=application_objects,student_name=student_name)
+
+
+
+
+
+
 
         
-
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

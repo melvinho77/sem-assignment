@@ -17,21 +17,20 @@
         }
 
         .header-title {
-            font-size: 20.4px;
-            margin-right: 10px;
-            margin-left: 0;
-            position: relative;
-            right: 250px;
-            margin-top: 10px;
+            font-size: 20px;
+            margin: 20px;
         }
 
         .container-profile {
-            margin-right: 80px;
+            font-size:20px;
+            margin: 20px;
         }
 
-        .container-profile i {
-            font-size: 25px;
+        .container-profile a{
+            text-decoration: none;
+            color: white;
         }
+
 
         .content {
             display: flex;
@@ -156,6 +155,12 @@
             color: white;
 
         }
+
+        .application-table-content a{
+            color:  #337ab7;
+            text-decoration: none;
+        }
+        
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -171,8 +176,7 @@
         <img src="{{ url_for('static', filename='images/tarumt-logo.png')}}" style="width:10%;height:10%;">
         <span class="header-title">Online Application for Admission(Pre-University and Undergraduate Programmes)</span>
         <div class="container-profile">
-            <i class="fa fa-user bigger-180"></i>
-            <small>Welcome</small>
+            <a href="#">Log Out</a>
         </div>
     </div>
 
@@ -183,9 +187,6 @@
             </div>
         </div>
         <div class="right-content">
-            <div class="right-home">
-                <a href="#"><i class="menu-icon fa fa-home"></i><span>Home</span></a>
-            </div>
             <div class="application-content">
                 <div class="icon-menu">
                     <div class="application-icon"></div>
@@ -196,22 +197,32 @@
             </div>
             <table class="application-table-content">
                 <tr>
-                    <th>Application No</th>
+                    <th style="width: 5%;">Application No</th>
+                    <th>Application Date</th>
                     <th>Intake Session</th>
                     <th>Programme Applied(1<sup>st</sup> Choice)</th>
-                    <th>Document Subsmission</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </tr>
+                {% for application in applications %}
                 <tr>
-                    <td>aaaaaa</td>
-                    <td>aaaaaa</td>
-                    <td>aaaaaa</td>
-                    <td>aaaaaa</td>
-                    <td>aaaaaa</td>
+                    <td>{{application.application_id}}</td>
+                    <td>{{application.application_date}}</td>
+                    <td>
+                        {% if application.application_intake == 1 %}
+                            OCT/NOV 2023
+                        {% elif application.application_intake == 2 %}
+                            FEB 2024
+                        {% endif %}
+                    </td>
+                    <td>{{application.application_programme}}</td>
+                    <td>{{application.application_status}}</td>
+                    <td><a href="#">Edit</a></td>
                 </tr>
+                {% endfor %}
             </table>
 
-            <form action="/applyProgramme" method="post">
+            <form action="/programmePage" method="post">
                 <button type="submit" class="apply-button"><i class="fa fa-plus"></i> &nbsp;New Application</button>
             </form>
 
