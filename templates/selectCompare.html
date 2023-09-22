@@ -681,7 +681,26 @@
                                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                 
                                 
-                                </form>                                                                
+                                </form>    
+                                <script>
+                                    function validateForm() {
+                                        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="progId[]"]');
+                                        var checkedCount = 0;
+                                    
+                                        for (var i = 0; i < checkboxes.length; i++) {
+                                            if (checkboxes[i].checked) {
+                                                checkedCount++;
+                                            }
+                                        }
+                                    
+                                        if (checkedCount < 2) {
+                                            alert("Please select at least 2 programs to compare.");
+                                            return false; // Prevent form submission
+                                        }
+                                    
+                                        return true; // Allow form submission
+                                    }
+                                    </script>                                                            
                             </div>
                             <div
                                 style="width: 100%; padding: 50px 0; text-align: center; background-image: url('https://www.tarc.edu.my/files/focs/background/C8D273C9-6BB6-4977-953F-44EEBFDEB2C5.jpg'); background-size: cover;">
