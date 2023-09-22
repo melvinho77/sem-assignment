@@ -626,8 +626,7 @@
                                                     
                                                         {% for prog in programmeList %}
                                                         {% if prog.level == 'diploma' %}
-                                                    <tr>
-                                                        <input type="hidden" name="level" value="diploma" id="level_degree">
+                                                    <tr>                                                      
                                                         <td style="text-align: center;"><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
                                                         <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
                                                     </tr>
@@ -652,8 +651,7 @@
                                                 <tbody>                                                
                                                         {% for prog in programmeList %}
                                                         {% if prog.level == 'degree' %}
-                                                    <tr>
-                                                        <input type="hidden" name="level" value="degree" id="level_degree">
+                                                    <tr>                                                    
                                                         <td style="text-align: center;"><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
                                                         <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
                                                     </tr>
