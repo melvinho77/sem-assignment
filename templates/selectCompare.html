@@ -628,15 +628,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                
                                                     {% for prog in programmeList %}
                                                     {% if prog.level == 'diploma' %}
+                                                <tr>
                                                     <td><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
                                                     <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
-                                                    <br>
+                                                </tr>
                                                     {% endif %}
                                                     {% endfor %}
-                                                </tr>
+                                                
 
                                             </tbody>
                                         </table>
@@ -652,16 +653,16 @@
                                                     <th>Degree</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
+                                            <tbody>                                                
                                                     {% for prog in programmeList %}
                                                     {% if prog.level == 'degree' %}
+                                                <tr>
                                                     <td><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
                                                     <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
-                                                    <br>
+                                                </tr>
                                                     {% endif %}
                                                     {% endfor %}
-                                                </tr>
+                                                
 
                                             </tbody>
                                         </table>
