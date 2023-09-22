@@ -180,11 +180,11 @@ def showAllProgramme():
     programmeList=[]
     electiveExits=[]
     electiveNotExits=[]
-    
+    course_list=[]
             
     #loop for check the programme
     for id in progId:
-            select_programme="SELECT avProgrammeId,programmeName FROM availableProgramme WHERE avProgrammeId=%s"
+            select_programme="SELECT avProgrammeId,programmeName,level FROM availableProgramme WHERE avProgrammeId=%s"
             cursorProgramme= db_conn.cursor()
 
             cursorProgramme.execute(select_programme,(id,))
@@ -194,6 +194,7 @@ def showAllProgramme():
                 progId=programme[0]
                 progName=programme[1]
                 
+                course_list=findAllCourse(programme[2])
 
                 try:
                     level_date={
@@ -260,7 +261,7 @@ def showAllProgramme():
             courseExits = sorted(courseExits, key=lambda x: x['progName'])
               
     return render_template('compareProgramme.html', 
-                           course_list=findAllCourse(),
+                           course_list=course_list(),
                            electiveCourse_list=electiveCourse_list,
                            programmeList=programmeList,
                            courseExits=courseExits,
@@ -271,16 +272,17 @@ def showAllProgramme():
 
 
 
-def findAllCourse():
+def findAllCourse(level):
 
+    
     course_list=[]
     #find main course
     all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
-                "availableProgramme a WHERE  p.programmeId=a.avProgrammeId ORDER BY courseTaken"
+                "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND level=%s ORDER BY courseTaken"
     cursor_Allcourse = db_conn.cursor()
 
     try:
-        cursor_Allcourse.execute(all_course)
+        cursor_Allcourse.execute(all_course,(level,))
         allCourse = cursor_Allcourse.fetchall()
 
         for course in allCourse:
@@ -304,7 +306,7 @@ def findAllCourse():
     
      # Sort course_list alphabetically by courseName
     course_list = sorted(course_list, key=lambda x: x['courseName']) 
-    
+
     return course_list
 
 def findNotExistsCourse(programmeId,progName):
