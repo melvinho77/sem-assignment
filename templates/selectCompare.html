@@ -621,16 +621,12 @@
                                         var checkboxes = document.querySelectorAll('input[name="progId[]"]:checked');
                                         if (checkboxes.length < 2) {
                                             alert("Please select at least two programs to compare.");
+                                            window.location.href = "/SelectError"; // Redirect to the error page
                                             return false;
                                         }
                                         return true;
                                     }
-                                
-                                    function redirectToErrorPage() {
-                                        alert("Please select at least two programs to compare.");
-                                        window.location.href = "/SelectError"; // Replace with the URL of your error page
-                                    }
-                                </script>            
+                                </script> 
                                 <form action="/compareProgramme" autocomplete="on" method="POST" enctype="multipart/form-data">
                                     <!-- Radio buttons for level selection -->
                             
