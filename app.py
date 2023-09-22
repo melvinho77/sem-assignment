@@ -222,9 +222,7 @@ def showAllProgramme():
             #all exits elective course in a particular programme
             elective_for_program = findElectiveCourse(id)
             electiveExits.extend(elective_for_program)           
-
-            # Sort course_list alphabetically by courseName
-            course_list = sorted(course_list, key=lambda x: x['courseName']) 
+           
 
         #find all elective
             all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse WHERE programmeId=%s ORDER BY electiveTaken"
@@ -303,6 +301,9 @@ def findAllCourse():
                 return str(e)
     except Exception as e:
         return str(e)
+    
+     # Sort course_list alphabetically by courseName
+    course_list = sorted(course_list, key=lambda x: x['courseName']) 
     
     return course_list
 
