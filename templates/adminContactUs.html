@@ -272,25 +272,25 @@
             width: 10%;
         }
 
+        .table th:nth-child(3),
+        .table td:nth-child(3) {
+            width: 30%;
+        }
+
         .table th:nth-child(4),
         .table td:nth-child(4) {
-            width: 30%;
-        }
-
-        .table th:nth-child(5),
-        .table td:nth-child(5) {
-            width: 30%;
-        }
-
-        .table th:nth-child(5),
-        .table td:nth-child(5) {
             width: 10%;
+        }
+
+        .table th:nth-child(5),
+        .table td:nth-child(5) {
+            width: 30%;
         }
 
 
         .table th:nth-child(6),
         .table td:nth-child(6) {
-            width: 5%;
+            width: 10%;
         }
 
         /* Center the pagination and add spacing between page numbers */
@@ -339,10 +339,71 @@
         .dataTables_wrapper .dataTables_filter input {
             margin-bottom: 10px;
         }
+
+        /* Style the navigation bar */
+        .navbar {
+            background-color: #343a40;
+            padding: 10px 15px;
+            /* Dark background color */
+        }
+
+        .navbar ul {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #fff;
+            /* White text color */
+        }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+            /* White color for the toggler icon */
+        }
+
+        /* Style the Log Out button */
+        .nav-item .btn-danger {
+            background-color: #dc3545;
+            /* Red background color */
+            border-color: #dc3545;
+            /* Red border color */
+            color: #fff;
+            /* White text color */
+            padding: 8px 16px;
+            /* Adjust padding as needed */
+            border-radius: 4px;
+            /* Rounded corners */
+        }
+
+        /* Hover effect for the Log Out button */
+        .nav-item .btn-danger:hover {
+            background-color: #c82333;
+            /* Darker red on hover */
+            border-color: #c82333;
+            /* Darker red border on hover */
+        }
     </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">TARUMT Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" style="margin-left: auto;">
+                <!-- Add a Log Out button in the navbar -->
+                <li class="nav-item">
+                    <a class="nav-link btn btn-danger" href="/logout">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <h2 style="margin-top: 10px;">Welcome! [Admin : {{ name }}]</h2>
         <hr>
@@ -411,26 +472,32 @@
                             </thead>
                             <tbody id="contact-table-body">
                                 {% for contact in contact_details %}
-                                <form action="/replyQuestion" method="POST">
-                                    <input type="hidden" value="{{ contact[0] }}" name="contactId">
-                                    <tr>
-                                        <td>{{ contact[6] }}</td>
-                                        <td class="category-td"
-                                            style="color: {% if contact[1] == 'pending' %} orange {% elif contact[1] == 'completed' %} green {% else %} black {% endif %};">
-                                            {{ contact[2] }}</td>
-                                        <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
-                                        <td><textarea class="form-control" name="reply" {% if contact[4] %} readonly {%
-                                                endif %}>{{ contact[4] }}</textarea></td>
+                                <tr>
+                                    <td>{{ contact[6] }}</td>
+                                    <td class="category-td"
+                                        style="color: {% if contact[1] == 'pending' %}orange{% elif contact[1] == 'completed' %}green{% else %}black{% endif %};">
+                                        {{ contact[2] }}
+                                    </td>
+                                    <td><textarea class="form-control" readonly>{{ contact[3] }}</textarea></td>
+                                    <form action="/replyQuestion" method="POST">
+                                        <td>
+                                            <input type="hidden" value="{{ contact[0] }}" name="contactId">
+                                            <textarea class="form-control" name="reply" {% if contact[4] %}readonly{%
+                                                endif %}>{{ contact[4] }}</textarea>
+                                        </td>
                                         <td class="repliedBy-td">{{ contact[5] }}</td>
                                         <td style="text-align: center;">
                                             <div class="submit-button">
-                                                <input type="submit" class="btn btn-primary"
-                                                    value="{% if contact[4] %}Replied{% else %}Reply{% endif %}" {% if
-                                                    contact[4] %} disabled {% endif %}>
+                                                {% if contact[4] %}
+                                                <input type="submit" class="btn btn-primary" value="Replied" disabled
+                                                    style="cursor: not-allowed;" />
+                                                {% else %}
+                                                <input type="submit" class="btn btn-primary" value="Reply" />
+                                                {% endif %}
                                             </div>
                                         </td>
-                                    </tr>
-                                </form>
+                                    </form>
+                                </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
@@ -439,10 +506,6 @@
             </div>
         </div>
     </div>
-
-    <div id="artibot-1695360332903"></div>
-    <script
-        type="text/javascript">!function (t, e) { t.artibotApi = { l: [], t: [], on: function () { this.l.push(arguments) }, trigger: function () { this.t.push(arguments) } }; var a = !1, i = e.createElement("script"); i.async = !0, i.type = "text/javascript", i.src = "https://app.artibot.ai/loader.js", e.getElementsByTagName("head").item(0).appendChild(i), i.onreadystatechange = i.onload = function () { if (!(a || this.readyState && "loaded" != this.readyState && "complete" != this.readyState)) { new window.ArtiBot({ i: "2a6628da-69b4-4074-ba5b-2f58c95166b8", em: { id: '1695360332903', w: '400', h: '400', sh: true, tb: false } }); a = !0 } } }(window, document);</script>
 
     <footer class="page-foot page-foot-default section-35 bg-gray-base">
         <div class="shell">
@@ -472,10 +535,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-    <script src="https://mediafiles.botpress.cloud/c00f82a4-6fad-4381-844e-b4570f297e92/webchat/config.js"
-        defer></script>
 
     <script>
         $(document).ready(function () {

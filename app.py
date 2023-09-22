@@ -150,6 +150,9 @@ def contact_us():
     # Call the get_network_details function to retrieve network details
     network_details = get_network_details()
 
+    # # Flash a success message
+    # flash('Question submitted successfully', 'success')
+
     # Pass the network_details and msg to the contactUs.html template
     return render_template("contactUs.html", network_details=network_details)
 
@@ -212,19 +215,10 @@ def adminLogin():
 
 @app.route('/adminContactUs', methods=['POST', 'GET'])
 def adminContactUs():
-    # Handle the form submission with email and password
-    email = request.form.get('email')
-    password = request.form.get('password')
-
-    if email == 'hhm@gmail.com' and password == '123':
-        session['name'] = 'Ho Hong Meng'
-        session['loggedIn'] = 'hhm'
-
-    elif email == 'css@gmail.com' and password == '456':
-        session['name'] = 'Cheong Soo Siew'
-        session['loggedIn'] = 'css'
-
     network_details = get_network_details()
+    # Handle the form submission with email and password
+    email = request.form['email']
+    password = request.form['password']
 
     try:
         cursor = db_conn.cursor()
@@ -236,24 +230,50 @@ def adminContactUs():
         db_conn.rollback()
         return str(e)
 
-    if request.method == 'POST':
+    if email == 'hhm@gmail.com' and password == '123':
+        session['name'] = 'Ho Hong Meng'
+        session['loggedIn'] = 'hhm'
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
-        if email == 'hhm@gmail.com' and password == '123':
-            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+    elif email == 'css@gmail.com' and password == '456':
+        session['name'] = 'Cheong Soo Siew'
+        session['loggedIn'] = 'css'
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
-        elif email == 'css@gmail.com' and password == '456':
-            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+    else:
+        error_msg = 'Invalid email or password. Please try again.'
+        return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
 
-        else:
-            error_msg = 'Invalid email or password. Please try again.'
-            return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
 
-    return render_template(
-        'adminContactUs.html',
-        name=session['name'],
-        contact_details=contactDetails,
-        network_details=network_details
-    )
+@app.route('/adminRedirect', methods=['POST', 'GET'])
+def adminRedirect():
+    network_details = get_network_details()
+    contactDetails = []
+
+    try:
+        cursor = db_conn.cursor()
+        # Retrieve contact details for the current page
+        cursor.execute("SELECT * FROM contact")
+        contactDetails = cursor.fetchall()
+
+    except Exception as e:
+        db_conn.rollback()
+        return str(e)
+
+    # Check the session for authentication
+    user = session.get('loggedIn')
+
+    if user == 'hhm':
+        session['name'] = 'Ho Hong Meng'
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+
+    elif user == 'css':
+        session['name'] = 'Cheong Soo Siew'
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+
+    else:
+        error_msg = 'You are not logged in. Please log in to access this page.'
+        return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
 
 
 @app.route('/replyQuestion', methods=['POST', 'GET'])
@@ -279,14 +299,16 @@ def replyQuestion():
         email = session['email']
         if email == 'hhm@gmail.com' and name == 'Ho Hong Meng':
             session['loggedIn'] = 'hhm'
+            session['name'] = 'Ho Hong Meng'
         elif email == 'css@gmail.com' and name == 'Cheong Soo Siew':
             session['loggedIn'] = 'css'
+            session['name'] = 'Cheong Soo Siew'
 
     # Flash a success message
     flash('Question submitted successfully', 'success')
 
     # Redirect back to the contactUs page
-    return redirect('/adminContactUs')
+    return redirect('/adminRedirect')
 
 
 @app.route('/applyFilter', methods=['POST', 'GET'])
@@ -361,9 +383,14 @@ def studentApplyFilter():
         return str(e)
 
 
-@app.route('/chatbot')
-def chatbot():
-    return render_template('chatbot.html')
+@app.route('/logout')
+def admin_logout():
+    # Clear session data
+    session.pop('name', None)
+    session.pop('loggedIn', None)
+
+    return redirect(url_for('adminLogin'))
+# N10 - Trace contact details
 
 
 if __name__ == '__main__':
