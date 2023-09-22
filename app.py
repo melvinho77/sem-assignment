@@ -174,7 +174,7 @@ def homeSearchProgramme():
 def showAllProgramme():
 
     progId=request.form.getlist('progId[]')    
-    level=request.form.getlist['level']
+    level=request.form.getlist('level')
     course_list = []
     electiveCourse_list = []
     courseExits=[]
