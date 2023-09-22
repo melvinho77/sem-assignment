@@ -591,6 +591,8 @@
                                 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
                                 <script type="text/javascript" charset="utf8"
                                 src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+                                
+                                {% if programmeList %}
                                 <table id="data-table">
                                     <thead>
                                         <tr>
@@ -661,6 +663,10 @@
                                         $('#data-table').DataTable();
                                     });
                                 </script>
+
+                                {% else %}
+                                <h2 style="color: red;">Please Select At Least Two Programme </h2>          
+                                {% end if%}
                             </div>
                             <div
                                 style="width: 100%; padding: 50px 0; text-align: center; background-image: url('https://www.tarc.edu.my/files/focs/background/C8D273C9-6BB6-4977-953F-44EEBFDEB2C5.jpg'); background-size: cover;">
