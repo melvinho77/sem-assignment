@@ -240,6 +240,7 @@ def showAllProgramme():
 
 
 def findAllElective(level):
+        electiveCourse_list=[]
   #find all elective
         all_electiveCourse = "SELECT DISTINCT electiveTaken FROM programmeElectiveCourse p,  availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND LEVEL=%s ORDER BY electiveTaken"
         cursor_AllElectivecourse = db_conn.cursor()
