@@ -261,7 +261,7 @@ def showAllProgramme():
             courseExits = sorted(courseExits, key=lambda x: x['progName'])
               
     return render_template('compareProgramme.html', 
-                           course_list=course_list(),
+                           course_list=course_list,
                            electiveCourse_list=electiveCourse_list,
                            programmeList=programmeList,
                            courseExits=courseExits,
