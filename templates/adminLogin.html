@@ -105,6 +105,8 @@
         </form>
         <hr>
 
+        <div id="botui-app" style="margin: 20px 60px;"></div>
+
         <footer class="page-foot page-foot-default section-35 bg-gray-base">
             <div class="shell">
                 <!-- req 8 -->
@@ -137,6 +139,74 @@
 
 
     <script src="/bundles/bootstrap?v=lescQEuG5u4jd-GcVDBcbpUOSyTDIg0Kk9zHDX55GCw1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/botui@3.0.0/dist/botui.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var botui = new BotUI("botui-app");
+
+            // Function to send a message
+            function sendMessage(message, isUser) {
+                return botui.message
+                    .add({
+                        content: message,
+                        loading: true,
+                        delay: 500,
+                    })
+                    .then(function () {
+                        // Simulate a response (replace with actual responses)
+                        var response = isUser
+                            ? "I'm a simple bot, and I'm just echoing your messages."
+                            : "Hello! How can I assist you today?";
+                        return botui.message.add({
+                            content: response,
+                            delay: 1000,
+                        });
+                    });
+            }
+
+            // Start the conversation
+            botui.message
+                .bot({
+                    content: "Hello! How can I assist you today?",
+                    delay: 1000,
+                })
+                .then(function () {
+                    // Listen for user input
+                    return botui.action.text({
+                        action: {
+                            placeholder: "Type your message...",
+                        },
+                    });
+                })
+                .then(function (res) {
+                    // Send the user's message and start the loop
+                    sendMessage(res.value, true).then(startLoop);
+                });
+
+            // Function to start the conversation loop
+            function startLoop() {
+                botui.message
+                    .bot({
+                        content: "Is there anything else I can help you with?",
+                        delay: 1000,
+                    })
+                    .then(function () {
+                        // Listen for user input
+                        return botui.action.text({
+                            action: {
+                                placeholder: "Type your message...",
+                            },
+                        });
+                    })
+                    .then(function (res) {
+                        // Send the user's message and continue the loop
+                        sendMessage(res.value, true).then(startLoop);
+                    });
+            }
+        });
+    </script>
+
 </body>
 
 </html>
