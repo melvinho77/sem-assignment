@@ -617,81 +617,60 @@
                                 
                                     <br>
                                     <!-- Radio button groups for different levels -->
-                                    <div id="diploma_group" class="radio-group">
-                                        <br>
-                                        
-                                        <table id="data-table">
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Diploma</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
-                                                    {% for prog in programmeList %}
-                                                    {% if prog.level == 'diploma' %}
-                                                <tr>
-                                                    <td><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
-                                                    <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
-                                                </tr>
-                                                    {% endif %}
-                                                    {% endfor %}
-                                                
+                                    <div>
+                                        <div id="diploma_group" class="radio-group">
+                                            <br>
+                                            
+                                            <table id="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Diploma</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                        {% for prog in programmeList %}
+                                                        {% if prog.level == 'diploma' %}
+                                                    <tr>
+                                                        <td><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
+                                                        <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
+                                                    </tr>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    
 
-                                            </tbody>
-                                        </table>
-                                        <!-- Add your diploma-level radio buttons here -->
-                                    </div>
-                                
-                                    <div id="degree_group" class="radio-group">
-                                        <br>
-                                        <table id="data-table">
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Degree</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>                                                
-                                                    {% for prog in programmeList %}
-                                                    {% if prog.level == 'degree' %}
-                                                <tr>
-                                                    <td><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
-                                                    <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
-                                                </tr>
-                                                    {% endif %}
-                                                    {% endfor %}
-                                                
+                                                </tbody>
+                                            </table>
+                                            <!-- Add your diploma-level radio buttons here -->
+                                        </div>
+                                    
+                                        <div id="degree_group" class="radio-group">
+                                            <br>
+                                            <table id="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Degree</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>                                                
+                                                        {% for prog in programmeList %}
+                                                        {% if prog.level == 'degree' %}
+                                                    <tr>
+                                                        <td><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
+                                                        <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
+                                                    </tr>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    
 
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                    -<script>
-                                        // Initially, hide all radio button groups except for the selected level
-                                        $('.radio-group').hide();
-                                        $('#diploma_group').show(); // Show the initial group
-                                    
-                                        // Handle the click event on level radio buttons
-                                        $('input[name="level"]').click(function () {
-                                            // Hide all groups
-                                            $('.radio-group').hide();
-                                    
-                                            // Get the selected level
-                                            var selectedLevel = $(this).val();
-                                    
-                                            // Show the corresponding group based on the selected level
-                                            $('#' + selectedLevel + '_group').show();
-                                        });
-                                    </script>
-                                    <div id="master_group" class="radio-group">
-                                        <!-- Add your master-level radio buttons here -->
-                                    </div>
                                 
-                                    <div id="doctor_group" class="radio-group">
-                                        <!-- Add your doctor-level radio buttons here -->
-                                    </div>
                                 
                                 </form>                                                                
                             </div>
