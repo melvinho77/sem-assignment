@@ -330,11 +330,11 @@ def applicationHomeContent():
     student_name = get_student_name(apply_student_id)
 
     select_sql="""
-    SELECT pa.applicationId, pa.applicationDate, pa.applicationStatus, av.programmeName, p.intake
+    SELECT pa.applicationId, pa.applicationDate, pa.applicationStatus, av.programmeName, p.intake,pa.choice
     FROM programmeApplications pa
     LEFT JOIN programme p ON p.programmeId = pa.applicationProgramme
     LEFT JOIN availableProgramme av ON av.avProgrammeId = p.programmeAvailable
-    WHERE pa.student = %s AND pa.choice = 1;
+    WHERE pa.student = %s
 
     """
     cursor.execute(select_sql, (apply_student_id,))
@@ -347,24 +347,295 @@ def applicationHomeContent():
         application_status=row[2]
         application_programme=row[3]
         application_intake=row[4]
+        application_choice=row[5]
 
         application_object ={
             "application_id":application_id,
             "application_date":application_date,
             "application_status": application_status,
             "application_programme": application_programme,
-            "application_intake":application_intake
+            "application_intake":application_intake,
+            "application_choice":application_choice
         }
 
         application_objects.append(application_object)
     return render_template('applicationHome.html',applications=application_objects,student_name=student_name)
 
+@app.route('/goToQualification', methods=['GET', 'POST'])
+def goToQualification():
+    return render_template('verifyQualification.html')
+
+@app.route('/verifyApplication', methods=['GET', 'POST'])
+def verifyApplication():
+
+    cursor = db_conn.cursor()
+    apply_student_id = session.get('loggedInStudent')
+
+    qualification=request.form.get('qualification-diploma','')
+    year=request.form.get('qualification-diploma-year','')
+    subject1=request.form.get('spm-subject-1','')
+    subject2=request.form.get('spm-subject-2','')
+    subject3=request.form.get('spm-subject-3','')
+    subject4=request.form.get('spm-subject-4','')
+    subject5=request.form.get('spm-subject-5','')
+    subject6=request.form.get('spm-subject-6','')
+    subject7=request.form.get('spm-subject-7','')
+    subject8=request.form.get('spm-subject-8','')
+    subject9=request.form.get('spm-subject-9','')
+    subject10=request.form.get('spm-subject-10','')
+
+    grades = [
+        request.form.get(f'spm-grades-{i}', '') for i in range(1, 11)
+    ]
+
+    # Count the number of subjects with a grade of "C" or better
+    c_or_better_count = sum(grade in ['A', 'A+', 'A-', 'B', 'B+', 'C', 'C+'] for grade in grades)
 
 
+    #GET know what student apply the programme with the first choice
+    select_sql_fist_choice="""
+    SELECT av.avProgrammeId AS programme_id
+    FROM programmeApplications pa
+    LEFT JOIN programme p ON p.programmeId=pa.applicationProgramme
+    LEFT JOIN availableProgramme av ON p.programmeAvailable=av.avProgrammeId
+    WHERE pa.student=%s AND pa.applicationStatus='pending' AND pa.choice=1
+    """
+
+    cursor.execute(select_sql_fist_choice, (apply_student_id,))
+    application_programme = cursor.fetchone()
+
+    grade_order = {
+    'A+': 9,
+    'A': 8,
+    'A-': 7,
+    'B+': 6,
+    'B': 5,
+    'C+': 4,
+    'C': 3,
+    'D': 2,
+    'E': 1
+    }
+
+    #check whether the BAHASA MELAYU and  excced grades E
+    compulsory_subjects = {
+    'BAHASA MELAYU': 'E',
+    'SEJARAH': 'E',
+    }
+
+    country_require=True
+    for country_subject, country_required_grade in compulsory_subjects.items():
+        if country_subject in [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10]:
+        # Find the index of the subject in the list
+            subject_index = [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10].index(country_subject)
+
+            # Check if the student's grade for that subject meets the required grade
+            student_grade = grades[subject_index]
+
+            # Compare the student's grade with the required grade
+            if grade_order.get(student_grade, 0) < grade_order.get(country_required_grade, 0):
+                country_require = False
+                break
 
 
+    #compare compulsary subject has meet the requirements or not
+    meet_first_choice_requirement= True
+    #validate whether the application programme have reach the compulsary subject of minimum requirement
+    if application_programme:
+        sql_select_programme="""
+            SELECT SUBJECT, grade
+            FROM qualification
+            WHERE programme=%s AND LEVEL=%s
+        """
+        cursor.execute(sql_select_programme, (application_programme,qualification))
+        validateSubject = cursor.fetchall() #getting know first choice of subject
 
+        #commpare student grades
+        for subject, required_grade in validateSubject:
+        #check if the validate subject in the manual subject from the student
+            if subject in [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10]:
+            #find the index of the student in the list
+            # Find the index of the subject in the list
+                subject_index = [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10].index(subject)
+                student_grade=grades[subject_index]
+                if(grade_order.get(student_grade,0)<grade_order.get(required_grade,0)):
+                    meet_first_choice_requirement=False
+                    print(f"For {subject}, the student's grade {student_grade} does not meet the required grade {required_grade}.")
+                    break
+            else:
+                return("Student does not have subject")
+            
+    if c_or_better_count >= 3 and country_require and meet_first_choice_requirement:
+        update_sql_choice_1 = """
+        UPDATE programmeApplications
+        SET applicationStatus = 'approved'
+        WHERE student = %s AND choice = 1 AND applicationStatus = 'pending'
+         """
+        cursor.execute(update_sql_choice_1, (apply_student_id,))
 
-        
+        # Update choice 2 and choice 3 application status to 'end' where the status is 'pending'
+        update_sql_choice_2_3 = """
+        UPDATE programmeApplications
+        SET applicationStatus = 'end'
+        WHERE student = %s AND (choice = 2 OR choice = 3) AND applicationStatus = 'pending'
+        """
+        cursor.execute(update_sql_choice_2_3, (apply_student_id,))
+    
+        # Commit the changes to the database
+        db_conn.commit()
+        return redirect(url_for("applicationHomeContent"))
+    else:
+        update_sql_choice_1_to_reject="""
+        UPDATE programmeApplications
+        SET applicationStatus = 'rejected'
+        WHERE student = %s AND choice = 1 AND applicationStatus = 'pending'
+         """
+        cursor.execute(update_sql_choice_1_to_reject, (apply_student_id,))
+
+        select_sql_second_choice = """
+        SELECT av.avProgrammeId AS programme_id
+        FROM programmeApplications pa
+        LEFT JOIN programme p ON p.programmeId = pa.applicationProgramme
+        LEFT JOIN availableProgramme av ON p.programmeAvailable = av.avProgrammeId
+        WHERE pa.student = %s AND pa.applicationStatus = 'pending' AND pa.choice = 2
+        """
+
+        cursor.execute(select_sql_second_choice, (apply_student_id,))
+        application_programme_second_choice = cursor.fetchone()
+
+        second_country_require=True
+        for country_subject, country_required_grade in compulsory_subjects.items():
+            if country_subject in [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10]:
+            # Find the index of the subject in the list
+                subject_index = [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10].index(country_subject)
+
+                # Check if the student's grade for that subject meets the required grade
+                student_grade = grades[subject_index]
+
+                # Compare the student's grade with the required grade
+                if grade_order.get(student_grade, 0) < grade_order.get(country_required_grade, 0):
+                    second_country_require = False
+                    print(f"For {subject}, the student's grade {student_grade} does not meet the required grade {country_required_grade}.")
+                    break
+
+        #compare compulsary subject has meet the requirements or not
+        meet_second_choice_requirement= True
+        #validate whether the application programme have reach the compulsary subject of minimum requirement
+        if application_programme:
+            sql_select_programme="""
+            SELECT SUBJECT, grade
+            FROM qualification
+            WHERE programme=%s AND LEVEL=%s
+            """
+        cursor.execute(sql_select_programme, (application_programme_second_choice,qualification))
+        validateSubject = cursor.fetchall() #getting know first choice of subject
+
+        #commpare student grades
+        for subject, required_grade in validateSubject:
+        #check if the validate subject in the manual subject from the student
+            if subject in [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10]:
+            #find the index of the student in the list
+            # Find the index of the subject in the list
+                subject_index = [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10].index(subject)
+                student_grade=grades[subject_index]
+                if(grade_order.get(student_grade,0)<grade_order.get(required_grade,0)):
+                    meet_first_choice_requirement=False
+                    break
+            else:
+                return("Student does not have subject")
+            
+        if c_or_better_count >= 3 and second_country_require and meet_second_choice_requirement:
+            update_sql_choice_2_approved = """
+            UPDATE programmeApplications
+            SET applicationStatus = 'approved'
+            WHERE student = %s AND choice = 2 AND applicationStatus = 'pending'
+            """
+            cursor.execute(update_sql_choice_2_approved, (apply_student_id,))
+
+            # Update choice 2 and choice 3 application status to 'end' where the status is 'pending'
+            update_sql_choice_3_end = """
+            UPDATE programmeApplications
+            SET applicationStatus = 'end'
+            WHERE student = %s AND choice = 3 AND applicationStatus = 'pending'
+            """
+            cursor.execute(update_sql_choice_3_end, (apply_student_id,))
+            db_conn.commit()
+            return redirect(url_for("applicationHomeContent"))
+        else:
+            #update choice 2 to rejected
+            update_sql_choice_2_rejected = """
+            UPDATE programmeApplications
+            SET applicationStatus = 'rejected'
+            WHERE student = %s AND choice = 2 AND applicationStatus = 'pending'
+            """
+            cursor.execute(update_sql_choice_2_rejected, (apply_student_id,))
+
+            select_sql_third_choice = """
+            SELECT av.avProgrammeId AS programme_id
+            FROM programmeApplications pa
+            LEFT JOIN programme p ON p.programmeId = pa.applicationProgramme
+            LEFT JOIN availableProgramme av ON p.programmeAvailable = av.avProgrammeId
+            WHERE pa.student = %s AND pa.applicationStatus = 'pending' AND pa.choice = 3
+            """
+            cursor.execute(select_sql_third_choice, (apply_student_id,))
+            application_programme_third_choice = cursor.fetchone()
+
+            third_country_require=True
+            for country_subject, country_required_grade in compulsory_subjects.items():
+                if country_subject in [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10]:
+                # Find the index of the subject in the list
+                    subject_index = [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10].index(country_subject)
+
+                    # Check if the student's grade for that subject meets the required grade
+                    student_grade = grades[subject_index]
+
+                    # Compare the student's grade with the required grade
+                    if grade_order.get(student_grade, 0) < grade_order.get(country_required_grade, 0):
+                        third_country_require = False
+                        break
+            
+                #compare compulsary subject has meet the requirements or not
+                meet_third_choice_requirement= True
+                #validate whether the application programme have reach the compulsary subject of minimum requirement
+                if application_programme_third_choice:
+                    sql_select_programme="""
+                    SELECT SUBJECT, grade
+                    FROM qualification
+                    WHERE programme=%s AND LEVEL=%s
+                    """
+                    cursor.execute(sql_select_programme, (application_programme_third_choice,qualification))
+                    validateSubject = cursor.fetchall() #getting know first choice of subject
+
+                    #commpare student grades
+                for subject, required_grade in validateSubject:
+                #check if the validate subject in the manual subject from the student
+                    if subject in [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10]:
+                # Find the index of the subject in the list
+                        subject_index = [subject1, subject2, subject3, subject4, subject5, subject6, subject7, subject8, subject9, subject10].index(subject)
+                        student_grade=grades[subject_index]
+                        if(grade_order.get(student_grade,0)<grade_order.get(required_grade,0)):
+                            meet_third_choice_requirement=False
+                            print(f"For {subject}, the student's grade {student_grade} does not meet the required grade {required_grade}.")
+                            break
+                        else:
+                            return("Student does not have subject")
+            if c_or_better_count >= 3 and third_country_require and meet_third_choice_requirement:
+                update_sql_choice_3_approved = """
+                UPDATE programmeApplications
+                SET applicationStatus = 'approved'
+                WHERE student = %s AND choice = 3 AND applicationStatus = 'pending'
+                """
+                cursor.execute(update_sql_choice_3_approved, (apply_student_id,))
+                db_conn.commit()
+                return redirect(url_for("applicationHomeContent"))
+            else:
+                update_sql_choice_3_rejected = """
+                UPDATE programmeApplications
+                SET applicationStatus = 'rejected'
+                WHERE student = %s AND choice = 3 AND applicationStatus = 'pending'
+                """
+                cursor.execute(update_sql_choice_3_rejected, (apply_student_id,))
+                db_conn.commit()
+                return redirect(url_for("applicationHomeContent"))
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
