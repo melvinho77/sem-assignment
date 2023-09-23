@@ -31,7 +31,8 @@ table = 'employee'
 
 @app.route('/home_page')
 def home_page():
-    return render_template('home.html')
+    network_details = get_network_details()
+    return render_template('home.html', network_details=network_details)
 
 @app.route('/')
 def index():
