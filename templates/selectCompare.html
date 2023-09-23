@@ -7,7 +7,7 @@
     /* 
 - make mobile switch sticky
 */
-.confirm-filter-company {
+    .confirm-filter-company {
         background-color: #000;
         color: #fff;
         padding: 10px 20px;
@@ -199,7 +199,7 @@
     // On load
     doSomething(mediaQuery);
 
-        // Initially, hide all radio button groups except for the selected level
+    // Initially, hide all radio button groups except for the selected level
     $('.radio-group').hide();
     $('#diploma_group').show(); // Show the initial group
 
@@ -619,18 +619,18 @@
                                 <script>
                                     var maxProgramChoices = 3; // Maximum number of program choices allowed
                                     var selectedPrograms = []; // Array to store selected program IDs
-                                
+
                                     // Function to count the number of checkboxes that are checked
                                     function countCheckedCheckboxes() {
                                         var checkboxes = document.querySelectorAll('input[name="progId[]"]:checked');
                                         return checkboxes.length;
                                     }
-                                
+
                                     // Function to handle the checkbox click event
                                     function handleCheckboxClick() {
                                         var checkboxes = document.querySelectorAll('input[name="progId[]"]:checked');
                                         selectedPrograms = [];
-                                
+
                                         checkboxes.forEach(function (checkbox, index) {
                                             if (index < maxProgramChoices) {
                                                 selectedPrograms.push(checkbox.value);
@@ -639,9 +639,9 @@
                                                 // Uncheck the last clicked checkbox
                                                 checkbox.checked = false;
                                             }
-                                        });                                                                       
+                                        });
                                     }
-                                
+
                                     // Function to update the choices container and toggle its visibility                                  
                                     // Attach the event listener to the checkboxes
                                     var checkboxes = document.querySelectorAll('input[name="progId[]"]');
@@ -649,14 +649,15 @@
                                         checkbox.addEventListener('click', handleCheckboxClick);
                                     });
                                 </script>
-                                
-                                <form action="/compareProgramme" autocomplete="on" method="POST" enctype="multipart/form-data">
-                                    <!-- Radio buttons for level selection -->                                                                                            
+
+                                <form action="/compareProgramme" autocomplete="on" method="POST"
+                                    enctype="multipart/form-data">
+                                    <!-- Radio buttons for level selection -->
                                     <br>
                                     <!-- Radio button groups for different levels -->
                                     <div>
                                         <div id="diploma_group" class="radio-group">
-                                            <br>                                      
+                                            <br>
                                             <table id="data-table">
                                                 <thead>
                                                     <tr>
@@ -665,22 +666,25 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    
-                                                        {% for prog in programmeList %}
-                                                        {% if prog.level == 'diploma' %}
-                                                    <tr>                                                      
-                                                        <td style="text-align: center;"><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
-                                                        <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
+
+                                                    {% for prog in programmeList %}
+                                                    {% if prog.level == 'diploma' %}
+                                                    <tr>
+                                                        <td style="text-align: center;"><input type="checkbox"
+                                                                name="progId[]" value="{{ prog.progId }}"
+                                                                id="prog_{{ prog.progId }}"></td>
+                                                        <td><label for="prog_{{ prog.progId }}">{{ prog.progName
+                                                                }}</label></td>
                                                     </tr>
-                                                        {% endif %}
-                                                        {% endfor %}
-                                                    
+                                                    {% endif %}
+                                                    {% endfor %}
+
 
                                                 </tbody>
                                             </table>
                                             <!-- Add your diploma-level radio buttons here -->
                                         </div>
-                                    
+
                                         <div id="degree_group" class="radio-group">
                                             <br>
                                             <table id="data-table">
@@ -690,34 +694,43 @@
                                                         <th>Degree</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>                                                
-                                                        {% for prog in programmeList %}
-                                                        {% if prog.level == 'degree' %}
-                                                    <tr>                                                    
-                                                        <td style="text-align: center;"><input type="checkbox" name="progId[]" value="{{ prog.progId }}" id="prog_{{ prog.progId }}"></td>
-                                                        <td><label for="prog_{{ prog.progId }}">{{ prog.progName }}</label></td>
+                                                <tbody>
+                                                    {% for prog in programmeList %}
+                                                    {% if prog.level == 'degree' %}
+                                                    <tr>
+                                                        <td style="text-align: center;"><input type="checkbox"
+                                                                name="progId[]" value="{{ prog.progId }}"
+                                                                id="prog_{{ prog.progId }}"></td>
+                                                        <td><label for="prog_{{ prog.progId }}">{{ prog.progName
+                                                                }}</label></td>
                                                     </tr>
-                                                        {% endif %}
-                                                        {% endfor %}
-                                                    
+                                                    {% endif %}
+                                                    {% endfor %}
+
 
                                                 </tbody>
                                             </table>
                                             <br>
-                                            <button type="submit" style="width: auto; height: 50px ;" class="confirm-filter-company">Compare</button>
+                                            <button type="submit" style="width: auto; height: 50px ;"
+                                                class="confirm-filter-company">Compare</button>
                                         </div>
                                     </div>
                                     <br>
-                                   
+
                                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                
-                                
-                                </form>    
-                                                                
+
+
+                                </form>
+
                             </div>
                             <div
                                 style="width: 100%; padding: 50px 0; text-align: center; background-image: url('https://www.tarc.edu.my/files/focs/background/C8D273C9-6BB6-4977-953F-44EEBFDEB2C5.jpg'); background-size: cover;">
-                                <a class="btn" style="margin: 5px;"
+                                <!-- here coding kl-->
+                                <form action="/compare" autocomplete="on" method="POST" enctype="multipart/form-data">
+                                    <a href="/compare" class="btn" style="margin: 5px;"> Compare Programme
+                                        Structure</a>
+                                </form>
+                                <a class="btn" style="margin: 5px;padding-left: 110px;padding-right: 110px;"
                                     href="https://www.tarc.edu.my/admissions/a/intake-in-progress/">Enroll Now</a>
                             </div>
                         </div>
