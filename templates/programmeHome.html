@@ -23,22 +23,8 @@
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/font-awesome.css" />
 
     <!-- page specific plugin styles -->
-
-
-
-    <!--link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/jquery-ui.custom.css" /-->
-
-    <!--link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/chosen.css" /-->
-    <!--link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/datepicker.css" /-->
-    <!--link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/bootstrap-timepicker.css" /-->
-    <!--link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/daterangepicker.css" />
-            <!--link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/bootstrap-datetimepicker.css" /-->
-    <!--link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/colorpicker.css" /-->
-
-
-
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}" />
 
     <!-- text fonts -->
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/ace-fonts.css" />
@@ -113,7 +99,7 @@
 
         <header class="page-head">
             <style>
-                #tarclogo {
+               #tarclogo {
                     width: 82px;
                     margin-bottom: 0px;
                 }
@@ -130,7 +116,8 @@
                 @media (min-width: 1366px) {
                     #tarclogo {
                         height: 70px;
-                        margin-bottom: -67px;
+                        margin-top: 10px;
+                        /* margin-bottom: -67px; */
                     }
                 }
 
@@ -145,54 +132,38 @@
                     data-lg-device-layout="rd-navbar-static" data-stick-up-clone="false"
                     data-body-class="rd-navbar-static-smooth" data-md-stick-up-offset="60px"
                     data-lg-stick-up-offset="60px" data-md-stick-up="true" data-lg-stick-up="true"
-                    class="rd-navbar rd-navbar-default">
+                    class="rd-navbar rd-navbar-default" style="height: 160px;">
 
-
-
-
-                    <div class="rd-navbar-inner" style="padding:0;">
+                    <div class="rd-navbar-inner" style="text-align: center;
+                    display: flex;
+                    align-content: center;
+                    justify-content: flex-start;
+                    align-items: flex-end;
+                    padding: 0px 30px;">
                         <div class="rd-navbar-panel">
                             <button data-custom-toggle=".rd-navbar-nav-wrap" data-custom-toggle-disable-on-blur="true"
                                 class="rd-navbar-toggle"><span></span></button>
-
-                            <a href="https://www.tarc.edu.my/" class="rd-navbar-brand brand"><span style="float:left;">
+                            <a href="{{ url_for('home_page', filename='../home.html') }}" class="rd-navbar-brand brand"><span style="float:left;">
                                     <img src="https://www.tarc.edu.my/images/tarumt-logo1.png" alt="logo"
                                         id="tarclogo" /></span>
                             </a>
                         </div>
+                        <div style="margin-top: 35px;">
 
-                        <div id="notPrint" class="topbar">
+                        </div>
+                        <!-- END topbar -->
+                    </div>
+                    <!-- END rd-navbar-inner -->
 
-
-
-                            &nbsp;
-                        </div> <!-- END topbar -->
-                    </div> <!-- END rd-navbar-inner -->
-
-                    <div id="notPrint" class="rd-navbar-inner" style="padding-top:0;padding-bottom:10px;">
-
+                    <!-- End rd-navbar-search -->
+                    <div id="" class="rd-navbar-inner" style="padding-top:0;padding-bottom:10px;">
                         <div style="height:0;">
                         </div>
                         <div class="rd-navbar-group rd-navbar-search-wrap" id="menuCon">
                             <div class="rd-navbar-nav-wrap">
                                 <div class="rd-navbar-nav-inner">
                                     <div class="rd-navbar-search">
-                                        <!--<form action="search-results.html" method="GET" data-search-live="rd-search-results-live" class="rd-search">-->
-                                        <form method="GET" data-search-live="rd-search-results-live" class="rd-search">
-                                            <div class="form-group">
-                                                <script async
-                                                    src="https://cse.google.com/cse.js?cx=015592505060343716805:_84q5vpfkgu">
-                                                    </script>
-                                                <div class="gcse-searchbox"></div>
-
-                                                <!--<div id="rd-search-results-live" class="rd-search-results-live"></div>-->
-                                            </div>
-                                        </form>
-                                        <button data-rd-navbar-toggle=".rd-navbar-search, .rd-navbar-search-wrap"
-                                            class="rd-navbar-search-toggle"></button>
-                                    </div> <!-- End rd-navbar-search -->
-
-
+                                    </div>
                                     <ul class="rd-navbar-nav" id="navCon">
                                         <li><a href="https://www.tarc.edu.my/focs/index.jsp" target="_self"
                                                 class="ja"><span class="fa-stack fa-lg"> <i
@@ -213,7 +184,8 @@
                                                         class="fa fa-circle fa-stack-2x gold-orange"></i> <i
                                                         class="fa fa-book fa-stack-1x fa-inverse"></i> </span>
                                                 Research</a>
-                                            <ul class="rd-navbar-dropdown" style="margin-top:0;"><!--put fmenu UL-->
+                                            <ul class="rd-navbar-dropdown" style="margin-top:0;">
+                                                <!--put fmenu UL-->
                                                 <li><a href="https://www.tarc.edu.my/focs/research/cictic/"
                                                         target="_self" style="cursor:pointer;" class="ja">Centre for ICT
                                                         Innovations and Creativity (CICTIC)</a></li>
@@ -239,7 +211,8 @@
                                                         class="fa fa-circle fa-stack-2x gold-orange"></i> <i
                                                         class="fa fa-university fa-stack-1x fa-inverse"></i> </span>
                                                 External Advisors</a>
-                                            <ul class="rd-navbar-dropdown" style="margin-top:0;"><!--put fmenu UL-->
+                                            <ul class="rd-navbar-dropdown" style="margin-top:0;">
+                                                <!--put fmenu UL-->
                                                 <li><a href="https://www.tarc.edu.my/focs/external-advisors/external-examiners/"
                                                         target="_self" style="cursor:pointer;" class="ja">External
                                                         Examiners</a></li>
@@ -286,22 +259,35 @@
                                         <br>
                                     </div>
                                     <div class="topbarSide">
-
-
-                                    </div> <!-- END topbarSide -->
-
-
-                                </div> <!-- END rd-navbar-nav-inner -->
-                            </div> <!-- END rd-navbar-nav-wrap -->
-                        </div> <!-- END rd-navbar-group rd-navbar-search-wrap -->
-                    </div> <!-- END rd-navbar-inner -->
-
-
-
-
-
+                                    </div>
+                                    <!-- END topbarSide -->
+                                </div>
+                                <!-- END rd-navbar-nav-inner -->
+                            </div>
+                            <!-- END rd-navbar-nav-wrap -->
+                        </div>
+                        <!-- END rd-navbar-group rd-navbar-search-wrap -->
+                    </div>
+                    <div style="text-align: center;">
+                        <!-- Search bar req 1 -->
+                        <form action="/homeSearchProgramme" autocomplete="on" method="POST"
+                            enctype="multipart/form-data">
+                            <!-- <button type="submit">Submit</button> -->
+                            <div class="input-container">
+                                <input type="text" id="textInput" name="textInput"
+                                    placeholder="Type to search programme" maxlength="150">
+                                <div class="iconForSearch">
+                                    <button id="searchButton" class="iconForSearch" type="submit"><span
+                                            class="iconify search-button" data-icon="carbon:search"></span></button>
+                                </div>
+                            </div>
+                        </form>
+                        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+                        <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+                    </div>
+                    <!-- END rd-navbar-inner -->
                 </nav>
-            </div> <!-- END rd-navbar-wrap -->
+            </div>
             <script type="text/javascript" src="https://www.tarc.edu.my/assets/js/gs.js"></script>
             <script>
                 setTimeout("resizeMenuText()", 1000);
@@ -510,14 +496,18 @@
                                     </div>
                                 </div>
 
-                                <!-- here coding kl-->
-                                <form action="/compare" autocomplete="on" method="POST" enctype="multipart/form-data">
-                                    <h5><a href="/compare"> Compare Programme Structure </a><br></h5> <br>
-                                </form>
+
                                 <div
                                     style="width: 100%; padding: 50px 0; text-align: center; background-image: url('https://www.tarc.edu.my/files/focs/background/C8D273C9-6BB6-4977-953F-44EEBFDEB2C5.jpg'); background-size: cover;">
-                                    <a class="btn" style="margin: 5px;"
+                                    <!-- here coding kl-->
+                                    <form action="/compare" autocomplete="on" method="POST"
+                                        enctype="multipart/form-data">
+                                        <a href="/compare" class="btn" style="margin: 5px;"> Compare Programme
+                                            Structure</a>
+                                    </form>
+                                    <a class="btn" style="margin: 5px;padding-left: 110px;padding-right: 110px;"
                                         href="https://www.tarc.edu.my/admissions/a/intake-in-progress/">Enroll Now</a>
+
                                 </div>
                             </div>
                             <!-- End of Container -->
@@ -753,7 +743,3 @@
 </body>
 
 </html>
-
-
-
-

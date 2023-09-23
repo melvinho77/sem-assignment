@@ -214,7 +214,7 @@ def showAllProgramme():
     electiveExits=[]
     electiveNotExits=[]
     course_list=[]
-            
+    network_details = get_network_details()
     #loop for check the programme
     for id in progId:
             select_programme="SELECT avProgrammeId,programmeName,level FROM availableProgramme WHERE avProgrammeId=%s"
@@ -268,7 +268,8 @@ def showAllProgramme():
                            courseExits=courseExits,
                            courseNotExits=courseNotExits,
                            electiveExits=electiveExits,
-                           electiveNotExits=electiveNotExits                                              
+                           electiveNotExits=electiveNotExits, 
+                           network_details = network_details                                              
                            )
 
 
