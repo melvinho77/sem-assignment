@@ -226,7 +226,7 @@
                                             target="_blank">Why Choose Us</a>
                                         <hr>
                                         <!--<i class="fa https://www.tarc.edu.my/files/focs/9D61CBF3-963F-431F-9408-BD702F58EAD9.png"></i>-->
-                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=A714E192-1AFC-4032-83A2-4FC74F965841&fmenuid=CF0E0432-EB23-45D2-A8AC-0B4AD06AAD34"
+                                        <a href="{{ url_for('redirectProgrammeHome') }}"
                                             target="_self">Programmes</a>
                                         <hr>
                                         <!--<i class="fa https://www.tarc.edu.my/files/focs/0760A92C-042C-48C0-BD41-CC3C4114D34B.png"></i>-->
@@ -564,12 +564,12 @@
                 <div class="col-xs-6 col-md-2">
                     <article class="icon-box icon-box-top-line">
                         <div class="box-top">
-                            <div class="box-icon"><a href="https://www.tarc.edu.my/focs/a/programmes/programmes/"><img
+                            <div class="box-icon"><a href="{{ url_for('redirectProgrammeHome') }}"><img
                                         src="https://www.tarc.edu.my/files/focs/9D61CBF3-963F-431F-9408-BD702F58EAD9.png"
                                         width="50%" style="min-width:82px;"></a></div>
                             <div class="box-header">
                                 <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/a/programmes/programmes/"
+                                        href="{{ url_for('redirectProgrammeHome') }}"
                                         target="_self">Programmes </a></span>
                             </div>
                         </div>
