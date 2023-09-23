@@ -22,11 +22,11 @@
         }
 
         .container-profile {
-            font-size:20px;
+            font-size: 20px;
             margin: 20px;
         }
 
-        .container-profile a{
+        .container-profile a {
             text-decoration: none;
             color: white;
         }
@@ -156,11 +156,19 @@
 
         }
 
-        .application-table-content a{
-            color:  #337ab7;
+        .application-table-content a {
+            color: #337ab7;
             text-decoration: none;
         }
-        
+
+        .edit-cell {
+            vertical-align: middle;
+            text-align: center;
+            /* Adjust the background color, font size, or other styles as needed */
+            background-color: #f8f8f8;
+            font-weight: bold;
+            font-size: 14px;
+        }
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -200,7 +208,7 @@
                     <th style="width: 5%;">Application No</th>
                     <th>Application Date</th>
                     <th>Intake Session</th>
-                    <th>Programme Applied(1<sup>st</sup> Choice)</th>
+                    <th>Programme Applied</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -210,14 +218,24 @@
                     <td>{{application.application_date}}</td>
                     <td>
                         {% if application.application_intake == 1 %}
-                            OCT/NOV 2023
+                        OCT/NOV 2023
                         {% elif application.application_intake == 2 %}
-                            FEB 2024
+                        FEB 2024
                         {% endif %}
                     </td>
-                    <td>{{application.application_programme}}</td>
+                    <td>
+                        {% if application.application_choice == 1 %}
+                        <small>(1<sup>st</sup> Choice)</small>- {{ application.application_programme }}
+                        {% elif application.application_choice == 2 %}
+                        <small>(2<sup>nd</sup> Choice)</small>- {{ application.application_programme }}
+                        {% elif application.application_choice == 3 %}
+                        <small>(2<sup>rd</sup> Choice)</small>- {{ application.application_programme }}
+                        {% endif %}
+                    </td>
                     <td>{{application.application_status}}</td>
-                    <td><a href="#">Edit</a></td>
+                    {% if loop.index % 3 == 1 %}
+                    <td rowspan="3"><a href="/goToQualification" class="edit-link">Edit</a></td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </table>
