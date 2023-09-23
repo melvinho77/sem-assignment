@@ -135,6 +135,39 @@ def chatbot():
     return render_template('chatbot.html')
 
 
+@app.route('/loadStudProfile')
+def loadStudProfile():
+    network_details = get_network_details()
+    studID = 2  # modify
+    select_sql = f"SELECT * FROM students WHERE studentID = '{studID}'"
+
+    cursor = db_conn.cursor()
+    try:
+        cursor.execute(select_sql)
+        studInfo = cursor.fetchall() 
+        stud_list = []
+        for studData in studInfo:
+            
+            stud_data = {
+                "studName" : studData[1],
+                "studIC" : studData[2],
+                "studEmail" : studData[3],
+                "studPhone" : studData[4],
+                "studBdate" : studData[5],
+                "studGender" : studData[6],
+                "studAddress" : studData[7],
+                "studPassword" : studData[8],
+                }           
+            stud_list.append(stud_data)  
+            print(stud_list)
+    except Exception as e:
+            return str(e)
+    return render_template('applicationProfile.html', network_details=network_details, stud_data = stud_data)
+
+
+
+
+
 
 
 
