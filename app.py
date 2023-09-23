@@ -200,7 +200,7 @@ def showAllProgramme():
                 progId=programme[0]
                 progName=programme[1]
                 
-                course_list=findAllCourse(programme[2])
+                course_list=findAllCourse(course_list,programme[2])
                 electiveCourse_list=findAllElective(programme[2])
                 try:
                     level_date={
@@ -281,10 +281,10 @@ def findAllElective(level):
 
         return electiveCourse_list
 
-def findAllCourse(level):
+def findAllCourse(course_list,level):
 
     
-    course_list=[]
+
     #find main course
     all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
                 "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND level=%s ORDER BY courseTaken"

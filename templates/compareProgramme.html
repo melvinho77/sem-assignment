@@ -221,6 +221,10 @@
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/bootstrap.css" />
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/font-awesome.css" />
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
     <!-- page specific plugin styles -->
 
 
@@ -600,9 +604,7 @@
 
                                 <br>
                                 <!-- Include DataTables CSS and JS from a CDN -->
-                                <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-                                <script type="text/javascript" charset="utf8"
-                                src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+                               
                                 
                                 {% if programmeList|length >= 2 %}
                                 <table id="data-table">
@@ -677,11 +679,11 @@
                                 </script>
 
                                 {% else %}
-                                <h2 style="color: red;">Please Select At Least Two Programme To Compare </h2>          
+                                <h3 style="color: red;">Please Select At Least Two Programme To Compare </h3>          
                                 
                                 <form action="/compare" autocomplete="on" method="POST" enctype="multipart/form-data">
                                 
-                                <br>    <button type="submit" style="width: auto; height: 50px ;" class="confirm-filter-company">Back</button>
+                                <br><button type="submit" style="width: auto; height: 50px ;" class="confirm-filter-company">Back</button><br><br>
                                 </form>
                                 {% endif%}
                             </div>

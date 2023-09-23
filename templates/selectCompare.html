@@ -616,11 +616,42 @@
 
                                 <br>
                                 <!-- kl part -->
+                                <script>
+                                    var maxProgramChoices = 3; // Maximum number of program choices allowed
+                                    var selectedPrograms = []; // Array to store selected program IDs
+                                
+                                    // Function to count the number of checkboxes that are checked
+                                    function countCheckedCheckboxes() {
+                                        var checkboxes = document.querySelectorAll('input[name="progId[]"]:checked');
+                                        return checkboxes.length;
+                                    }
+                                
+                                    // Function to handle the checkbox click event
+                                    function handleCheckboxClick() {
+                                        var checkboxes = document.querySelectorAll('input[name="progId[]"]:checked');
+                                        selectedPrograms = [];
+                                
+                                        checkboxes.forEach(function (checkbox, index) {
+                                            if (index < maxProgramChoices) {
+                                                selectedPrograms.push(checkbox.value);
+                                            } else {
+                                                alert('You can only select a maximum of ' + maxProgramChoices + ' program choices.');
+                                                // Uncheck the last clicked checkbox
+                                                checkbox.checked = false;
+                                            }
+                                        });                                                                       
+                                    }
+                                
+                                    // Function to update the choices container and toggle its visibility                                  
+                                    // Attach the event listener to the checkboxes
+                                    var checkboxes = document.querySelectorAll('input[name="progId[]"]');
+                                    checkboxes.forEach(function (checkbox) {
+                                        checkbox.addEventListener('click', handleCheckboxClick);
+                                    });
+                                </script>
+                                
                                 <form action="/compareProgramme" autocomplete="on" method="POST" enctype="multipart/form-data">
-                                    <!-- Radio buttons for level selection -->
-                            
-                                
-                                
+                                    <!-- Radio buttons for level selection -->                                                                                            
                                     <br>
                                     <!-- Radio button groups for different levels -->
                                     <div>
@@ -916,6 +947,11 @@
         }
 
     </script>
+    <!-- CHATBOT CODE -->
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/c00f82a4-6fad-4381-844e-b4570f297e92/webchat/config.js"
+        defer></script>
+    <!-- CHATBOT CODE -->
 </body>
 
 </html>
