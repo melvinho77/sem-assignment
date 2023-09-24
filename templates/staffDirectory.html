@@ -96,10 +96,6 @@
             <div class="rd-navbar-wrap">
                 <nav data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-stick-up-clone="false" data-body-class="rd-navbar-static-smooth"
                     data-md-stick-up-offset="60px" data-lg-stick-up-offset="60px" data-md-stick-up="true" data-lg-stick-up="true" class="rd-navbar rd-navbar-default">
-
-
-
-
                     <div class="rd-navbar-inner" style="padding: 0;">
                         <div class="rd-navbar-panel">
                             <button data-custom-toggle=".rd-navbar-nav-wrap" data-custom-toggle-disable-on-blur="true" class="rd-navbar-toggle"><span></span></button>
@@ -178,6 +174,8 @@
                                     <div class="topbarSide">
                                     </div>
                                     <!-- END topbarSide -->
+
+
                                 </div>
                                 <!-- END rd-navbar-nav-inner -->
                             </div>
@@ -322,7 +320,7 @@
                                                     <td width="115">
                                                         <div style="margin: 5px 0 5px 0; border-left: solid #D8D8D8 3px; border-bottom: solid #B0B0B0 3px">
                                                             <div style="border: solid #999 1px">
-                                                                <div style="border: solid #FFF 5px; background-color: #FFF"><img alt="" src="{{ url_for('static', filename='images/staffImages/' ~ staff[1] ~ '.jpg') }}" width="115" height="150" hspace="0" /></div>
+                                                                <a href="{{ url_for('staff', staffId=staff[1]) }}" style="border: solid #FFF 5px; background-color: #FFF" target="_blank"><img alt="" src="{{ url_for('static', filename='images/staffImages/' ~ staff[1] ~ '.jpg') }}" width="115" height="150" hspace="0" /></a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -350,7 +348,7 @@
                                                         <div><small><b>Area of Interest: </b>{{ staff[9] }}</small></div>
                                                         {% endif %}
                                                         {% if staff[12] and staff[13] %}
-                                                        <div><small><b>Publication: </b><a href="{{ staff[13] }}" style="color:blue">{{ staff[12] }}</a></small></div>
+                                                        <div><small><b>Publication: </b><a href="{{ staff[13] }}" style="color:blue" target="_blank">{{ staff[12] }}</a></small></div>
                                                         {% endif %}
 
                                                         {% set ns.count = ns.count+1 %}
