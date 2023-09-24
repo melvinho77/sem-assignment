@@ -1,0 +1,658 @@
+<html>
+<header>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-size: 16px;
+            /* Set a base font size */
+        }
+
+        .application-header {
+            display: flex;
+            justify-content: space-between;
+            min-height: 62px;
+            background: #9a0000;
+            width: 100%;
+            color: white;
+        }
+
+        .content {
+            display: flex;
+            /* flex-direction: row;
+            align-content: center;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-start; */
+        }
+
+        /* Add media query for smaller screens */
+        @media (max-width: 768px) {
+            .application-header {
+                flex-direction: column;
+                /* Stack header items vertically */
+                align-items: center;
+                /* Center header items */
+            }
+        }
+
+        .header-title {
+            display: flex;
+            /* text-align: center; */
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        .welcome-container {
+            text-align: center;
+            /* Center-align the text */
+        }
+
+        /* Add media query for smaller screens */
+        @media (max-width: 768px) {
+            .header-title {
+                text-align: center;
+                /* Center-align header title */
+                right: 0;
+                /* Reset the right position */
+            }
+        }
+
+        /* Add media query for smaller screens */
+        @media (max-width: 768px) {
+            .container-profile {
+                margin: 0;
+                /* Reset the margin */
+            }
+        }
+
+        /* Add media query for smaller screens */
+        @media (max-width: 768px) {
+            .left-content {
+                display: none;
+                /* Hide the left content on small screens */
+            }
+        }
+
+        .left-content {
+            height: 100vh;
+            background-color: #f8f8f8;
+            /* border-color: 1px solid #070606; */
+        }
+
+
+        .right-content {
+            width: 100%;
+            border-left: 1px solid #c9c9c9;
+            /* Make the right content full-width */
+        }
+
+        .fa-home:before {
+            content: "\f015";
+            color: #9a0000;
+            font-size: 25px;
+        }
+
+        .left-home {
+            background-color: #f8f8f8;
+            color: #585858;
+            padding: 15px;
+            width: 190px;
+        }
+
+        .left-home a {
+            text-decoration: none;
+        }
+
+        .right-home {
+            color: #585858;
+            padding: 15px;
+            /* background-color: #f2f2f2; */
+            width: 100%;
+            border-color: #cccccc;
+            border-bottom: 0.5px solid rgb(213, 213, 213);
+        }
+
+        .right-home a {
+            text-decoration: none;
+            color: #585858;
+        }
+
+        .right-home span {
+            margin-left: 10px;
+            font-size: 18px;
+        }
+
+        .fa-address-card-o {
+            color: #9a0000;
+        }
+
+        .application-content {
+            font-size: 24px;
+            margin: 10px;
+            text-decoration: underline;
+        }
+
+        /* Add media query for smaller screens */
+        @media (max-width: 768px) {
+
+            select.select-intake,
+            select.choice-campus,
+            select.choice-level,
+            select.choice-programm {
+                width: 100%;
+                /* Make the select elements full-width on small screens */
+            }
+        }
+
+        .programme-container h4 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .container-choice {
+            margin: 10px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Optionally, set a fixed width for the span elements */
+        .container-choice span {
+            font-weight: 600;
+            margin-right: 20px;
+            width: 120px;
+            /* Adjust this width as needed */
+        }
+
+        /* Update the select elements */
+        select.choice-campus,
+        select.choice-level,
+        select.choice-programm {
+            flex: 1;
+            /* Allow the select elements to expand */
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            color: #858585;
+            margin-left: 20px;
+        }
+
+        /* Style the span for 1st Choice */
+        .container-choice span {
+            font-weight: 600;
+            margin-bottom: 5px;
+            margin-right: 20px;
+        }
+
+        hr {
+            /* margin-top: 20px;
+            margin-bottom: 20px; */
+            border: 0;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .save-programme {
+            border-width: 4px;
+            font-size: 13px;
+            padding: 10px 20px;
+            /* Adjust padding for better button sizing */
+            line-height: 1.38;
+            margin-left: 10px;
+            background-color: #6fb3e0;
+            border: none;
+            /* Remove the border style if not needed */
+            color: white;
+            /* Text color */
+            border-radius: 4px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Show pointer cursor on hover */
+            transition: background-color 0.3s;
+            /* Add a smooth color transition */
+        }
+
+        .save-programme:hover {
+            background-color: #5089b8;
+            /* Change the background color on hover */
+        }
+
+        .leftlbl {
+            margin-left: 10px;
+        }
+
+        .container {
+            /* border: 1px solid rgb(207, 207, 207); */
+            border-radius: 5px;
+            margin: 0px;
+        }
+
+        fieldset {
+            padding: 0px;
+            margin: 20px 20px 20px 20px;
+            border: none;
+            margin-top: 20px;
+
+        }
+
+        legend {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-left: 20px;
+        }
+
+        tr {
+            margin-bottom: 50px;
+            height: 60px;
+            border-bottom: 0.5px solid rgb(232, 232, 232);
+        }
+
+        td {
+            width: 100px;
+            /* width: 50%;
+            padding: 5px; */
+            /* Optional: Add padding to cells for spacing */
+        }
+
+        textarea {
+            border-radius: 5px;
+            width: 50%;
+            padding-left: 10px;
+            padding-right: 10px;
+            border: 0.5px solid rgb(203, 203, 203);
+            outline: none;
+        }
+
+        textarea:focus {
+            border: 2px solid rgb(255, 178, 91);
+            box-shadow: 0 0 5px rgb(255, 178, 91);
+        }
+
+        .larger-radio input[type="radio"] {
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        .selectBDay:focus {
+            border: 2px solid rgb(255, 178, 91);
+            box-shadow: 0 0 5px rgb(255, 178, 91);
+        }
+
+        .selectBDay {
+            cursor: pointer;
+            width: 150px;
+            height: 40px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border: 0.5px solid rgb(203, 203, 203);
+            outline: none;
+        }
+
+        .lblName {
+            text-align: right;
+        }
+
+        .label {
+            padding-right: 10px;
+        }
+
+        .logoDisplay {
+            width: 10%;
+            height: 10%;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .menu-icon {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+
+            .logoDisplay {
+                width: 30%;
+                height: 30%;
+                /* Make the select elements full-width on small screens */
+            }
+
+            /* Style for the menu icon */
+            .menu-icon {
+                cursor: pointer;
+                display: flex;
+            }
+
+            .application-header {
+                width: 120%;
+            }
+        }
+
+
+        select.select-intake {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            color: #858585;
+        }
+
+        /* Style the select options */
+        select.select-intake option {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .programme-container h4 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .container-choice {
+            margin: 10px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Optionally, set a fixed width for the span elements */
+        .container-choice span {
+            font-weight: 600;
+            margin-right: 20px;
+            width: 120px;
+            /* Adjust this width as needed */
+        }
+
+        /* Update the select elements */
+        select.choice-campus,
+        select.choice-level,
+        select.choice-programm {
+            flex: 1;
+            /* Allow the select elements to expand */
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            color: #858585;
+            margin-left: 20px;
+        }
+
+        /* Style the span for 1st Choice */
+        .container-choice span {
+            font-weight: 600;
+            margin-bottom: 5px;
+            margin-right: 20px;
+        }
+
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .save-programme {
+            border-width: 4px;
+            font-size: 13px;
+            padding: 10px 20px;
+            /* Adjust padding for better button sizing */
+            line-height: 1.38;
+            margin-left: 10px;
+            background-color: #6fb3e0;
+            border: none;
+            /* Remove the border style if not needed */
+            color: white;
+            /* Text color */
+            border-radius: 4px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Show pointer cursor on hover */
+            transition: background-color 0.3s;
+            /* Add a smooth color transition */
+        }
+
+        .save-programme:hover {
+            background-color: #5089b8;
+            /* Change the background color on hover */
+        }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</header>
+
+<body>
+    <div class="application-header">
+        <img src="https://www.tarc.edu.my/images/tarumt-logo1.png" class="logoDisplay">
+        <span class="header-title">Online Application for Admission(Pre-University and Undergraduate Programmes)</span>
+        <div class="container-profile" style="display: flex;
+        justify-content: center;
+        align-items: center; margin-right: 10px;">
+
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="menu-icon" onclick="toggleLeftContent()">
+            <i class="fa fa-bars" style="font-size: 25px;"></i>
+        </div>
+        <div class="left-content">
+            <div class="left-home">
+                <a href="#"><i class="menu-icon fa fa-home" style="font-size: 25px;"></i><span
+                        class="leftlbl">Home</span></a>
+            </div>
+            <div class="left-home">
+                <a href="#"><i class="fa fa-user" style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
+                        class="leftlbl">Profile</span></a>
+            </div>
+            <div class="left-home">
+                <a href="#"><i class="fas fa-sign-out-alt"
+                        style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
+                        class="leftlbl">Logout</span></a>
+            </div>
+        </div>
+        <div class="right-content">
+            <div class="right-home">
+                <i class="fa fa-address-card-o" style="font-size:24px"></i><span>Intake & Programme</span>
+            </div>
+            <div class="application-content">
+                <h4>INTAKE*</h4>
+            </div>
+            <select class="select-intake" name="intake">
+                <option value="" selected>select intake</option>
+                <option value="OCT/NOV 2023">OCT/NOV 2023</option>
+                <option value="FEB 2024">FEB 2024</option>
+            </select>
+
+            <div class="programme-container">
+                <h4 style="text-decoration: underline;">PROGRAMME</h4>
+
+                <div class="container-choice">
+                    <form method="POST" action="/showFirstProgramme" name="first-choice" id="first-choice-form">
+                        <span>1st Choice</span>
+                        <div class="container-selection">
+                            <select class="choice-campus" name="campus" id="first-choice-campus">
+                                <option value="" selected>Select Campus</option>
+                                <option value="KL">Kuala Lumpur Branch</option>
+                                <option value="PN">Penang Branch</option>
+                                <option value="PK">Perak Branch</option>
+                                <option value="JH">Johor Branch</option>
+                                <option value="PG">Pahang</option>
+                                <option value="SB">Sabah</option>
+                            </select>
+
+                            <select class="choice-level" name="first-choice-level" id="first-choice-level">
+                                <option value="" selected>Select Level</option>
+                                <option value="foundation">Foundation</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="degree">Degree</option>
+                            </select>
+
+                            <select class="choice-programm" name="first-choice-programm" id="first-choice-programm">
+                                <option value="" selected>Select Programme</option>
+                                {% for program in first_programme %}
+                                <option value="{{program.programme_id}}">{{program.programme_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                <div class="container-choice">
+                    <span>2nd Choice</span>
+                    <form action="/showSecondProgramme" method="POST" name="second-choice" id="second-choice-form">
+                        <div class="container-selection">
+                            <select class="choice-campus" name="second-choice-campus" id="second-choice-campus">
+                                <option value="" selected>Select Campus</option>
+                                <option value="KL">Kuala Lumpur Branch</option>
+                                <option value="PN">Penang Branch</option>
+                                <option value="PK">Perak Branch</option>
+                                <option value="JR">Johor Branch</option>
+                                <option value="PG">Pahang</option>
+                                <option value="SB">Sabah</option>
+                            </select>
+
+                            <select class="choice-level" name="second-choice-level" id="second-choice-level">
+                                <option value="" selected>Select Level</option>
+                                <option value="foundation">Foundation</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="degree">Degree</option>
+                            </select>
+
+                            <select class="choice-programm" name="second-choice-programm">
+                                <option value="" selected>Select Programme</option>
+                                {% for program in second_programme %}
+                                <option value="{{program.programme_id}}">{{program.programme_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <hr>
+
+                <div class="container-choice">
+                    <span>3rd Choice</span>
+                    <div class="container-selection">
+                        <select class="choice-campus" name="third-choice-campus" id="third-choice-campus">
+                            <option value="" selected>Select Campus</option>
+                            <option value="KL">Kuala Lumpur Branch</option>
+                            <option value="PN">Penang Branch</option>
+                            <option value="PK">Perak Branch</option>
+                            <option value="JR">Johor Branch</option>
+                            <option value="PG">Pahang</option>
+                            <option value="SB">Sabah</option>
+                        </select>
+
+                        <select class="choice-level" name="third-choice-level" id="third-choice-level">
+                            <option value="" selected>Select Level</option>
+                            <option value="foundation">Foundation</option>
+                            <option value="diploma">Diploma</option>
+                            <option value="degree">Degree</option>
+                        </select>
+
+                        <select class="choice-programm" name="third-choice-programm">
+                            <option value="" selected>Select Programme</option>
+                            <!-- Add your options dynamically here -->
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            <div class="submit-programme">
+                <button type="submit" class="save-programme">Save & Next</button>
+            </div>
+        </div>
+
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // JavaScript function to toggle the left content
+        function toggleLeftContent() {
+            var leftContent = document.querySelector('.left-content');
+            var screenWidth = window.innerWidth; // Get the current screen width
+
+            if (leftContent.style.display === 'block' || leftContent.style.display === '') {
+                leftContent.style.display = 'none';
+                if (screenWidth > 768) {
+                    leftContent.style.display = 'block';
+                }
+            } else {
+                leftContent.style.display = 'block';
+            }
+        }
+        window.addEventListener('resize', toggleLeftContent);
+        toggleLeftContent();
+
+        // Add event listeners to the Campus and Level dropdowns
+        document.getElementById("first-choice-campus").addEventListener("change", submitFirstChoiceForm);
+        document.getElementById("first-choice-level").addEventListener("change", submitFirstChoiceForm);
+        document.getElementById("second-choice-campus").addEventListener("change", submitSecondChoiceForm);
+        document.getElementById("second-choice-level").addEventListener("change", submitSecondChoiceForm);
+
+        function submitFirstChoiceForm() {
+            const campusSelect = document.getElementById("first-choice-campus");
+            const levelSelect = document.getElementById("first-choice-level");
+
+            if (campusSelect.value !== "" && levelSelect.value !== "") {
+                document.getElementById("first-choice-form").submit();
+            }
+        }
+
+        function submitSecondChoiceForm() {
+            const campusSelect = document.getElementById("second-choice-campus");
+            const levelSelect = document.getElementById("second-choice-level");
+
+            if (campusSelect.value !== "" && levelSelect.value !== "") {
+                document.getElementById("second-choice-form").submit();
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the values from the Flask session
+            var first_selectedCampus = "{{ session.get('first_selected_campus', '') }}";
+            var first_selectedLevel = "{{ session.get('first_selected_level', '') }}";
+            var first_selectedProgramme = document.getElementById("first-choice-programm");
+            var second_selectedCampus = "{{ session.get('second_selected_campus', '') }}";
+            var second_selectedLevel = "{{ session.get('second_selected_level', '') }}";
+
+
+            // Set the selected options in the dropdowns
+            document.getElementById('first-choice-campus').value = first_selectedCampus;
+            document.getElementById('first-choice-level').value = first_selectedLevel;
+            document.getElementById("first-choice-programm").value = first_selectedProgramme;
+            document.getElementById('second-choice-campus').value = second_selectedCampus;
+            document.getElementById('second-choice-level').value = second_selectedLevel;
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="wide wow-animation">
+<head runat="server">
+    <title>Tunku Abdul Rahman University of Management and Technology</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="keywords" content="TAR UMT, TAR UMT Program, Tunku Abdul Rahman University of Management and Technology, Premier Digital Tech University, Accounting, Accounting Programme Malaysia, Accounting Programme Kuala Lumpur, ACCA Malaysia, Best Accounting Programme Malaysia, Best Education, Best Education Malaysia, Univerisity Malaysia">
+    <meta name="description" content="Tunku Abdul Rahman University of Management and Technology is a distinguished institution of higher learning acknowleged locally, nationally and globally for its excellence in providing opportunities for intellectual, personal and professional development.">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" />
+    <meta property="og:title" />
+    <meta property="og:description" />
+    <meta property="og:url" />
+    <meta property="og:image" content="{{ url_for('static', filename='images/tarumt-logo1_fb.jpg') }}" />
+    <meta property="og:tags" />
+
+
+    <link rel="icon" href="{{ url_for('static', filename='images/tarIco.ico') }}" type="image/x-icon">
+
+    <!-- bootstrap & fontawesome -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/colorbox.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/font-awesome.css') }}" />
+
+    <!-- text fonts -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/ace-fonts.css') }}" />
+
+
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/ace.css') }}" class="ace-main-stylesheet" />
+
+
+    <!-- ace settings handler -->
+    <script src="{{ url_for('static', filename='assets/js/ace-extra.js') }}"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+			<script src="assets/js/html5shiv.js"></script>
+			<script src="assets/js/respond.js"></script>
+		<![endif]-->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,400italic,700,900%7CPlayfair+Display:700italic,900">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/print.css') }}" />
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/gold-orange.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/custom.css') }}" />
+
+    <!--[if lt IE 10]>
+    		<div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    		<script src="assets/js/html5shiv.min.js"></script>
+		<![endif]-->
+</head>
+<body>
+    <div class="page">
+
+        <header class="page-head">
+            <style>
+                #tarclogo {
+                    width: 82px;
+                    margin-bottom: 0px;
+                }
+
+                @media (min-width: 992px) {
+                    #tarclogo {
+                        margin-top: 5px;
+                        height: 55px;
+                        margin-bottom: -81px;
+                        width: auto;
+                    }
+                }
+
+                @media (min-width: 1366px) {
+                    #tarclogo {
+                        height: 70px;
+                        margin-bottom: -67px;
+                    }
+                }
+
+                #menuCon {
+                    max-width: 1000px;
+                    padding-left: 20px;
+                }
+            </style>
+            <div class="rd-navbar-wrap">
+                <nav data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-stick-up-clone="false" data-body-class="rd-navbar-static-smooth"
+                    data-md-stick-up-offset="60px" data-lg-stick-up-offset="60px" data-md-stick-up="true" data-lg-stick-up="true" class="rd-navbar rd-navbar-default">
+                    <div class="rd-navbar-inner" style="padding: 0;">
+                        <div class="rd-navbar-panel">
+                            <button data-custom-toggle=".rd-navbar-nav-wrap" data-custom-toggle-disable-on-blur="true" class="rd-navbar-toggle"><span></span></button>
+
+                            <a href="https://www.tarc.edu.my/" class="rd-navbar-brand brand"><span style="float: left;">
+                                <img src="{{ url_for('static', filename='images/tarumt-logo1.png') }}" alt="logo" id="tarclogo" /></span>
+                            </a>
+                        </div>
+
+                        <div class="topbar">
+                            &nbsp;
+                        </div>
+                        <!-- END topbar -->
+                    </div>
+                    <!-- END rd-navbar-inner -->
+
+                    <div class="rd-navbar-inner" style="padding-top: 0; padding-bottom: 10px;">
+
+                        <div style="height: 0;">
+                        </div>
+                        <div class="rd-navbar-group rd-navbar-search-wrap" id="menuCon">
+                            <div class="rd-navbar-nav-wrap">
+                                <div class="rd-navbar-nav-inner">
+
+                                    <ul class="rd-navbar-nav" id="navCon">
+                                        <li><a href="https://www.tarc.edu.my/focs/index.jsp" target="_self" class="ja"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x gold-orange"></i><i class="fa fa-home fa-stack-1x fa-inverse"></i></span>Home </a>
+                                            <li
+                                                class=""><a href="https://www.tarc.edu.my/focs/about-us/" target="_self" class="ja"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x gold-orange"></i><i class="fa fa-briefcase fa-stack-1x fa-inverse"></i></span>About Us</a></li>
+                                            <li
+                                                class=""><a href="https://www.tarc.edu.my/focs/facilities/" target="_self" class="ja"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x gold-orange"></i><i class="fa fa-laptop fa-stack-1x fa-inverse"></i></span>Facilities</a></li>
+                                            <li
+                                                class=""><a href="https://www.tarc.edu.my/focs/research/" target="_self" class="ja"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x gold-orange"></i><i class="fa fa-book fa-stack-1x fa-inverse"></i></span>Research</a>
+                                                <ul
+                                                    class="rd-navbar-dropdown" style="margin-top: 0;">
+                                                    <!--put fmenu UL-->
+                                                    <li><a href="https://www.tarc.edu.my/focs/research/cictic/" target="_self" style="cursor: pointer;" class="ja">Centre for ICT Innovations and Creativity (CICTIC)</a></li>
+                                                    <li><a href="https://www.tarc.edu.my/focs/research/cdsa/" target="_self" style="cursor: pointer;" class="ja">Centre for Data Science and Analytics (CDSA)</a></li>
+                                                    <li><a href="https://www.tarc.edu.my/focs/research/cci/" target="_self" style="cursor: pointer;" class="ja">Centre for Computational Intelligence (CCI)</a></li>
+                                                    <li><a href="https://www.tarc.edu.my/focs/research/ciot/" target="_self" style="cursor: pointer;" class="ja">Centre for Internet of Things (CIOT)</a></li>
+                                                    <li><a href="https://www.tarc.edu.my/focs/research/ccncs/" target="_self" style="cursor: pointer;" class="ja">Centre for Computer Networking and Cyber Security (CCNCS)</a></li>
+                                                    <li><a href="https://www.tarc.edu.my/focs/research/cicrd/" target="_self" style="cursor: pointer;" class="ja">Centre for Integrated Circuit Research and Development (CICR&D)</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class=""><a href="#" target="_self" class="ja"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x gold-orange"></i><i class="fa fa-university fa-stack-1x fa-inverse"></i></span>External Advisors</a>
+                                                <ul
+                                                    class="rd-navbar-dropdown" style="margin-top: 0;">
+                                                    <!--put fmenu UL-->
+                                                    <li><a href="https://www.tarc.edu.my/focs/external-advisors/external-examiners/" target="_self" style="cursor: pointer;" class="ja">External Examiners</a></li>
+                                                    <li><a href="https://www.tarc.edu.my/focs/external-advisors/industrial-expert-advisory-panel-ieap--bd/" target="_self" style="cursor: pointer;" class="ja">Industrial Expert Advisory Panel (IEAP) - Bachelor Degree</a></li>
+                                                    <li><a href="https://www.tarc.edu.my/focs/external-advisors/industrial-expert-advisory-panel-ieap/" target="_self" style="cursor: pointer;" class="ja">Industrial Expert Advisory Panel (IEAP) -Postgraduates Programmes</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class=""><a href="staffDirectory.aspx" target="_blank" class="ja"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x gold-orange"></i><i class="fa fa-users fa-stack-1x fa-inverse"></i></span>Our Team</a></li>
+                                    </ul>
+                                    <div class="midSide">
+
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/39E9DDCE-6E61-4C29-9CB7-0EF12F0BADAC.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=D7C95C5D-41F2-4AEE-8BAB-9FA088FD13A6&fmenuid=" target="_blank">Why Choose Us</a>
+                                        <hr>
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/9D61CBF3-963F-431F-9408-BD702F58EAD9.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=A714E192-1AFC-4032-83A2-4FC74F965841&fmenuid=CF0E0432-EB23-45D2-A8AC-0B4AD06AAD34" target="_self">Programmes</a>
+                                        <hr>
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/0760A92C-042C-48C0-BD41-CC3C4114D34B.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=A66D390D-8C3E-4399-9751-E5B225DBFA82&fmenuid=43BF3FAA-5744-4E6E-953A-3EC6FD323749" target="_blank">Collaboration Partners</a>
+                                        <hr>
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/478819E7-8DD4-4530-9EB1-EC45ABEAC2FC.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=6425D81D-D6EC-4154-89E0-EB8F755EF868" target="_blank">Highlights</a>
+                                        <hr>
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/44F36855-E6F5-4415-9D8D-7D9F9BD9E4F6.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=D012DA8D-7016-4A88-8D2B-2A18658A1DC7&fmenuid=D5432296-3079-4749-A2B6-73511BC6028C" target="_self">Recognition</a>
+                                        <hr>
+                                        <!--<i class="fa https://www.tarc.edu.my/files/focs/61C7A072-9E3C-4AF3-BE59-62CA4CD974C9.png"></i>-->
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=59D98207-6215-4D6A-90BC-4F6F65A995B3&fmenuid=0676BE2A-C916-4C5C-A2E5-EA93D01528D3" target="_self">Testimonials</a>
+                                        <br>
+                                    </div>
+                                    <div class="topbarSide">
+                                    </div>
+                                    <!-- END topbarSide -->
+
+
+                                </div>
+                                <!-- END rd-navbar-nav-inner -->
+                            </div>
+                            <!-- END rd-navbar-nav-wrap -->
+                        </div>
+                        <!-- END rd-navbar-group rd-navbar-search-wrap -->
+                    </div>
+                    <!-- END rd-navbar-inner -->
+
+
+
+
+
+                </nav>
+            </div>
+            <!-- END rd-navbar-wrap -->
+            <script type="text/javascript" src="{{ url_for('static', filename='assets/js/gs.js') }}"></script>
+            <script>
+                setTimeout("resizeMenuText()", 1000);
+
+                function resizeMenuText() {
+                    //console.log("123:"+document.getElementById("navCon").children.length);
+                    const collection = document.getElementById("navCon").children;
+
+                    var menuWidth = 0;
+                    var strFontSize = "";
+                    var pageWidth = document.body.clientWidth;
+                    for (var i = 0; i < collection.length; i++) {
+                        //menuWidth+=collection[i].innerHTML.length;
+                        menuWidth += collection[i].clientWidth;
+                    }
+                    console.log("menuWidth:" + menuWidth);
+                    console.log("pageWidth:" + pageWidth);
+                    if (pageWidth >= 1200) {
+                        if (menuWidth > 900)
+                            strFontSize = "9.5px";
+                        if (menuWidth > 980)
+                            strFontSize = "9px";
+
+                        for (var i = 0; i < collection.length; i++) {
+                            document.getElementById("navCon").children[i].children[0].style.fontSize = strFontSize;
+                        }
+                    }
+                }
+
+
+
+            </script>
+
+        </header>
+
+        <div id="notPrint">
+            <section style="background-image: url({{ url_for('static', filename='images/main.jpg') }});" class="section-30 section-sm-40 section-md-40 bg-gray-dark page-title-wrap" style="padding: 0px 20px !important;">
+                <div class="shell">
+                    <div class="page-title">
+                        <h4>Staff Directory
+                        </h4>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <style>
+            .select2-container--bootstrap.select2-container--open.select2-container--below .select2-selection, .select2-container--bootstrap .select2-selection {
+                border-radius: 10px !important;
+                margin-bottom: 10px;
+            }
+
+            .select2-container--bootstrap .select2-selection--single .select2-selection__arrow {
+                top: 50%;
+                bottom: auto !important;
+                right: 15px;
+                transform: translateY(-50%);
+                border-top: 5px solid #333;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+            }
+
+            .select2-container--bootstrap .select2-selection--single .select2-selection__arrow b:before {
+                content: none;
+            }
+
+            .select2-container--bootstrap .select2-selection--single {
+                padding: 0 30px 0 15px;
+            }
+        </style>
+
+        <section>
+            <div>
+                <section class="section-15 section-sm-75 section-lg-30">
+                    <div class="shell">
+                        <div style="display: flex; flex-wrap: wrap; justify-content: space-between;" class="range">
+                            <div class="cell-md-4 cell-lg-3 offset-top-50 offset-md-top-0">
+                                <div class="inset-md-left-15 inset-md-right-10">
+                                    <div class="range">
+                                        <div class="cell-sm-6 cell-md-12">
+                                            <form action="/staffDirectory" name="formSelect" method="get">
+                                                <select id="campus" name="campus" style="border-radius: 5px; width: 100%; margin-bottom: 10px; height: 50px;">
+                                                    {% for campus in campuses %}
+                                                    <option value="{{ campus[0] }}" {% if request.args.get('campus') == campus[0] %}selected{% endif %}>{{ campus[0] }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <select id="division" name="division" style="border-radius: 5px; width: 100%; margin-bottom: 10px; height: 50px;">
+                                                    <option value="ALL">ALL</option>
+                                                    {% for division in divisions %}
+                                                    <option value="{{ division[0] }}" {% if request.args.get('division') == division[0] %}selected{% endif %}>{{ division[0] }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <input type="text" name="staffName" class="form-control" placeholder="Search Staff Name" style="min-height: fit-content; border-radius: 5px !important;" {% if request.args.get('staffName') %}value="{{ request.args.get('staffName') }}"{% endif %} />
+                                                <button type="submit" class="btn btn-smaller">Search</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cell-md-6 cell-lg-9">
+
+                                <article class="post post-single">
+
+                                    <div class="post-body">
+                                        <div>
+                                            <h5 class="blue">FACULTY OF COMPUTING AND INFORMATION TECHNOLOGY</h5>
+                                            <!--h6 class="orange">Management Team</h6-->
+                                        </div>
+
+                                        <!---------------- STAFF TABLE ---------------->
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                {% if staffs %}
+                                                {% set ns = namespace(dId=None, sID=None, count=1) %}
+                                                {% for staff in staffs %}
+                                                {% if ns.dId !=  staff[10] and staff[10] != 'FOCS' %}
+                                                <tr><td colspan="4"><div style="padding-top: 20px; padding-bottom: 5px"><h6 class="orange">{{ staff[0] }}</h6></div></td></tr>
+                                                {% endif %}
+                                                {% if ns.sId != staff[1] %}
+                                                {% if ns.sId %}
+                                                </td></tr><tr><td style="padding: 5px;" colspan="4"><hr style="border: #DDD solid 1px"></td></tr>
+                                                {% endif %}
+                                                {% set ns.sId = staff[1] %}
+                                                <tr valign="top">
+                                                    <td width="30">{{ ns.count }}</td>
+                                                    <td width="115">
+                                                        <div style="margin: 5px 0 5px 0; border-left: solid #D8D8D8 3px; border-bottom: solid #B0B0B0 3px">
+                                                            <div style="border: solid #999 1px">
+                                                                <a href="{{ url_for('staff', staffId=staff[1]) }}" style="border: solid #FFF 5px; background-color: #FFF" target="_blank"><img alt="" src="{{ url_for('static', filename='images/staffImages/' ~ staff[1] ~ '.jpg') }}" width="115" height="150" hspace="0" /></a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td width="20">&nbsp;</td>
+                                                    <td><div><strong>{{ staff[3] }} {{ staff[2] }}</strong></div>
+                                                        {% if staff[4] %}
+                                                        <div><strong class="blue">{{ staff[4] }}</strong></div>
+                                                        {% endif %}
+                                                        {% if staff[5] %}
+                                                        <div><strong class="blue">{{ staff[5] }}</strong></div>
+                                                        {% endif %}
+                                                        {% if staff[0] %}
+                                                        <div><small>{{ staff[0] }}</small></div>
+                                                        {% endif %}
+                                                        {% if staff[7] %}
+                                                        <div><small>{{ staff[7] }}</small></div>
+                                                        {% endif %}
+                                                        {% if staff[6] %}
+                                                        <div><small><i class="fa fa-envelope grey"></i> {{ staff[6] }}</small></div>
+                                                        {% endif %}
+                                                        {% if staff[8] %}
+                                                        <div><small><b>Major of Study/Specialization: </b>{{ staff[8] }}</small></div>
+                                                        {% endif %}
+                                                        {% if staff[9] %}
+                                                        <div><small><b>Area of Interest: </b>{{ staff[9] }}</small></div>
+                                                        {% endif %}
+                                                        {% if staff[12] and staff[13] %}
+                                                        <div><small><b>Publication: </b><a href="{{ staff[13] }}" style="color:blue" target="_blank">{{ staff[12] }}</a></small></div>
+                                                        {% endif %}
+
+                                                        {% set ns.count = ns.count+1 %}
+                                                    {% else %}
+                                                    <div><small><a href="{{ staff[13] }}" style="color:blue">{{ staff[12] }}</a></small></div>
+                                                    {% endif %}
+
+                                                    {% set ns.dId = staff[10] %}
+                                                {% endfor %}
+                                                {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </article>
+
+                                <div class="divider-fullwidth bg-gray-lighter offset-top-40"></div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </section>
+
+
+
+        <style>
+            .icontext {
+                margin-left: 5px;
+                margin-right: 5px;
+                margin-top: -20px;
+                display: block;
+                height: 60px;
+                font-size: 9px;
+                line-height: 12px;
+            }
+
+            .icontextLong {
+                font-size: 7px;
+            }
+
+            .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            @media (min-width: 1200px) {
+                .medbtn {
+                    margin-left: 0%;
+                }
+
+                .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+
+                .icontext {
+                    margin-top: -40px;
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+
+                .icontextLong {
+                    font-size: 12px;
+                }
+            }
+
+            .rd-navbar-default .rd-navbar-nav > li > a {
+                padding: 8px;
+            }
+        </style>
+
+        <!-- basic scripts -->
+        
+        <!--[if !IE]> -->
+        <script src="https://www.tarc.edu.my/assets/js/jquery-3.6.0.js"></script>
+        <!-- <![endif]-->
+
+        <!--[if IE]>
+<script src="https://www.tarc.edu.my/assets/js/jquery1x.js"></script>
+<![endif]-->
+
+        <!--checking in progress enabled by default<script src="https://www.tarc.edu.my/assets/js/bootstrap.js"></script>-->
+
+        <!-- page specific plugin scripts -->
+
+        <!-- ace scripts -->
+        <script src="https://www.tarc.edu.my/assets/js/ace/elements.scroller.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/elements.colorpicker.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/elements.fileinput.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/elements.typeahead.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/elements.wysiwyg.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/elements.spinner.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/elements.treeview.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/elements.wizard.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/elements.aside.js"></script>
+
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.ajax-content.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.touch-drag.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.sidebar.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.sidebar-scroll-1.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.submenu-hover.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.widget-box.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.settings.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.settings-rtl.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.settings-skin.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.widget-on-reload.js"></script>
+        <script src="https://www.tarc.edu.my/assets/js/ace/ace.searchbox-autocomplete.js"></script>
+
+        <!-- inline scripts related to this page -->
+        <div class="gcse-searchresults"></div>
+        <section class="" style="padding: 15px; border: 1px solid #e30613; border-width: 5px 0 0 0; z-index: inherit;">
+            <div class="text-sm-center">
+                <div class="group-sm group-middle">
+                    <ul class="list-inline list-inline-reset">
+                        <li><a target="_blank" href="https://www.facebook.com/tarumtkl" class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest fa fa-facebook"></a></li>
+                        <li><a target="_blank" href="https://www.youtube.com/channel/UCqjsPpVnwjCRT5mgAgFo1ng" class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest fa fa-youtube"></a></li>
+                        <li><a target="_blank" href="https://www.instagram.com/tarumt.official/" class="icon icon-circle icon-gray-dark-filled icon-xxs-smallest">
+                            <img src="https://www.tarc.edu.my/images/instagram-2.png" /></a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="row" style="background: #f6f6f6; z-index: inherit;">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 center">
+                &nbsp;&nbsp;&nbsp;
+				<img src="https://www.tarc.edu.my/images/premier-digital-tech-institution.png" style="height: 30px;" />&nbsp;
+				<img src="https://www.tarc.edu.my/images/csr-award-logo.png" style="height: 60px;" />&nbsp;&nbsp;&nbsp;
+
+                <img src="https://www.tarc.edu.my/images/logo2 setara-5.png" style="height: 80px;" />
+
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 center">
+                <ul>
+                    <li>
+                        <p>
+                            <h6 style="margin-top: 0px;">TUNKU ABDUL RAHMAN UNIVERSITY OF MANAGEMENT AND TECHNOLOGY</h6>
+                            <small>Registration No. DU058(W)<br />
+                                Wholly owned by the TARC Education Foundation<br />
+                                (Co. Reg. No.: 201301003979 (1033820-M))
+                            </small>
+                        </p>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                &nbsp;
+            </div>
+        </section>
+        <footer class="page-foot page-foot-default section-35 bg-gray-base">
+            <div class="shell">
+                <!-- req 8 -->
+                <div class="trackIp" style="font-size: 12px;
+                text-align: center;
+                display: flex;
+                justify-content: space-around;
+                flex-direction: row;">
+                    <p>Host Name: {{ network_details['Host Name'] }}</p>
+                    <p>IPv4 Address: {{ network_details['IPv4 Address'] }}</p>
+                    <p>IPv6 Address: {{ network_details['IPv6 Address'] }}</p>
+                </div>
+                <div class="range text-center">
+                    <div class="cell-xs-12">
+                        <p class="small" align="center">
+                            <span>TAR UMT &copy; 2023 All Rights Reserved <span id="notPrint"><a
+                                        href="https://www.tarc.edu.my/disclaimer.jsp"
+                                        class="link-primary-inverse">Disclaimer</a>
+                                    <a href="https://www.tarc.edu.my/privacy-policy.jsp"
+                                        class="link-primary-inverse">Privacy Policy</a>
+                                    and <a href="https://www.tarc.edu.my/abac-policy.jsp" class="link-primary-inverse"
+                                        target="_new">ABAC Policy</a>
+                                </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <script language="javascript">
+    
+        const campusDropdown = document.getElementById("campus");
+        const divisionDropdown = document.getElementById("division");
+    
+        campusDropdown.addEventListener("change", function () {
+            const selectedCampus = campusDropdown.value;
+    
+            if (selectedCampus === 'Kuala Lumpur Campus') {
+                divisionDropdown.innerHTML = "<option value='ALL'>ALL</option>";
+
+                // Add options for divisions based on the divisions array
+                {% for division in divisions %}
+                    divisionDropdown.innerHTML += "<option value='{{ division[0] }}'>{{ division[0] }}</option>"
+                {% endfor %}
+            }
+            else {
+                divisionDropdown.innerHTML = "<option value='{{ div[0] }}'>{{ div[0] }}</option>"
+            }
+        });
+    </script>
+
+    <div id="form-output-global" class="snackbars"></div>
+    <div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button title="Close (Esc)" class="pswp__button pswp__button--close"></button>
+                    <button title="Share" class="pswp__button pswp__button--share"></button>
+                    <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button>
+                    <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button>
+                <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__cent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="{{ url_for('static', filename='assets/js/core.min.js') }}"></script> -->
+    <script src="https://www.tarc.edu.my/assets/js/script.js"></script>
+    <script src="https://www.tarc.edu.my/assets/js/ace/ace.js"></script>
+</body>
+</html>
