@@ -819,6 +819,7 @@ def contact_us():
     # # Pass the network_details and msg to the contactUs.html template
     # return render_template("contactUs.html", network_details=network_details, id=session.get('loggedInStudent'), student_name=student_name)
     print(id)
+    print(student_name)
 
 @app.route("/trackContactUs")
 def trackContactUs():
