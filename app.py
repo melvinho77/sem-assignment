@@ -809,12 +809,16 @@ def contact_us():
         student = cursor.fetchone()
         db_conn.commit()
 
+        # Access student ID and name from the 'student' tuple
+        student_id = student[0]
+        student_name = student[1]
+
     except Exception as e:
         db_conn.rollback()
         return str(e)
     
     # Pass the network_details and msg to the contactUs.html template
-    return render_template("contactUs.html", network_details=network_details, student=student)
+    return render_template("contactUs.html", network_details=network_details, student_id=student_id, student_name=student_name)
 
 @app.route("/trackContactUs")
 def trackContactUs():
