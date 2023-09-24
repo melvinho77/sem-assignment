@@ -384,15 +384,20 @@
         </div>
         <div class="left-content">
             <div class="left-home">
-                <a href="#"><i class="menu-icon fa fa-home" style="font-size: 25px;"></i><span
+                <a href="{{ url_for('applicationHomeContent') }}"><i class="menu-icon fa fa-home" style="font-size: 25px;"></i><span
                         class="leftlbl">Home</span></a>
             </div>
             <div class="left-home">
-                <a href="#"><i class="fa fa-user" style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
+                <a href="{{ url_for('loadStudProfile') }}"><i class="fa fa-user" style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
                         class="leftlbl">Profile</span></a>
             </div>
             <div class="left-home">
-                <a href="#"><i class="fas fa-sign-out-alt" style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
+                <a href="{{ url_for('contactUs') }}" target="_blank"><i class="fa fa-phone" style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
+                        class="leftlbl">Contact Us</span></a>
+            </div>
+            <div class="left-home">
+                <a href="/studentLogout"><i class="fas fa-sign-out-alt"
+                        style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
                         class="leftlbl">Logout</span></a>
             </div>
         </div>

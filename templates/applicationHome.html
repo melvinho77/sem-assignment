@@ -450,10 +450,6 @@
         <div class="container-profile" style="display: flex;
         justify-content: center;
         align-items: center; margin-right: 10px;">
-            <div class="welcome-container">
-
-
-            </div>
         </div>
     </div>
 
@@ -476,7 +472,7 @@
                         class="leftlbl">Contact Us</span></a>
             </div>
             <div class="left-home">
-                <a href="{{ url_for('contactUs') }}"><i class="fas fa-sign-out-alt"
+                <a href="/studentLogout"><i class="fas fa-sign-out-alt"
                         style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
                         class="leftlbl">Logout</span></a>
             </div>
@@ -516,7 +512,7 @@
                         {% elif application.application_choice == 2 %}
                         <small>(2<sup>nd</sup> Choice)</small>- {{ application.application_programme }}
                         {% elif application.application_choice == 3 %}
-                        <small>(2<sup>rd</sup> Choice)</small>- {{ application.application_programme }}
+                        <small>(3<sup>rd</sup> Choice)</small>- {{ application.application_programme }}
                         {% endif %}
                     </td>
                     <td>{{application.application_status}}</td>
