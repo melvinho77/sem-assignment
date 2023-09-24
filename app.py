@@ -801,7 +801,7 @@ def contact_us():
     # Retrieve student Id
     id = session.get('loggedInStudent')
     network_details = get_network_details()
-    select_sql = "SELECT * FROM students WHERE studentID  = %d"
+    select_sql = "SELECT * FROM students WHERE studentID  = %s"
     cursor = db_conn.cursor()
 
     try:
