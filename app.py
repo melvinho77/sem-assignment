@@ -754,7 +754,7 @@ def findNotElectiveExists(programmeId, progName):
 @app.route('/loadStudProfile')
 def loadStudProfile():
     network_details = get_network_details()
-    studID = 2  # modify
+    studID = session['loggedInStudent']
     select_sql = f"SELECT * FROM students WHERE studentID = '{studID}'"
 
     cursor = db_conn.cursor()
@@ -992,7 +992,7 @@ def verifyApplication():
 
     cursor = db_conn.cursor()
     apply_student_id = session.get('loggedInStudent')
-
+    
     qualification = request.form.get('qualification-diploma', '')
     year = request.form.get('qualification-diploma-year', '')
     subject1 = request.form.get('spm-subject-1', '')
@@ -1010,7 +1010,7 @@ def verifyApplication():
         request.form.get(f'spm-grades-{i}', '') for i in range(1, 11)
     ]
 
-    pytesseract.pytesseract.tesseract_cmd = '"C:\\Program Files\\Tesseract-OCR\\tesseract.exe"'
+    #pytesseract.pytesseract.tesseract_cmd = '"C:\\Program Files\\Tesseract-OCR\\tesseract.exe"'
 
     select_sql = "select studentIc from students where studentId = %s"
     cursor.execute(select_sql, (apply_student_id))
@@ -1053,7 +1053,7 @@ def verifyApplication():
         # Check if the line contains at least 3 words (subject and grade)
         if words:
             if 'K/P' in words:
-                if ic in words:
+                if ic[0] in words:
                     print(f"The ic matched {words}.")
                     checkIc = True
                 else:
