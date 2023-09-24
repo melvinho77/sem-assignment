@@ -152,7 +152,7 @@ def get_network_details():
 
 # N10
 app.route('/contactUs')
-def contact_us():
+def contactUs():
     # Call the get_network_details function to retrieve network details
     # Retrieve student Id
     apply_student_id = session.get('loggedInStudent')
