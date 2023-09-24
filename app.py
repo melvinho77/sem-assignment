@@ -138,13 +138,18 @@ def get_network_details():
         return {'Error': str(e)}
 
 # N10
-@app.route('/contactUs')
+app.route("/contactUs")
 def contact_us():
     # Call the get_network_details function to retrieve network details
+    # Retrieve student Id
+    apply_student_id = session.get('loggedInStudent')
+
+    # Get the student's name based on their student ID
+    student_name = get_student_name(apply_student_id)
     network_details = get_network_details()
     
-    # Pass the network_details to the contactUs.html template
-    return render_template('contactUs.html', network_details=network_details)
+    # # Pass the network_details and msg to the contactUs.html template
+    return render_template("contactUs.html", network_details=network_details, apply_student_id=apply_student_id, student_name=student_name)
 
 @app.route('/redirectProgrammeHome')
 def redirectProgrammeHome():
@@ -1307,15 +1312,11 @@ def crop_image(img):
 
     return crop
 
-
-
-
 # Ho hong meng
 @app.route("/trackContactUs")
 def trackContactUs():
     # Change to session data
-    student = '2'
-    session['loggedInStudent'] = '2'
+    id = session.get('loggedInStudent')
     network_details = get_network_details()
 
     # Retrieve all contact data based on this student
@@ -1323,7 +1324,7 @@ def trackContactUs():
     cursor = db_conn.cursor()
 
     try:
-        cursor.execute(select_sql, (student))
+        cursor.execute(select_sql, (id,))
         contact_data = cursor.fetchall()
         db_conn.commit()
 
@@ -1337,7 +1338,7 @@ def trackContactUs():
 @app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
     # After log in, then only can ask question
-    student_id = request.form.get('student_id')
+    student_id = request.form.get('apply_student_id')
     student_name = request.form.get('student_name')
     category = request.form.get('category')
     inquiries = request.form.get('inquiries')
@@ -1369,19 +1370,10 @@ def adminLogin():
 
 @app.route('/adminContactUs', methods=['POST', 'GET'])
 def adminContactUs():
-    # Handle the form submission with email and password
-    email = request.form.get('email')
-    password = request.form.get('password')
-
-    if email == 'hhm@gmail.com' and password == '123':
-        session['name'] = 'Ho Hong Meng'
-        session['loggedIn'] = 'hhm'
-
-    elif email == 'css@gmail.com' and password == '456':
-        session['name'] = 'Cheong Soo Siew'
-        session['loggedIn'] = 'css'
-
     network_details = get_network_details()
+    # Handle the form submission with email and password
+    email = request.form['email']
+    password = request.form['password']
 
     try:
         cursor = db_conn.cursor()
@@ -1393,24 +1385,20 @@ def adminContactUs():
         db_conn.rollback()
         return str(e)
 
-    if request.method == 'POST':
+    if email == 'hhm@gmail.com' and password == '123':
+        session['name'] = 'Ho Hong Meng'
+        session['loggedIn'] = 'hhm'
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
-        if email == 'hhm@gmail.com' and password == '123':
-            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+    elif email == 'css@gmail.com' and password == '456':
+        session['name'] = 'Cheong Soo Siew'
+        session['loggedIn'] = 'css'
+        return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
 
-        elif email == 'css@gmail.com' and password == '456':
-            return render_template('adminContactUs.html', name=session['name'], contact_details=contactDetails, network_details=network_details)
+    else:
+        error_msg = 'Invalid email or password. Please try again.'
+        return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
 
-        else:
-            error_msg = 'Invalid email or password. Please try again.'
-            return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
-
-    return render_template(
-        'adminContactUs.html',
-        name=session['name'],
-        contact_details=contactDetails,
-        network_details=network_details
-    )
 
 @app.route('/adminRedirect', methods=['POST', 'GET'])
 def adminRedirect():
@@ -1442,6 +1430,7 @@ def adminRedirect():
         error_msg = 'You are not logged in. Please log in to access this page.'
         return render_template('adminLogin.html', msg=error_msg, network_details=network_details)
 
+
 @app.route('/replyQuestion', methods=['POST', 'GET'])
 def replyQuestion():
     contactId = request.form.get('contactId')
@@ -1465,14 +1454,16 @@ def replyQuestion():
         email = session['email']
         if email == 'hhm@gmail.com' and name == 'Ho Hong Meng':
             session['loggedIn'] = 'hhm'
+            session['name'] = 'Ho Hong Meng'
         elif email == 'css@gmail.com' and name == 'Cheong Soo Siew':
             session['loggedIn'] = 'css'
+            session['name'] = 'Cheong Soo Siew'
 
     # Flash a success message
     flash('Question submitted successfully', 'success')
 
     # Redirect back to the contactUs page
-    return redirect('/adminContactUs')
+    return redirect('/adminRedirect')
 
 
 @app.route('/applyFilter', methods=['POST', 'GET'])
@@ -1515,6 +1506,7 @@ def applyFilter():
         db_conn.rollback()
         return str(e)
 
+
 @app.route('/studentApplyFilter', methods=['POST', 'GET'])
 def studentApplyFilter():
     # Extract filter criteria from the form
@@ -1544,6 +1536,7 @@ def studentApplyFilter():
     except Exception as e:
         db_conn.rollback()
         return str(e)
+
 
 @app.route('/logout')
 def admin_logout():
