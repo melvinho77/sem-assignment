@@ -37,10 +37,48 @@ table = 'employee'
 def home_page():
     return render_template('home.html')
 
+# @app.route('/')
+# def index():
+#     network_details = get_network_details()
+#     return render_template('home.html', number=1, network_details=network_details)
+
 @app.route('/')
-def index():
+def loadStudProfile():
     network_details = get_network_details()
-    return render_template('home.html', number=1, network_details=network_details)
+    studID = 2
+    select_sql = f"SELECT * FROM students WHERE studentID = '{studID}'"
+
+    cursor = db_conn.cursor()
+    try:
+        cursor.execute(select_sql)
+        studInfo = cursor.fetchall() 
+        stud_list = []
+        for studData in studInfo:
+            
+            stud_data = {
+                "studName" : studData[1],
+                "studIC" : studData[2],
+                "studEmail" : studData[3],
+                "studPhone" : studData[4],
+                "studBdate" : studData[5],
+                "studGender" : studData[6],
+                "studAddress" : studData[7],
+                "studPassword" : studData[8],
+                }           
+            stud_list.append(stud_data)  
+            print(stud_list)
+    except Exception as e:
+            return str(e)
+
+    return render_template('applicationProfile.html', network_details=network_details, stud_data = stud_data)
+
+# @app.route('/updateStudProfile')
+# def updateStudProfile():
+#     network_details = get_network_details()
+    
+#     return redirect(url_for('/', msg="Password updated successfully"))
+
+
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
