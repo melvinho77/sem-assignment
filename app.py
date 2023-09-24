@@ -1019,6 +1019,7 @@ def verifyApplication():
     student_grades = {
         request.form.get(f'spm-subject-{i}'): request.form.get(f'spm-grades-{i}', '')
         for i in range(1, 11)
+        if request.form.get(f'spm-subject-{i}')
     }
 
     # 'spm-file' is the name of the file input field in the form
