@@ -1,156 +1,116 @@
-nav {
+/* Style for the input field */
+input[type="text"] {
+    /* Your regular text color */
+    color: black;
+    width: 400px;
+    border: 0.2px solid rgb(255, 183, 0);
+}
+
+/* Style for the placeholder text */
+input[type="text"]::placeholder {
+    /* Your desired placeholder text color (in this case, grey) */
+    color: rgb(202, 202, 202);
+    text-align: center;
+}
+
+/* Style for the input field and icon container */
+.input-container {
     display: flex;
-    top: 0;
-    right: 0;
-    background-color: #1f1f1f;
-    padding: 15px;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 }
 
-.homeNav{
-    margin-left: -10px;
+/* Style for the search icon */
+.iconify {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    color: rgb(255, 255, 255);
+    margin: 6px 9px 6px 9px;
+
+    /* Adjust the margin as needed to control spacing */
 }
 
-.otherNav{
-    margin-right: 10px;
-}
-
-nav a {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    text-decoration: none;
-    color: #b9b9b9;
-    font-size: 16px;
-    margin-left: 20px; /* Add margin to space out the links */
-    transition: color 0.3s; /* Smooth color transition on hover */
-}
-
-nav a:hover {
-    color: #ff6600; /* Change the color on hover */
-}
-
-body{
-    margin: 0px;
-}
-
-.h2, h2 {
-    font-size: 30px;
-}
-.h1, .h2, .h3, h1, h2, h3 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.1;
-    color: inherit;
-}
-
-.row {
+.iconForSearch {
+    border: 1px solid rgb(255, 183, 0);
+    background-color: rgb(255, 149, 0);
     display: flex;
-}
-.row {
-    margin-right: -15px;
-    margin-left: -15px;
-}
-
-.container .jumbotron, .container-fluid .jumbotron {
-    padding-right: 60px;
-    padding-left: 60px;
-}
-.container .jumbotron, .container-fluid .jumbotron {
-    /* padding-right: 15px;
-    padding-left: 15px; */
-    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0px;
+    border-radius: 0px;
 }
 
-.jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px;
-}
-.jumbotron {
-    margin-left: 200px;
-    margin-right: 200px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-    color: inherit;
-    background-color: #eee;
+.iconForSearch:hover{
+    transition: 0.3s;
+    background-color: rgb(255, 182, 79);
 }
 
-.content{
+.masterIconForSearch{
+    border: 1px solid rgb(104, 152, 255);
+    background-color: rgb(38, 32, 191);
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0px;
+    border-radius: 0px;
 }
 
-.logoCol{
-    width: 50px;
-    margin: 10px;
+.masterIconForSearch:hover{
+    transition: 0.3s;
+    background-color: rgb(81, 119, 255);
 }
 
-.col {
-    margin-left: 150px;
-    float: right;
-    flex: 1;
-    padding: 10px;
+.tabs-custom.tabs-corporate .nav-tabs li a:after {
+    font-size: 25px;
 }
 
-
-
-.footerRow{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 21px;
-    font-weight: 300;
-    line-height: 1.4;
-    margin-left: 190px;
-    margin-right: 190px;
-}
-
-footer{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.4;
-    margin-left: 190px;
-    margin-right: 190px;
-}
-
-.jumbotron p, h3{
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    color: rgb(51,51,51);
-    font-size: 23px;
-    font-family: Arial;
-}
-
-.dropdown {
+.tabs-custom.tabs-corporate .nav-tabs li a:after {
+    font: 400 17px 'Material Design Icons', Arial, sans-serif;;
+    color: transparent;
     position: relative;
+    top: -12px;
     display: inline-block;
+    margin-left: 5px;
+    content: '\f236';
+    vertical-align: middle;
+    transition: .33s all ease;
 }
 
-/* Style for the dropdown button */
-.dropdown-button {
-    padding: 10px;
+.tabs-custom.tabs-corporate .nav-tabs li a:hover:after, .tabs-custom.tabs-corporate .nav-tabs li.active a:after {
+    top: -1px;
+    color: #c4872b;
+    background: url('https://api.iconify.design/ri/arrow-drop-down-line.svg') no-repeat center center / contain;
+    content: url('https://api.iconify.design/ri/arrow-drop-down-line.svg');
+}
+
+.tabs-custom.tabs-corporate .nav-tabs li a:after {
+    font-size: 25px;
+}
+
+
+
+/* Style for the chatbot icon button */
+.chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50%;
     cursor: pointer;
 }
 
-/* Style for the dropdown content (hidden by default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
+/* Style for the chat window (initially hidden) */
+.chatbot-window {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
     background-color: #fff;
-    min-width: 120px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-/* Style for the dropdown options */
-.dropdown-content a {
-    color: #333;
-    padding: 12px 16px;
-    padding-left: 0px;
-    text-decoration: none;
-    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
 }

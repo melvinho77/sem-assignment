@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en" class="wide wow-animation">
 
 <head>
@@ -17,21 +16,45 @@
 
     <link rel="icon" href="https://www.tarc.edu.my/images/tarIco.ico" type="image/x-icon">
 
-    <!-- NEW ADDED by ss-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}" />
+    <!-- bootstrap & fontawesome -->
+
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/colorbox.css">
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/bootstrap.css" />
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/font-awesome.css" />
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}" />
+
     <!-- text fonts -->
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/ace-fonts.css" />
+
+
 
     <!-- ace styles -->
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/ace.css" class="ace-main-stylesheet"
         id="main-ace-style" />
 
+    <!--[if lte IE 9]>
+			<link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/ace-part2.css" class="ace-main-stylesheet" />
+		<![endif]-->
+
+    <!--[if lte IE 9]>
+		  <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/ace-ie.css" />
+		<![endif]-->
+
+    <!-- inline styles related to this page -->
+
     <!-- ace settings handler -->
     <script src="https://www.tarc.edu.my/assets/js/ace-extra.js"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+			<script src="https://www.tarc.edu.my/assets/js/html5shiv.js"></script>
+			<script src="https://www.tarc.edu.my/assets/js/respond.js"></script>
+		<![endif]-->
+
 
     <link rel="stylesheet" type="text/css"
         href="//fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,400italic,700,900%7CPlayfair+Display:700italic,900">
@@ -39,16 +62,22 @@
 
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/print.css" />
 
-    <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/gold-orange.css?d=2023/08/25 23:11:30">
+
+    <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/gold-orange.css?d=2023/09/21 02:20:52">
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/custom.css" />
+
+    <!--[if lt IE 10]>
+    		<div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    		<script src="https://www.tarc.edu.my/assets/js/html5shiv.min.js"></script>
+		<![endif]-->
 
     <style>
         .float {
             position: fixed;
-            width: 55px;
-            height: 55px;
-            bottom: 120px;
-            right: 38px;
+            width: 60px;
+            height: 60px;
+            bottom: 100px;
+            right: 20px;
             background-color: #25d366;
             color: #FFF;
             border-radius: 50px;
@@ -62,15 +91,107 @@
             margin-top: 16px;
             color: #FFFFFF;
         }
+        table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    th {
+        background: #F5F5F5;
+        display: none;
+    }
+
+    td,
+    th {
+        height: 53px
+    }
+
+    td,
+    th {
+        border: 1px solid #DDD;
+        padding: 10px;
+        empty-cells: show;
+    }
+
+    td,
+    th {
+        text-align: left;
+    }
+
+    td+td,
+    th+th {
+        text-align: center;
+        display: none;
+    }
+
+    td.default {
+        display: table-cell;
+    }
+
+    .bg-purple {
+        border-top: 3px solid #A32362;
+    }
+
+    .bg-blue {
+        border-top: 3px solid #0097CF;
+    }
+
+    .sep {
+        background: #F5F5F5;
+        font-weight: bold;
+    }
+
+    .txt-l {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .txt-top {
+        position: relative;
+        top: -9px;
+        left: -2px;
+    }
+
+    .tick {
+        font-size: 18px;
+        color: #2CA01C;
+    }
+
+    .hide {
+        border: 0;
+        background: none;
+    }
+
+    @media (min-width: 640px) {
+        
+
+        td,
+        th {
+            display: table-cell !important;
+        }
+
+        td,
+        th {
+            width: 330px;
+
+        }
+
+        td+td,
+        th+th {
+            width: auto;
+        }
+    }
+        
     </style>
 </head>
 
-<body>
+<body style="">
     <div class="page">
 
         <header class="page-head">
             <style>
-                #tarclogo {
+               #tarclogo {
                     width: 82px;
                     margin-bottom: 0px;
                 }
@@ -111,12 +232,10 @@
                     justify-content: flex-start;
                     align-items: flex-end;
                     padding: 0px 30px;">
-                        <!-- ../home.html -->
                         <div class="rd-navbar-panel">
                             <button data-custom-toggle=".rd-navbar-nav-wrap" data-custom-toggle-disable-on-blur="true"
                                 class="rd-navbar-toggle"><span></span></button>
-                            <a href="{{ url_for('home_page', filename='home') }}" class="rd-navbar-brand brand"><span
-                                    style="float:left;">
+                            <a href="{{ url_for('home_page', filename='../home.html') }}" class="rd-navbar-brand brand"><span style="float:left;">
                                     <img src="https://www.tarc.edu.my/images/tarumt-logo1.png" alt="logo"
                                         id="tarclogo" /></span>
                             </a>
@@ -197,17 +316,11 @@
                                                         Expert Advisory Panel (IEAP) -Postgraduates Programmes</a></li>
                                             </ul>
                                         </li>
-                                        <!-- <li class=""><a
+                                        <li class=""><a
                                                 href="https://www.tarc.edu.my/staffDirectory.jsp?fdept=FOCS&fbrncd=KL&fdivcd="
                                                 target="_blank" class="ja"> <span class="fa-stack fa-lg"> <i
                                                         class="fa fa-circle fa-stack-2x gold-orange"></i> <i
                                                         class="fa fa-users fa-stack-1x fa-inverse"></i> </span> Our
-                                                Team</a></li> -->
-                                        <li class=""><a
-                                                href="{{ url_for('staffDirectory', division='ALL', campus='Kuala Lumpur Campus') }}"
-                                                target="_blank" class="ja"><span class="fa-stack fa-lg"><i
-                                                        class="fa fa-circle fa-stack-2x gold-orange"></i><i
-                                                        class="fa fa-users fa-stack-1x fa-inverse"></i></span>Our
                                                 Team</a></li>
                                     </ul>
                                     <div class="midSide">
@@ -217,7 +330,8 @@
                                             target="_blank">Why Choose Us</a>
                                         <hr>
                                         <!--<i class="fa https://www.tarc.edu.my/files/focs/9D61CBF3-963F-431F-9408-BD702F58EAD9.png"></i>-->
-                                        <a href="{{ url_for('redirectProgrammeHome') }}" target="_self">Programmes</a>
+                                        <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=A714E192-1AFC-4032-83A2-4FC74F965841&fmenuid=CF0E0432-EB23-45D2-A8AC-0B4AD06AAD34"
+                                            target="_self">Programmes</a>
                                         <hr>
                                         <!--<i class="fa https://www.tarc.edu.my/files/focs/0760A92C-042C-48C0-BD41-CC3C4114D34B.png"></i>-->
                                         <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=A66D390D-8C3E-4399-9751-E5B225DBFA82&fmenuid=43BF3FAA-5744-4E6E-953A-3EC6FD323749"
@@ -266,7 +380,6 @@
                     <!-- END rd-navbar-inner -->
                 </nav>
             </div>
-            <!-- END rd-navbar-wrap -->
             <script type="text/javascript" src="https://www.tarc.edu.my/assets/js/gs.js"></script>
             <script>
                 setTimeout("resizeMenuText()", 1000);
@@ -295,393 +408,210 @@
                         }
                     }
                 }
+
+
+
             </script>
+
             <script src='https://www.google.com/recaptcha/api.js'></script>
         </header>
 
         <a href="https://api.whatsapp.com/send?phone=601110758554" class="float" target="_blank">
             <i class="fa fa-whatsapp my-float"></i>
         </a>
-        <a href="/adminLogin" class="admin-float" target="_blank" style="position: fixed;
-            width: 50px;
-    height: 50px;
-    bottom: 120px;
-        left: 30px;
-        background-color: #25d366;
-        color: #FFF;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 30px;
-        box-shadow: 2px 2px 3px #999;
-        z-index: 100;">
-            <i class="fa fa-user" aria-hidden="true"></i>
-        </a>
-
-        <a href="/login_application" class="admin-float" target="_blank" style="position: fixed;
-        width: 50px;
-    height: 50px;
-    bottom: 50px;
-    left: 30px;
-        background-color: #25d366;
-        color: #FFF;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 30px;
-        box-shadow: 2px 2px 3px #999;
-        z-index: 100;">
-            <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        </a>
-
-        <section>
-            <div data-loop="false" data-autoplay="7000" data-simulate-touch="true"
-                class="swiper-container swiper-slider swiper-variant-1 bg-gray-base" style="background:transparent;">
-                <div class="swiper-wrapper text-center">
 
 
 
-                    <div data-slide-bg="https://www.tarc.edu.my/files/focs/37E888E7-0177-4026-9409-EF416E3827AB.png"
-                        class="swiper-slide">
-                        <div class="swiper-slide-caption">
 
-                            <div class="shell">
-                                <div class="range range-sm-center">
-                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
-                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
-                                            class="slider-header">Welcome to Faculty of Computing and Information
-                                            Technology (FOCS)</h3>
-                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
-                                            class="slider-text-animate" style="color:#FFF;">Select MORE INFO to watch
-                                            Faculty Video</span>
-                                        <br>
 
-                                        <span
-                                            class="group-xl-responsive offset-top-30 offset-sm-top-45"><!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
-                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
-                                                onclick="window.open('https://youtu.be/VbLIvaqQwpY','_blank');"
-                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
-                                                Info</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div id="notPrint">
+            <section
+                style="background-image: url(https://www.tarc.edu.my/files/focs/A766A2E0-5D5F-436F-BCA7-F748EE1DAAE4.jpg);"
+                class="section-30 section-sm-40 section-md-66 section-lg-bottom-90 bg-gray-dark page-title-wrap">
+                <div class="shell">
+                    <div class="page-title">
+                        <h4>Programmes</h4>
                     </div>
-
-                    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-                    <div data-slide-bg="https://www.tarc.edu.my/files/focs/41521178-95BA-49DD-B191-F2C15418B3FC.jpg"
-                        class="swiper-slide">
-                        <div class="swiper-slide-caption">
-
-                            <div class="shell">
-                                <div class="range range-sm-center">
-                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
-                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
-                                            class="slider-header">TAR UMT officially Launches Centre Of Excellence For
-                                            BDA & AI</h3>
-                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
-                                            class="slider-text-animate" style="color:#FFF;">Riding the digital wave that
-                                            is sweeping every sector and industry in the age of Industry 4.0, TAR UMT is
-                                            forging ahead with the establishment of the Centre of Excellence for Big
-                                            Data Analytics and Artificial Intelligence (CoE) as well as Hero Esports
-                                            Arena on 12 January 2022</span>
-                                        <br>
-
-                                        <span
-                                            class="group-xl-responsive offset-top-30 offset-sm-top-45"><!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
-                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
-                                                onclick="window.open('https://www.tarc.edu.my/focs/news.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=ECF20A18-1334-4E97-87EE-27C0ED671DA8&news_id=FB7E6324-7CF0-4BE9-90BA-6F430E0C5404','_blank');"
-                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
-                                                Info</a>
-                                        </span>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div data-slide-bg="https://www.tarc.edu.my/files/focs/2785EC98-6F23-4C4E-A109-6123227EDB97.jpg"
-                        class="swiper-slide">
-                        <div class="swiper-slide-caption">
-
-                            <div class="shell">
-                                <div class="range range-sm-center">
-                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
-                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
-                                            class="slider-header">TAR UMT Students Bag WorldSkills Top Prizes in Cloud
-                                            Computing, Cyber Security and Mobile App Dev</h3>
-                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
-                                            class="slider-text-animate" style="color:#FFF;">Displaying the highest level
-                                            of skill proficiency in their respective fields, TAR UMT students managed to
-                                            claim top prizes at the WorldSkills Asia Online Friendly Games and Malaysia
-                                            Belia 2021 competitions</span>
-                                        <br>
-
-                                        <span
-                                            class="group-xl-responsive offset-top-30 offset-sm-top-45"><!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
-                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
-                                                onclick="window.open('https://www.tarc.edu.my/focs/news.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=6425D81D-D6EC-4154-89E0-EB8F755EF868&news_id=B246ECA8-EBCE-4147-850B-ED6B9F8D3A84','_blank');"
-                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
-                                                Info</a>
-                                        </span>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div data-slide-bg="https://www.tarc.edu.my/files/focs/6F89CD43-ADDD-46C6-B75D-3D135FF4605E.jpg"
-                        class="swiper-slide">
-                        <div class="swiper-slide-caption">
-
-                            <div class="shell">
-                                <div class="range range-sm-center">
-                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
-                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
-                                            class="slider-header">Advantech AIoT Developer InnoWorks Programme 2021</h3>
-                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
-                                            class="slider-text-animate" style="color:#FFF;">FOCS students were given the
-                                            Best Team Award for their innovative proposals on "Mask Detection, Area
-                                            Security, Social Distancing" and "Multi-Storey Robot Delivery System"</span>
-                                        <br>
-
-                                        <span
-                                            class="group-xl-responsive offset-top-30 offset-sm-top-45"><!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
-                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
-                                                onclick="window.open('https://www.tarc.edu.my/news.jsp?cat_id=56EBCDAD-D3D4-4D3B-8AC4-44CAF115AE1E&fmenuid=63470210-0077-4156-8326-47DE252878A7&news_id=28A833FE-4DDB-4EA9-A0EE-ECF72AEFEA3E','_blank');"
-                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
-                                                Info</a>
-                                        </span>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div data-slide-bg="https://www.tarc.edu.my/files/focs/FE84E0BA-D6F5-49F8-B235-0D602D3CDDF2.jpg"
-                        class="swiper-slide">
-                        <div class="swiper-slide-caption">
-
-                            <div class="shell">
-                                <div class="range range-sm-center">
-                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
-                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
-                                            class="slider-header">Grooming Future Cyber Security Experts</h3>
-                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
-                                            class="slider-text-animate" style="color:#FFF;"></span>
-                                        <br>
-
-                                        <span
-                                            class="group-xl-responsive offset-top-30 offset-sm-top-45"><!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
-                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
-                                                onclick="window.open('https://www.tarc.edu.my/focs/news.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=ECF20A18-1334-4E97-87EE-27C0ED671DA8&news_id=9DBF7D64-E922-4BC2-8348-2B61BC56CB69','_blank');"
-                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
-                                                Info</a>
-                                        </span>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div data-slide-bg="https://www.tarc.edu.my/files/focs/C385E5B1-6F90-421C-A7A3-2109A23C80A2.jpg"
-                        class="swiper-slide">
-                        <div class="swiper-slide-caption">
-
-                            <div class="shell">
-                                <div class="range range-sm-center">
-                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
-                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
-                                            class="slider-header">Next-gen Cyberspace Guardian</h3>
-                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
-                                            class="slider-text-animate" style="color:#FFF;"></span>
-                                        <br>
-
-                                        <span
-                                            class="group-xl-responsive offset-top-30 offset-sm-top-45"><!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
-                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
-                                                onclick="window.open('https://www.tarc.edu.my/focs/news.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=ECF20A18-1334-4E97-87EE-27C0ED671DA8&news_id=32B3D5DE-FF9A-4FBF-841D-BD99D11FDFD9','_blank');"
-                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
-                                                Info</a>
-                                        </span>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div data-slide-bg="https://www.tarc.edu.my/files/focs/6B3B6A89-6E28-4FEF-A56E-968A3EE45634.png"
-                        class="swiper-slide">
-                        <div class="swiper-slide-caption">
-
-                            <div class="shell" style='background:none;padding-top:12%;'>
-                                <div class="range range-sm-center">
-                                    <div class="cell-sm-11 cell-md-10 cell-lg-9">
-                                        <h3 data-caption-animate="fadeInUp" data-caption-delay="0s"
-                                            class="slider-header"></h3>
-                                        <span data-caption-animate="fadeInUp" data-caption-delay="100"
-                                            class="slider-text-animate" style="color:#FFF;"></span>
-                                        <br>
-
-                                        <span
-                                            class="group-xl-responsive offset-top-30 offset-sm-top-45"><!--<a data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey" class="btn btn-xl btn-white-outline-variant-1">Start a journey</a>-->
-                                            <a data-caption-animate="fadeInUp" data-caption-delay="250"
-                                                onclick="window.open('https://www.tarc.edu.my/news.jsp?cat_id=56EBCDAD-D3D4-4D3B-8AC4-44CAF115AE1E&fmenuid=63470210-0077-4156-8326-47DE252878A7&news_id=6A24A605-7E69-4B8F-B177-A0214AC7902B','_blank');"
-                                                class="btn btn-xs btn-white-outline-variant-1 fadeInUp animated">More
-                                                Info</a>
-                                        </span>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
                 </div>
-                <div class="swiper-scrollbar"></div>
-                <div class="swiper-nav-wrap">
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-            </div>
-        </section>
-        <div class="container grid-system">
-            <div class="row offset-top-50 offset-md-top-30 medbtn">
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a href="https://www.tarc.edu.my/focs/a/why-choose-us/"><img
-                                        src="https://www.tarc.edu.my/files/focs/39E9DDCE-6E61-4C29-9CB7-0EF12F0BADAC.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/a/why-choose-us/" target="_blank">Why Choose
-                                        Us </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a href="{{ url_for('redirectProgrammeHome') }}"><img
-                                        src="https://www.tarc.edu.my/files/focs/9D61CBF3-963F-431F-9408-BD702F58EAD9.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="{{ url_for('redirectProgrammeHome') }}" target="_self">Programmes
-                                    </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a
-                                    href="https://www.tarc.edu.my/focs/a/collaboration-partners/academic-collaboration/"><img
-                                        src="https://www.tarc.edu.my/files/focs/0760A92C-042C-48C0-BD41-CC3C4114D34B.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/a/collaboration-partners/academic-collaboration/"
-                                        target="_blank">Collaboration Partners </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a
-                                    href="https://www.tarc.edu.my/focs/news_archive.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=6425D81D-D6EC-4154-89E0-EB8F755EF868&ftype=subcontent"><img
-                                        src="https://www.tarc.edu.my/files/focs/478819E7-8DD4-4530-9EB1-EC45ABEAC2FC.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/news_archive.jsp?cat_id=8A4F53DC-6047-461B-9A26-1CBAF3DEE153&fmenuid=6425D81D-D6EC-4154-89E0-EB8F755EF868&ftype=subcontent"
-                                        target="_blank">Highlights </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a
-                                    href="https://www.tarc.edu.my/focs/a/industry-relevant/tar-umt-awarded-premier-digital-tech-university-status-again/"><img
-                                        src="https://www.tarc.edu.my/files/focs/44F36855-E6F5-4415-9D8D-7D9F9BD9E4F6.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/a/industry-relevant/tar-umt-awarded-premier-digital-tech-university-status-again/"
-                                        target="_self">Recognition </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <div class="col-xs-6 col-md-2">
-                    <article class="icon-box icon-box-top-line">
-                        <div class="box-top">
-                            <div class="box-icon"><a
-                                    href="https://www.tarc.edu.my/focs/a/testimonials/focs-alumni/"><img
-                                        src="https://www.tarc.edu.my/files/focs/61C7A072-9E3C-4AF3-BE59-62CA4CD974C9.png"
-                                        width="50%" style="min-width:82px;"></a></div>
-                            <div class="box-header">
-                                <span style="font-size:16px; font-weight:bold;"><a
-                                        href="https://www.tarc.edu.my/focs/a/testimonials/focs-alumni/"
-                                        target="_self">Testimonials </a></span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-
-                <style>
-                    @media (min-width: 1200px) {
-                        .medbtn {
-                            margin-left: 0%;
-                        }
-                    }
-                </style>
-            </div>
+            </section>
         </div>
-        <section>
+
+        <section id="section-start-journey" class="section-15 section-sm-15 section-lg-30">
+            <div class="shell">
+                <div class="range">
+
+
+                    <div class="cell-md-12">
+
+                        <H4 class='shell text-center'>Programmes</H4>
+
+                        <div class="list-order">
+                            <!-- Container -->
+                            <div id="container" style="margin-top: 10px;"><!-- Breadcrumb -->
+                                <p style="text-align: center;"></p>
+                                <p style="text-align: center;"></p>
+                                <!-- Photos -->
+                                <div
+                                    style="width: 100%; display: flex; align-items: flex-start; justify-content: space-between;">
+                                    <img style="width: 50%; border: 1px solid #999;"
+                                        src="https://www.tarc.edu.my/files/focs/slide/A2ABC8BD-5F55-4A18-945B-85CE0D036068.jpg" />
+                                    <img style="width: 50%; border: 1px solid #999;"
+                                        src="https://www.tarc.edu.my/files/focs/78BD55AB-1C84-4D3B-A62E-B1F13CDB009C.JPG" />
+                                </div>
+                                
+                                <!-- <ul>
+                                    <li class="bg-purple">
+                                        <button>Gratis</button>
+                                    </li>
+                                    <li class="bg-blue">
+                                        <button>Starter</button>
+                                    </li>
+                                    <li class="bg-blue active">
+                                        <button>Finanzas</button>
+                                    </li>
+                                    <li class="bg-blue">
+                                        <button>Compra y venta</button>
+                                    </li>
+                                    <li class="bg-blue">
+                                        <button>Inventarios</button>
+                                    </li>
+                                </ul> -->
+
+                                <br>
+                                <!-- Include DataTables CSS and JS from a CDN -->
+
+
+                                {% if programmeList|length >= 2 %}
+                                <table id="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            {% set colspan_value = programmeList|length + 1%}
+                                            {% for prog in programmeList%}
+                                            <th>{{prog.progName}}</th>
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="{{ colspan_value }}" class="sep">Main Courses</td>
+                                        </tr>
+                                        {% for course in course_list %}
+                                        <tr>
+                                            <td>{{ course.courseName }}</td>
+
+                                            {% for prog in programmeList%}
+                                            {% for exitscourse in courseExits %}
+                                            {% if prog.progName == exitscourse.progName and course.courseName==
+                                            exitscourse.courseName%}
+                                            <td><span class="tick">&#10004;</span></td>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                            {% for notExits in courseNotExits %}
+                                            {% if prog.progName == notExits.progName and course.courseName==
+                                            notExits.courseName%}
+                                            <td><span>&#10060;</span></td>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                            {% endfor %}
+
+
+                                        </tr>
+                                        {% endfor %}
+
+                                        <tr>
+                                            <td colspan="{{ colspan_value }}" class="sep">Elective Courses</td>
+                                        </tr>
+                                        {% for course in electiveCourse_list %}
+                                        <tr>
+                                            <td>{{ course.courseName }}</td>
+                                            {% for prog in programmeList%}
+                                            {% for exitscourse in electiveExits %}
+                                            {% if prog.progName == exitscourse.progName and course.courseName==
+                                            exitscourse.courseName%}
+                                            <td><span class="tick">&#10004;</span></td>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                            {% for notExits in electiveNotExits %}
+                                            {% if prog.progName == notExits.progName and course.courseName==
+                                            notExits.courseName%}
+                                            <td><span>&#10060;</span></td>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                            {% endfor %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <script>
+                                    $(document).ready(function () {
+                                        $('#data-table').DataTable();
+                                    });
+                                </script>
+
+                                {% else %}
+                                <h3 style="color: red;">Please Select At Least Two Programme To Compare </h3>
+
+                                <form action="/compare" autocomplete="on" method="POST" enctype="multipart/form-data">
+
+                                    <br><button type="submit" style="width: auto; height: 50px ;"
+                                        class="confirm-filter-company">Back</button><br><br>
+                                </form>
+                                {% endif%}
+                            </div>
+                            <div
+                                    style="width: 100%; padding: 50px 0; text-align: center; background-image: url('https://www.tarc.edu.my/files/focs/background/C8D273C9-6BB6-4977-953F-44EEBFDEB2C5.jpg'); background-size: cover;">
+                                    <!-- here coding kl-->
+                                    <form action="/compare" autocomplete="on" method="POST"
+                                        enctype="multipart/form-data">
+                                        <a href="/compare" class="btn" style="margin: 5px;"> Compare Programme
+                                            Structure</a>
+                                    </form>
+                                    <a class="btn" style="margin: 5px;padding-left: 110px;padding-right: 110px;"
+                                        href="https://www.tarc.edu.my/admissions/a/intake-in-progress/">Enroll Now</a>
+
+                                </div>
+                        </div>
+                        <!-- End of Container -->
+                        <script src="https://www.tarc.edu.my/files/focs/script/859341DA-6C7F-4C41-927E-7AFAED293FD8.txt"
+                            type="text/javascript"></script>
+                        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                        <script>// <![CDATA[
+                            $(() => {
+                                $(`[href='${location.hash}']`).tab('show');
+                            });
+                            // ]]></script>
+                    </div>
+
+                </div>
+
+
+
+            </div>
         </section>
 
 
-        <script src="https://www.tarc.edu.my/assets/js/jquery.js"></script>
+        <!-- basic scripts -->
 
+        <!--[if !IE]> -->
+        <script src="https://www.tarc.edu.my/assets/js/jquery.js"></script>
+        <!-- <![endif]-->
+
+        <!--[if IE]>
+<script src="https://www.tarc.edu.my/assets/js/jquery1x.js"></script>
+<![endif]-->
         <script type="text/javascript">
             if ('ontouchstart' in document.documentElement) document.write("<script src='https://www.tarc.edu.my/assets/js/jquery.mobile.custom.js'>" + "<" + "/script>");
         </script>
+        <!--checking in progress enabled by default<script src="https://www.tarc.edu.my/assets/js/bootstrap.js"></script>-->
+
+        <!-- page specific plugin scripts -->
+
+        <!-- ace scripts -->
         <script src="https://www.tarc.edu.my/assets/js/ace/elements.scroller.js"></script>
         <script src="https://www.tarc.edu.my/assets/js/ace/elements.colorpicker.js"></script>
         <script src="https://www.tarc.edu.my/assets/js/ace/elements.fileinput.js"></script>
@@ -704,6 +634,7 @@
         <script src="https://www.tarc.edu.my/assets/js/ace/ace.widget-on-reload.js"></script>
         <script src="https://www.tarc.edu.my/assets/js/ace/ace.searchbox-autocomplete.js"></script>
 
+        <!-- inline scripts related to this page -->
         <div class="gcse-searchresults"></div>
         <section class="separator">
             <div class="text-sm-center">
@@ -731,19 +662,29 @@
                                 <div class="inset-md-right-30">
                                     <h6 class="text-uppercase">Contact Us</h6>
                                     <p class="offset-top-22 small"><br />
-                                        <strong> FACULTY OF COMPUTING AND INFORMATION TECHNOLOGY</strong><br /> TUNKU
-                                        ABDUL RAHMAN UNIVERSITY OF MANAGEMENT AND TECHNOLOGY<br /> JALAN GENTING
-                                        KELANG<br /> SETAPAK
-                                        <br /> 53300 KUALA LUMPUR<br />
-                                        <br /> TELEPHONE: 603-41450123 Ext no. 3233<br /> MOBILE PHONE:
-                                        6011-10758554<br /> FAX: 603-41423166 / 018 925 1001<br /> EMAIL :
-                                        focs@tarc.edu.my<br />
-                                        <br /> OPENING HOURS<br /> 8.30am - 5.30pm (Monday - Friday)
+                                        <strong> FACULTY OF COMPUTING AND INFORMATION TECHNOLOGY</strong><br />
+                                        TUNKU ABDUL RAHMAN UNIVERSITY OF MANAGEMENT AND TECHNOLOGY<br />
+                                        JALAN GENTING KELANG<br />
+                                        SETAPAK<br />
+                                        53300 KUALA LUMPUR<br />
+                                        <br />
+                                        TELEPHONE: 603-41450123 Ext no. 3233<br />
+                                        MOBILE PHONE: 6011-10758554<br />
+                                        FAX: 603-41423166 / 018 925 1001<br />
+                                        EMAIL : focs@tarc.edu.my<br />
+                                        <br />
+                                        OPENING HOURS<br />
+                                        8.30am - 5.30pm
+                                        (Monday - Friday)
                                     </p>
                                 </div>
                                 <div class="offset-top-22">
                                     <div class="group-md group-top">
                                         <div>
+                                            <!--ul class="list-inline list-inline-reset">
+                          <li><a href="#" class="icon icon-round icon-gray-dark-filled icon-xxs-smallest fa fa-facebook"></a></li>
+                          <li><a href="#" class="icon icon-round icon-gray-dark-filled icon-xxs-smallest fa fa-twitter"></a></li>
+                        </ul-->
                                         </div>
                                     </div>
                                 </div>
@@ -759,14 +700,15 @@
                                 </div>
                             </div>
                             <div class="cell-sm-6 cell-md-4 offset-top-50 offset-md-top-0">
-                                <div class="offset-top-22 offset-md-top-30">
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
+
+
 
         <footer class="page-foot page-foot-default section-35 bg-gray-base">
             <div class="shell">
@@ -837,16 +779,8 @@
     <script src="https://www.tarc.edu.my/assets/js/core.min.js"></script>
     <script src="https://www.tarc.edu.my/assets/js/script.js"></script>
     <script src="https://www.tarc.edu.my/assets/js/ace/ace.js"></script>
-    <!-- CHATBOT CODE -->
-    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-    <script src="https://mediafiles.botpress.cloud/c00f82a4-6fad-4381-844e-b4570f297e92/webchat/config.js"
-        defer></script>
-    <!-- CHATBOT CODE -->
-
-
-
-
     <script type="text/javascript" language="javascript">
+
         $(document).ready(
             function () {
                 $('#contact-email-add').hide()
@@ -865,10 +799,19 @@
                 return false;
 
             } else {
+
                 document.getElementById('captcha').innerHTML = "";
+
             }
+
         }
+
     </script>
+    <!-- CHATBOT CODE -->
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/c00f82a4-6fad-4381-844e-b4570f297e92/webchat/config.js"
+        defer></script>
+    <!-- CHATBOT CODE -->
 </body>
 
 </html>
