@@ -3,10 +3,34 @@
 
 <head>
     <title>Glassmorphism Login Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style media="screen">
+        /* For screens smaller than 768px (typical smartphones) */
+        @media (max-width: 768px) {
+            body {
+                background-size: cover;
+                /* Adjust background-size for smaller screens */
+            }
+
+            .container {
+                width: 90%;
+                /* Make the container wider for smaller screens */
+                max-width: 350px;
+                /* Limit the maximum width */
+                padding: 20px;
+                text-align: center;
+                /* Reduce padding */
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
         *,
         *:before,
         *:after {

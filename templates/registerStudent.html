@@ -4,6 +4,37 @@
 
 <head>
     <style>
+        /* Add your existing styles here */
+
+@media screen and(max-width: 1000px) {
+
+    .container {
+        max-width: 90%; /* Adjust the maximum width as needed */
+        padding: 15px; /* Add padding to the container for better spacing on small screens */
+    }
+
+    .input-box label {
+        font-size: 0.9rem;
+    }
+
+    .input-box input[type="text"],
+    .input-box input[type="email"],
+    .input-box input[type="tel"],
+    .input-box input[type="date"],
+    .input-box input[type="password"],
+    .input-box textarea,
+    .gender input[type="radio"] {
+        width: 90%;
+    }
+
+    header {
+        font-size: 1.2rem;
+        /* Adjust font size for better visibility */
+        white-space: normal; /* Allow header to wrap to multiple lines */
+    }
+}
+
+
         body {
             font-family: 'Lato', sans-serif;
             background-color: #080710;

@@ -1,15 +1,19 @@
-from flask import render_template, make_response, jsonify
+from flask import render_template, make_response
 from flask import redirect
 import mimetypes
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from botocore.exceptions import ClientError
 from pymysql import connections
 import boto3
-import socket
 from config import *
-import difflib
-from datetime import datetime
-# from weasyprint import HTML
+import datetime
+import socket
+import pytesseract
+import cv2
+import numpy as np
+from PIL import Image, ImageEnhance
+import io
+import re
 
 app = Flask(__name__)
 app.static_folder = 'static'  # The name of your static folder
@@ -350,6 +354,83 @@ def verifyApplication():
         request.form.get(f'spm-grades-{i}', '') for i in range(1, 11)
     ]
 
+    pytesseract.pytesseract.tesseract_cmd = '"C:\\Program Files\\Tesseract-OCR\\tesseract.exe"'
+
+    select_sql = "select studentIc from students where studentId = %s"
+    cursor.execute(select_sql,(apply_student_id))
+    ic = cursor.fetchone()
+
+    student_grades = {
+    request.form.get(f'spm-subject-{i}'): request.form.get(f'spm-grades-{i}', '')
+    for i in range(1, 11)
+    }
+
+    # 'spm-file' is the name of the file input field in the form
+    file = request.files['spm-file']
+    
+    # Read the file into a BytesIO object
+    file_bytes = io.BytesIO(file.read())
+    
+    # Open the image with PIL
+    imagefile = Image.open(file_bytes)
+
+    # get spm result images
+    # Convert the PIL Image to a numpy array
+    imagefile = np.array(imagefile)
+    imagefile = crop_image(imagefile)
+    text = pytesseract.image_to_string(imagefile, config='--psm 6')
+    print(text)
+
+    if not check_year(text, year):
+        return render_template('verifyQualification.html', err_msg="The year of SPM slip incorrect or your image is too blur, please try again")
+
+    # Split the result text into lines
+    lines = text.strip().split('\n')
+
+    checkIc = False
+
+    # Iterate over each line
+    for line in lines:
+        # Split the line into words
+        words = line.split()
+
+        # Check if the line contains at least 3 words (subject and grade)
+        if words:
+            if 'K/P' in words:
+                if ic in words:
+                    print(f"The ic matched {words}.")
+                    checkIc = True
+                else:
+                    print(f"The ic not match {words}.")
+                    return render_template('verifyQualification.html', err_msg="The IC of SPM slip does not match or your image is too blur, please try again")
+
+    if not checkIc:
+        return render_template('verifyQualification.html', err_msg="SPM slip is not valid or your image is too blur, please try again")
+
+    matchSubject = True
+    gotSubject = False
+    msg = ""
+    # Check each grade in the dictionary against the list
+    for subject, grade in student_grades.items():
+        # Find the list that contains the subject
+        for grades in lines:
+            if subject in grades:
+                # Check if the grade in the list matches the grade in the dictionary
+                if grade not in grades:
+                    matchSubject = False
+                    msg += (f"The grade for {subject} does not match\n")
+                    print(f"The grade for {subject} does not match.")
+                else:
+                    gotSubject = True
+                    print(f"The grade for {subject} matched.")
+                break
+
+    if not gotSubject:
+        return render_template('verifyQualification.html', err_msg="The SPM slip may not completed or your image is too blur")
+
+    if not matchSubject:
+        return render_template('verifyQualification.html', err_msg=msg+"Or you can try to reupload your SPM slip")
+
     # Count the number of subjects with a grade of "C" or better
     c_or_better_count = sum(grade in ['A', 'A+', 'A-', 'B', 'B+', 'C', 'C+'] for grade in grades)
 
@@ -598,6 +679,45 @@ def verifyApplication():
                 cursor.execute(update_sql_choice_3_rejected, (apply_student_id,))
                 db_conn.commit()
                 return redirect(url_for("applicationHomeContent"))
+            
+def check_year(text, year):
+    # Use a regular expression to find four-digit numbers in the text
+    years = re.findall(r'\b\d{4}\b', text)
+
+    # Check if the desired year is in the list of years
+    return str(year) in years
+
+def crop_image(img):    
+        # convert to grayscale
+        gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+
+        # invert gray image
+        gray = 255 - gray
+
+        # threshold
+        thresh = cv2.threshold(gray,0,255,cv2.THRESH_BINARY)[1]
+
+        # apply close and open morphology to fill tiny black and white holes and save as mask
+        kernel = np.ones((3,3), np.uint8)
+        mask = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+
+        # get contours (presumably just one around the nonzero pixels) 
+        contours = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        contours = contours[0] if len(contours) == 2 else contours[1]
+        cntr = contours[0]
+        x,y,w,h = cv2.boundingRect(cntr)
+
+        # make background transparent by placing the mask into the alpha channel
+        new_img = cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
+        new_img[:, :, 3] = mask
+
+        # then crop it to bounding rectangle
+        crop = new_img[y:y+h, x:x+w]
+        
+        cv2.imshow('crop', crop)
+        
+        return crop
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

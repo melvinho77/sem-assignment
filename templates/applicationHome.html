@@ -169,6 +169,23 @@
             font-weight: bold;
             font-size: 14px;
         }
+
+        @media screen and (min-width: 768px) {
+            .content {
+                flex-direction: row;
+            }
+
+            .left-content {
+                width: 15%;
+                border-right: 1px solid #cccccc;
+                height: auto;
+            }
+
+            .right-content {
+                width: 85%;
+                padding: 15px;
+            }
+        }
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -234,8 +251,15 @@
                     </td>
                     <td>{{application.application_status}}</td>
                     {% if loop.index % 3 == 1 %}
-                    <td rowspan="3"><a href="/goToQualification" class="edit-link">Edit</a></td>
+                    <td rowspan="3">
+                        {% if application.application_status not in ['approved', 'rejected', 'end'] %}
+                        <a href="/goToQualification" class="edit-link">Edit</a>
+                        {% else %}
+                        Completed
+                        {% endif %}
+                    </td>
                     {% endif %}
+
                 </tr>
                 {% endfor %}
             </table>

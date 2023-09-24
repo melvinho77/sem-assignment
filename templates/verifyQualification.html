@@ -387,7 +387,7 @@
             </div>
 
             <div class="overall-application">
-                <form action="/verifyApplication" method="POST" autocomplete="on">
+                <form action="/verifyApplication" method="POST" autocomplete="on" enctype="multipart/form-data">
                     <div class="application-content">
                         <div class="icon-menu">
                             <div class="application-icon"></div>
@@ -397,6 +397,7 @@
                         <h4>Academic Qualification</h4>
                     </div>
                     <div class="qualification-container">
+                        <div style="color: red;">{{ err_msg }}</div>
                         <div class="spm-container">
                             <div class="spm-title" id="spm-dropdown">
                                 <span style="text-decoration: underline;">SPM/O LEVEL/EQUIVALENT</span>
@@ -796,8 +797,8 @@
                             <div class="spm-content collapsed">
                                 <div class="file-input-container">
                                     <label class="file-input-label" for="spm-file">Choose File</label>
-                                    <input type="file" id="spm-file" name="spm-file" class="file-input">
-                                    <span class="file-name">No file selected</span>
+                                    <input type="file" id="spm-file" name="spm-file" class="file-input" accept="image/*"  value="{{request.form['spm-file']}}" required>
+                                    <span>{{request.form['spm-file']}}</span>
                                 </div>
                             </div>
                         </div>
