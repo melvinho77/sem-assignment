@@ -202,7 +202,6 @@ def selectProgrammeError():
     network_details = get_network_details()
     return render_template('selectProgrammeError.html', network_details=network_details)
 
-
 # N5 compare Programme Structure
 @app.route('/compareProgramme', methods=['POST'])
 def showAllProgramme():

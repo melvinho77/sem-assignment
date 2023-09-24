@@ -45,10 +45,10 @@
     <style>
         .float {
             position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 100px;
-            right: 20px;
+            width: 55px;
+            height: 55px;
+            bottom: 120px;
+            right: 38px;
             background-color: #25d366;
             color: #FFF;
             border-radius: 50px;
@@ -226,8 +226,7 @@
                                             target="_blank">Why Choose Us</a>
                                         <hr>
                                         <!--<i class="fa https://www.tarc.edu.my/files/focs/9D61CBF3-963F-431F-9408-BD702F58EAD9.png"></i>-->
-                                        <a href="{{ url_for('redirectProgrammeHome') }}"
-                                            target="_self">Programmes</a>
+                                        <a href="{{ url_for('redirectProgrammeHome') }}" target="_self">Programmes</a>
                                         <hr>
                                         <!--<i class="fa https://www.tarc.edu.my/files/focs/0760A92C-042C-48C0-BD41-CC3C4114D34B.png"></i>-->
                                         <a href="https://www.tarc.edu.my/focs/contentsub.jsp?cat_id=A66D390D-8C3E-4399-9751-E5B225DBFA82&fmenuid=43BF3FAA-5744-4E6E-953A-3EC6FD323749"
@@ -569,8 +568,8 @@
                                         width="50%" style="min-width:82px;"></a></div>
                             <div class="box-header">
                                 <span style="font-size:16px; font-weight:bold;"><a
-                                        href="{{ url_for('redirectProgrammeHome') }}"
-                                        target="_self">Programmes </a></span>
+                                        href="{{ url_for('redirectProgrammeHome') }}" target="_self">Programmes
+                                    </a></span>
                             </div>
                         </div>
                     </article>
@@ -750,10 +749,10 @@
         </section>
 
         <!-- Chatbot icon button -->
-        <a href="#" class="chatbot-float" id="open-chatbot">
+        <!-- <a href="#" class="chatbot-float" id="open-chatbot">
             <img src="{{ url_for('static', filename='images/tarbot-icon.jpg') }}" alt="tarbot"
                 style="border-radius: 50%;">
-        </a>
+        </a> -->
 
         <footer class="page-foot page-foot-default section-35 bg-gray-base">
             <div class="shell">
@@ -824,6 +823,15 @@
     <script src="https://www.tarc.edu.my/assets/js/core.min.js"></script>
     <script src="https://www.tarc.edu.my/assets/js/script.js"></script>
     <script src="https://www.tarc.edu.my/assets/js/ace/ace.js"></script>
+    <!-- CHATBOT CODE -->
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/c00f82a4-6fad-4381-844e-b4570f297e92/webchat/config.js"
+        defer></script>
+    <!-- CHATBOT CODE -->
+
+
+
+
     <script type="text/javascript" language="javascript">
         $(document).ready(
             function () {
