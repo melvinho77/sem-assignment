@@ -9,40 +9,6 @@
             /* Set a base font size */
         }
 
-        .logoDisplay {
-            width: 10%;
-            height: 10%;
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-
-        .leftlbl {
-            margin-left: 10px;
-        }
-
-        .menu-icon {
-                display: none;
-            }
-
-        @media (max-width: 768px) {
-
-            .logoDisplay {
-                width: 30%;
-                height: 30%;
-                /* Make the select elements full-width on small screens */
-            }
-
-            /* Style for the menu icon */
-            .menu-icon {
-                cursor: pointer;
-                display: flex;
-            }
-
-            .application-header{
-                width: 120%;
-            }
-        }
-
         .application-header {
             display: flex;
             justify-content: space-between;
@@ -112,10 +78,11 @@
         }
 
         .left-content {
-            height: 95vh;
-            background-color: #f2f2f2;
+            height: 100vh;
+            background-color: #f8f8f8;
             /* border-color: 1px solid #070606; */
         }
+
 
         .right-content {
             width: 100%;
@@ -256,6 +223,10 @@
             /* Change the background color on hover */
         }
 
+        .leftlbl {
+            margin-left: 10px;
+        }
+
         .container {
             /* border: 1px solid rgb(207, 207, 207); */
             border-radius: 5px;
@@ -339,24 +310,128 @@
             padding-right: 10px;
         }
 
-        
-        .submitBtn{
-            outline: none;
+        .logoDisplay {
+            width: 10%;
+            height: 10%;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .menu-icon {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+
+            .logoDisplay {
+                width: 30%;
+                height: 30%;
+                /* Make the select elements full-width on small screens */
+            }
+
+            /* Style for the menu icon */
+            .menu-icon {
+                cursor: pointer;
+                display: flex;
+            }
+
+            .application-header {
+                width: 120%;
+            }
+        }
+
+
+        select.select-intake {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            color: #858585;
+        }
+
+        /* Style the select options */
+        select.select-intake option {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .programme-container h4 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .container-choice {
+            margin: 10px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Optionally, set a fixed width for the span elements */
+        .container-choice span {
+            font-weight: 600;
+            margin-right: 20px;
+            width: 120px;
+            /* Adjust this width as needed */
+        }
+
+        /* Update the select elements */
+        select.choice-campus,
+        select.choice-level,
+        select.choice-programm {
+            flex: 1;
+            /* Allow the select elements to expand */
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            color: #858585;
+            margin-left: 20px;
+        }
+
+        /* Style the span for 1st Choice */
+        .container-choice span {
+            font-weight: 600;
+            margin-bottom: 5px;
+            margin-right: 20px;
+        }
+
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .save-programme {
+            border-width: 4px;
+            font-size: 13px;
+            padding: 10px 20px;
+            /* Adjust padding for better button sizing */
+            line-height: 1.38;
+            margin-left: 10px;
+            background-color: #6fb3e0;
             border: none;
-            border-radius: 5px;
-            background-color: rgb(23, 125, 0);
+            /* Remove the border style if not needed */
             color: white;
-            padding: 10px 50px 10px 50px;
+            /* Text color */
+            border-radius: 4px;
+            /* Rounded corners */
             cursor: pointer;
+            /* Show pointer cursor on hover */
+            transition: background-color 0.3s;
+            /* Add a smooth color transition */
         }
 
-        .submitBtn:hover{
-            transition: 0.3s;
-            background-color: rgb(71, 169, 48);
+        .save-programme:hover {
+            background-color: #5089b8;
+            /* Change the background color on hover */
         }
-
-        /* Style for the menu icon */
-        
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -375,7 +450,7 @@
         <div class="container-profile" style="display: flex;
         justify-content: center;
         align-items: center; margin-right: 10px;">
-            
+
         </div>
     </div>
 
@@ -393,114 +468,126 @@
                         class="leftlbl">Profile</span></a>
             </div>
             <div class="left-home">
-                <a href="#"><i class="fas fa-sign-out-alt" style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
+                <a href="#"><i class="fas fa-sign-out-alt"
+                        style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
                         class="leftlbl">Logout</span></a>
             </div>
         </div>
         <div class="right-content">
             <div class="right-home">
-                <i class="fa fa-user" style="font-size:30px; color: rgb(53, 53, 53);"><span>Profile</span></i>
+                <i class="fa fa-address-card-o" style="font-size:24px"></i><span>Intake & Programme</span>
             </div>
+            <div class="application-content">
+                <h4>INTAKE*</h4>
+            </div>
+            <select class="select-intake" name="intake">
+                <option value="" selected>select intake</option>
+                <option value="OCT/NOV 2023">OCT/NOV 2023</option>
+                <option value="FEB 2024">FEB 2024</option>
+            </select>
 
-            <fieldset>
-                <div class="container">
-                    <div class="title">
-                        <legend>Student Information</legend>
-                    </div>
-                    <div>
-                        <table>
-                            <tr>
-                                <td class="lblName">
-                                    <label class="label">Name</label>
-                                </td>
-                                <td>
-                                    <textarea class="inputText" type="text" name="stud_name" autofocus size="40"
-                                        placeholder="Enter name">{{ stud_data.studName }}</textarea>
-                                </td>
-                            </tr>
+            <div class="programme-container">
+                <h4 style="text-decoration: underline;">PROGRAMME</h4>
 
-                            <tr>
-                                <td class="lblName">
-                                    <label class="label">IC</label>
-                                </td>
-                                <td>
-                                    <textarea class="inputText" type="text" name="stud_IC"
-                                        placeholder="Enter IC (xxxxxx-xx-xxxx)">{{ stud_data.studIC }}</textarea>
-                                </td>
-                            </tr>
+                <div class="container-choice">
+                    <form method="POST" action="/showFirstProgramme" name="first-choice" id="first-choice-form">
+                        <span>1st Choice</span>
+                        <div class="container-selection">
+                            <select class="choice-campus" name="campus" id="first-choice-campus">
+                                <option value="" selected>Select Campus</option>
+                                <option value="KL">Kuala Lumpur Branch</option>
+                                <option value="PN">Penang Branch</option>
+                                <option value="PK">Perak Branch</option>
+                                <option value="JH">Johor Branch</option>
+                                <option value="PG">Pahang</option>
+                                <option value="SB">Sabah</option>
+                            </select>
 
-                            <tr>
-                                <td class="lblName">
-                                    <label class="label">Email</label>
-                                </td>
-                                <td>
-                                    <textarea class="inputText" type="text" name="stud_email"
-                                        placeholder="Enter email (xxx@xxx.com)">{{ stud_data.studEmail }}</textarea>
-                                </td>
-                            </tr>
+                            <select class="choice-level" name="first-choice-level" id="first-choice-level">
+                                <option value="" selected>Select Level</option>
+                                <option value="foundation">Foundation</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="degree">Degree</option>
+                            </select>
 
-                            <tr>
-                                <td class="lblName">
-                                    <label class="label">Phone Number (+60)</label>
-                                </td>
-                                <td>
-                                    <textarea class="inputText" type="text" name="stud_phone"
-                                        placeholder="Enter phone number (xxx-xxxx xxxx)">{{ stud_data.studPhone }}</textarea>
-                                </td>
-                            </tr>
+                            <select class="choice-programm" name="first-choice-programm" id="first-choice-programm">
+                                <option value="" selected>Select Programme</option>
+                                {% for program in first_programme %}
+                                <option value="{{program.programme_id}}">{{program.programme_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                <div class="container-choice">
+                    <span>2nd Choice</span>
+                    <form action="/showSecondProgramme" method="POST" name="second-choice" id="second-choice-form">
+                        <div class="container-selection">
+                            <select class="choice-campus" name="second-choice-campus" id="second-choice-campus">
+                                <option value="" selected>Select Campus</option>
+                                <option value="KL">Kuala Lumpur Branch</option>
+                                <option value="PN">Penang Branch</option>
+                                <option value="PK">Perak Branch</option>
+                                <option value="JR">Johor Branch</option>
+                                <option value="PG">Pahang</option>
+                                <option value="SB">Sabah</option>
+                            </select>
 
-                            <tr>
-                                <td class="lblName">
-                                    <label class="label">Birth Date</label>
-                                </td>
-                                <td>
-                                    <input class="selectBDay" type="date" name="birth_date"
-                                        value="{{ stud_data.studBdate }}">
-                                </td>
-                            </tr>
+                            <select class="choice-level" name="second-choice-level" id="second-choice-level">
+                                <option value="" selected>Select Level</option>
+                                <option value="foundation">Foundation</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="degree">Degree</option>
+                            </select>
 
-                            <tr>
-                                <td class="lblName">
-                                    <label class="label">Gender</label>
-                                </td>
-                                <td>
-                                    <label class="larger-radio">
-                                        <input type="radio" class="inputRadio" name="gender" value="M" {% if
-                                            stud_data.studGender=='M' %}checked{% endif %}> Male
-                                    </label>
-                                    <label class="larger-radio">
-                                        <input type="radio" class="inputRadio" name="gender" value="F" {% if
-                                            stud_data.studGender=='F' %}checked{% endif %}> Female
-                                    </label>
-                                </td>
-                            </tr>
+                            <select class="choice-programm" name="second-choice-programm">
+                                <option value="" selected>Select Programme</option>
+                                {% for program in second_programme %}
+                                <option value="{{program.programme_id}}">{{program.programme_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </div>
 
-                            <tr>
-                                <td class="lblName">
-                                    <label class="label">Address</label>
-                                </td>
-                                <td>
-                                    <textarea class="inputText" type="text" name="stud_address"
-                                        placeholder="Enter address of the company">{{stud_data.studAddress}}</textarea>
-                                </td>
-                            </tr>
+                <hr>
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <button class="submitBtn" type="submit">Update</button>
-                                </td>
-                            </tr>
-                        </table>
+                <div class="container-choice">
+                    <span>3rd Choice</span>
+                    <div class="container-selection">
+                        <select class="choice-campus" name="third-choice-campus" id="third-choice-campus">
+                            <option value="" selected>Select Campus</option>
+                            <option value="KL">Kuala Lumpur Branch</option>
+                            <option value="PN">Penang Branch</option>
+                            <option value="PK">Perak Branch</option>
+                            <option value="JR">Johor Branch</option>
+                            <option value="PG">Pahang</option>
+                            <option value="SB">Sabah</option>
+                        </select>
+
+                        <select class="choice-level" name="third-choice-level" id="third-choice-level">
+                            <option value="" selected>Select Level</option>
+                            <option value="foundation">Foundation</option>
+                            <option value="diploma">Diploma</option>
+                            <option value="degree">Degree</option>
+                        </select>
+
+                        <select class="choice-programm" name="third-choice-programm">
+                            <option value="" selected>Select Programme</option>
+                            <!-- Add your options dynamically here -->
+                        </select>
                     </div>
                 </div>
-            </fieldset>
 
-            <!-- <hr> -->
+            </div>
+            <hr>
             <div class="submit-programme">
-                <!-- <button type="submit" class="save-programme">Save & Next</button> -->
+                <button type="submit" class="save-programme">Save & Next</button>
             </div>
         </div>
+
+
 
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -388,53 +388,56 @@ def showAllProgramme():
     electiveExits=[]
     electiveNotExits=[]
     course_list=[]
-    network_details = get_network_details()
+    progId=request.form.getlist('progId[]')
+
+    
     #loop for check the programme
-    for id in progId:
-            select_programme="SELECT avProgrammeId,programmeName,level FROM availableProgramme WHERE avProgrammeId=%s"
-            cursorProgramme= db_conn.cursor()
+    if len(progId) > 1:
+        for id in progId:
+                select_programme="SELECT avProgrammeId,programmeName,level FROM availableProgramme WHERE avProgrammeId=%s"
+                cursorProgramme= db_conn.cursor()
 
-            cursorProgramme.execute(select_programme,(id,))
-            programmes=cursorProgramme.fetchall()                        
+                cursorProgramme.execute(select_programme,(id,))
+                programmes=cursorProgramme.fetchall()                        
 
-            for programme in programmes:
-                progId=programme[0]
-                progName=programme[1]
-                
-                course_list=findAllCourse(course_list,programme[2])
-                electiveCourse_list=findAllElective(programme[2])
-                try:
-                    level_date={
-                    "progId" :progId,
-                    "progName":progName                    
-                    }
-
-                    programmeList.append(level_date)
+                for programme in programmes:
+                    progId=programme[0]
+                    progName=programme[1]
                     
-                except Exception as e:
-                    return str(e) 
+                    course_list=findAllCourse(course_list,programme[2])
+                    electiveCourse_list=findAllElective(programme[2])
+                    try:
+                        level_date={
+                        "progId" :progId,
+                        "progName":progName                    
+                        }
 
-                #all not exits course in a particular programme
-                notCourses_for_program = findNotExistsCourse(id,progName)
-                courseNotExits.extend(notCourses_for_program)     
+                        programmeList.append(level_date)
+                        
+                    except Exception as e:
+                        return str(e) 
 
-                #all not exits elective in a particular programme
-                notElective_for_program = findNotElectiveExists(id,progName)
-                electiveNotExits.extend(notElective_for_program) 
+                    #all not exits course in a particular programme
+                    notCourses_for_program = findNotExistsCourse(id,progName)
+                    courseNotExits.extend(notCourses_for_program)     
+
+                    #all not exits elective in a particular programme
+                    notElective_for_program = findNotElectiveExists(id,progName)
+                    electiveNotExits.extend(notElective_for_program) 
 
 
-            #all exits course in a particular programme
-            courses_for_program = findCourse(id)
-            courseExits.extend(courses_for_program)
+                #all exits course in a particular programme
+                courses_for_program = findCourse(id)
+                courseExits.extend(courses_for_program)
 
-            #all exits elective course in a particular programme
-            elective_for_program = findElectiveCourse(id)
-            electiveExits.extend(elective_for_program)           
-                 
-            
-        #Sort the course_list alphabetically by courseName
-            courseExits = sorted(courseExits, key=lambda x: x['progName'])
-              
+                #all exits elective course in a particular programme
+                elective_for_program = findElectiveCourse(id)
+                electiveExits.extend(elective_for_program)           
+                    
+                
+            #Sort the course_list alphabetically by courseName
+                courseExits = sorted(courseExits, key=lambda x: x['progName'])
+                
     return render_template('compareProgramme.html', 
                            course_list=course_list,
                            electiveCourse_list=electiveCourse_list,
@@ -442,10 +445,8 @@ def showAllProgramme():
                            courseExits=courseExits,
                            courseNotExits=courseNotExits,
                            electiveExits=electiveExits,
-                           electiveNotExits=electiveNotExits, 
-                           network_details = network_details                                              
+                           electiveNotExits=electiveNotExits                                              
                            )
-
 
 def findAllElective(level):
         electiveCourse_list=[]
@@ -484,9 +485,6 @@ def findAllElective(level):
         return electiveCourse_list
 
 def findAllCourse(course_list,level):
-
-    
-
     #find main course
     all_course = "SELECT Distinct courseTaken FROM programmeMainCourse p , "  \
                 "availableProgramme a WHERE  p.programmeId=a.avProgrammeId AND level=%s ORDER BY courseTaken"
