@@ -151,7 +151,7 @@ def get_network_details():
 
 
 # N10
-app.route('/contactUs')
+@app.route('/contactUs')
 def contactUs():
     # Call the get_network_details function to retrieve network details
     # Retrieve student Id
