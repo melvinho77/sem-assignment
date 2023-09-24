@@ -164,7 +164,6 @@ def contact_us():
     # # Pass the network_details and msg to the contactUs.html template
     return render_template("contactUs.html", network_details=network_details, apply_student_id=apply_student_id, student_name=student_name)
 
-
 @app.route('/redirectProgrammeHome')
 def redirectProgrammeHome():
     network_details = get_network_details()
