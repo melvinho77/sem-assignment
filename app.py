@@ -833,7 +833,7 @@ def trackContactUs():
 @app.route('/submitContactUs', methods=['POST'])
 def submitContactUs():
     # After log in, then only can ask question
-    student_id = request.form.get('student_id')
+    student_id = request.form.get('apply_student_id')
     student_name = request.form.get('student_name')
     category = request.form.get('category')
     inquiries = request.form.get('inquiries')
