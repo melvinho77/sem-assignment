@@ -801,11 +801,11 @@ def contact_us():
     # Retrieve student Id
     id = session.get('loggedInStudent')
     network_details = get_network_details()
-    select_sql = "SELECT * FROM students WHERE studentID  = %s"
+    select_sql = "SELECT * FROM students WHERE studentID  = %d"
     cursor = db_conn.cursor()
 
     try:
-        cursor.execute(select_sql, (int(id)))
+        cursor.execute(select_sql, (id))
         student = cursor.fetchone()
         db_conn.commit()
 
