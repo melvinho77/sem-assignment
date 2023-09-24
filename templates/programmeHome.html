@@ -386,13 +386,13 @@
                                             <p>The Faculty of Computing and Information Technology (FOCS) offers the
                                                 following Doctor of Philosophy programmes:</p>
                                             <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/doctor-of-philosophy-computer-science-kptjpsn481807881025/">Doctor
+                                                    href="{{ url_for('redirectDoctorPCS') }}">Doctor
                                                     of Philosophy (Computer Science)</a></p>
                                             <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/doctor-of-philosophy-information-technology-kptjpsn482801690126/">Doctor
+                                                    href="{{ url_for('redirectDoctorPIT') }}">Doctor
                                                     of Philosophy (Information Technology)</a></p>
                                             <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/doctor-of-philosophy-mathematical-sciences-n46180029-0426-mqapa-10773/">Doctor
+                                                    href="{{ url_for('redirectDoctorPMS') }}">Doctor
                                                     of Philosophy (Mathematical Sciences)</a></p>
                                             <p><a
                                                     href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/master-of-information-technology-kptjpsn48270156/"></a><a
@@ -404,13 +404,13 @@
                                             <p>The Faculty of Computing and Information Technology (FOCS) offers the
                                                 following Master Degree programmes:</p>
                                             <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/master-of-computer-science/">Master
+                                                    href="{{ url_for('redirectMasterCS') }}">Master
                                                     of Computer Science</a></p>
                                             <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/master-of-information-technology-kptjpsn48270156/">Master
+                                                    href="{{ url_for('redirectMasterIT') }}">Master
                                                     of Information Technology</a></p>
                                             <p><a
-                                                    href="https://www.tarc.edu.my/cpsr/postgraduate-programmes/by-research/master-of-science-in-mathematical-sciences-n46170030-0426-mqapa-10771/">Master
+                                                    href="{{ url_for('redirectMasterSMS') }}">Master
                                                     of Science in Mathematical Sciences</a></p>
                                         </div>
                                         <!-- Tabs 2 -->
@@ -420,7 +420,7 @@
                                             <h5><i class="fa fa-database gold-orange"></i> Bachelor of Science</h5>
                                             <ul style="margin: 10px;">
                                                 <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-science-honours-in-management-mathematics-with-computing/">Management
+                                                        href="{{ url_for('redirectMMwC') }}">Management
                                                         Mathematics with Computing&nbsp;</a> <i
                                                         class="fa fa-external-link-square gold-orange"></i></li>
                                             </ul>
@@ -428,11 +428,11 @@
                                             </h5>
                                             <ul style="margin: 10px;">
                                                 <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-computer-science-honours-in-interactive-software-technology/">Interactive
+                                                        href="{{ url_for('redirectIST') }}">Interactive
                                                         Software Technology</a> <i
                                                         class="fa fa-external-link-square gold-orange"></i></li>
                                                 <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-computer-science-honours-in-data-science/">Data
+                                                        href="{{ url_for('redirectDS') }}">Data
                                                         Science</a> <i
                                                         class="fa fa-external-link-square gold-orange"></i></li>
                                             </ul>
@@ -440,7 +440,7 @@
                                                 Systems</h5>
                                             <ul style="margin: 10px;">
                                                 <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-information-systems-honours-in-enterprise-information-systems/">Enterprise
+                                                        href="{{ url_for('redirectEIS') }}">Enterprise
                                                         Information Systems</a> <i
                                                         class="fa fa-external-link-square gold-orange"></i></li>
                                             </ul>
@@ -448,20 +448,20 @@
                                                 Technology</h5>
                                             <ul style="margin: 10px;">
                                                 <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-information-technology-honours-in-information-security/">Information
+                                                        href="{{ url_for('redirectISecurity') }}">Information
                                                         Security</a> <i
                                                         class="fa fa-external-link-square gold-orange"></i></li>
                                                 <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-information-technology-honours-in-internet-technology/">Internet
+                                                        href="{{ url_for('redirectInternetT') }}">Internet
                                                         Technology </a> <i
                                                         class="fa fa-external-link-square gold-orange"></i></li>
                                                 <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-information-technology-honours-in-software-systems-development/">Software
+                                                        href="{{ url_for('redirectSSD') }}">Software
                                                         Systems Development </a> <i
                                                         class="fa fa-external-link-square gold-orange"></i></li>
                                             </ul>
                                             <h5><i class="fa fa-database gold-orange"></i> <a
-                                                    href="https://www.tarc.edu.my/focs/programmes/bachelor-degree/bachelor-of-computer-science-honours-in-software-engineering/">Bachelor
+                                                    href="{{ url_for('redirectSE') }}">Bachelor
                                                     of Software Engineering</a> <i
                                                     class="fa fa-external-link-square gold-orange"> </i></h5>
                                             <!--
@@ -485,11 +485,11 @@
                                                         in Information Systems&nbsp;</a><i
                                                         class="fa fa-external-link-square gold-orange"></i></li>
                                                 <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/diploma/diploma-in-information-technology/">Diploma
+                                                        href="{{ url_for('redirectDiplomaIT') }}">Diploma
                                                         in Information Technology&nbsp;</a><i
                                                         class="fa fa-external-link-square gold-orange"></i></li>
                                                 <li><a
-                                                        href="https://www.tarc.edu.my/focs/programmes/diploma/diploma-in-software-engineering/">Diploma
+                                                        href="{{ url_for('redirectDiplomaSE') }}">Diploma
                                                         in Software Engineering&nbsp;</a><i
                                                         class="fa fa-external-link-square gold-orange"></i></li>
                                             </ul>

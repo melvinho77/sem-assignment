@@ -1,0 +1,39 @@
+.list-order ul {
+    list-style-type: disc;
+    margin-left: 40px;
+}
+
+.list-order ol {
+    list-style-type: decimal;
+    margin-left: 40px;
+}
+
+.tab-content {
+    border: 0;
+}
+
+.nav-tabs>li>a,
+.nav-tabs>li>a:focus {
+    background: none;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+    box-shadow: none;
+}
+
+.post-classic p+p,
+.post-classic-minimal p+p {
+    margin-top: 10px !important;
+}
+
+p {
+    margin: 10px !important;
+}
+
+.box-body p {
+    font-size: 12px;
+    font-family: verdana;
+    color: #888;
+}

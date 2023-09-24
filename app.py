@@ -131,6 +131,15 @@ def get_network_details():
     except Exception as e:
         return {'Error': str(e)}
 
+# N10
+@app.route('/contactUs')
+def contact_us():
+    # Call the get_network_details function to retrieve network details
+    network_details = get_network_details()
+    
+    # Pass the network_details to the contactUs.html template
+    return render_template('contactUs.html', network_details=network_details)
+
 @app.route('/redirectProgrammeHome')
 def redirectProgrammeHome():
     network_details = get_network_details()
@@ -230,7 +239,80 @@ def redirectDoctorPMS():
 
 
 
+######################################## STAFF #############################################
+@app.route ("/staffDirectory", methods=['GET', 'POST'])
+def staffDirectory():
 
+    division = request.args.get('division')
+    campusName = request.args.get('campus')
+
+    cursor = db_conn.cursor()
+    #get all campuses
+    selectCampus_sql = "SELECT campusName FROM campus"
+
+    # get all divisions
+    select_sql = "SELECT name FROM division d, campus c WHERE d.campusId = c.campusId AND campusName = %s"
+
+    try:
+        cursor.execute(selectCampus_sql)
+        campuses = cursor.fetchall()
+
+        cursor.execute(select_sql, (campuses[0],))
+        divisions = cursor.fetchall()
+
+        cursor.execute(select_sql, (campuses[1],))
+        div = cursor.fetchone()
+
+    except Exception as e:
+        return str(e)
+    
+    try:
+        select_sql = "SELECT campusId FROM campus WHERE campusName = %s"
+        cursor.execute(select_sql, (campusName,))
+        campusId = cursor.fetchone()
+
+        if (division != "ALL"):
+            select_sql = "SELECT divisionId FROM division WHERE name = %s AND campusId = %s"
+            cursor.execute(select_sql, (division,campusId))
+            division = cursor.fetchone()
+
+        if (request.args.get('staffName')):
+            if (division == "ALL"):
+                select_sql = "SELECT D.Name AS divisionName, S.*, P.* FROM division D, staff S LEFT JOIN publication P ON S.staffID = P.staffID WHERE D.divisionID = S.divisionID AND campusId = %s AND UPPER(S.name) LIKE UPPER(%s) ORDER BY (CASE WHEN D.divisionID = 'FOCS' THEN 1 ELSE 0 END) DESC, D.divisionID DESC;"
+                cursor.execute(select_sql, (campusId,'%' + request.args.get('staffName') + '%'))
+            else:
+                select_sql = "SELECT D.Name AS divisionName, S.*, P.* FROM division D, staff S LEFT JOIN publication P ON S.staffID = P.staffID WHERE D.divisionID = S.divisionID AND campusId = %s AND S.divisionId = %s AND UPPER(S.name) LIKE UPPER(%s) ORDER BY (CASE WHEN D.divisionID = 'FOCS' THEN 1 ELSE 0 END) DESC, D.divisionID DESC;"
+                cursor.execute(select_sql, (campusId,division,'%' + request.args.get('staffName') + '%'))
+            staffs = cursor.fetchall()
+        else:
+            cursor.callproc('sp_get_all_staffs', [division, campusId])
+            staffs = cursor.fetchall()
+
+        staff_images = []
+
+        # Fetch the S3 image URL based on emp_id
+        # for staff in staffs:
+        #     staff_image_file_name_in_s3 = "staffImage/" + str(staff[1])
+        #     s3 = boto3.client('s3')
+        #     bucket_name = custombucket
+
+        #     try:
+        #         staff_images[staff[1]] = s3.generate_presigned_url('get_object',
+        #                                     Params={'Bucket': bucket_name,
+        #                                             'Key': staff_image_file_name_in_s3},
+        #                                     ExpiresIn=1000)  # Adjust the expiration time as needed
+
+        #     except Exception as e:
+        #         return str(e)
+
+    except Exception as e:
+        return str(e)
+    
+    finally:
+        cursor.close()
+    
+    network_details = get_network_details()
+    return render_template('staffDirectory.html', staffs=staffs, staff_images=staff_images, network_details=network_details, div=div, divisions=divisions, campuses=campuses)
 
 @app.route('/compare', methods=['GET', 'POST'])
 def selectCompare():
