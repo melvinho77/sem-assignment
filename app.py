@@ -805,7 +805,7 @@ def contact_us():
     cursor = db_conn.cursor()
 
     try:
-        cursor.execute(select_sql, (id))
+        cursor.execute(select_sql, (id,))
         student = cursor.fetchone()
         db_conn.commit()
 
@@ -816,13 +816,14 @@ def contact_us():
         db_conn.rollback()
         return str(e)
     
-    # Pass the network_details and msg to the contactUs.html template
-    return render_template("contactUs.html", network_details=network_details, id=session.get('loggedInStudent'), student_name=student_name)
+    # # Pass the network_details and msg to the contactUs.html template
+    # return render_template("contactUs.html", network_details=network_details, id=session.get('loggedInStudent'), student_name=student_name)
+    print(id)
 
 @app.route("/trackContactUs")
 def trackContactUs():
     # Change to session data
-    id = session['loggedInStudent']
+    id = session.get('loggedInStudent')
     network_details = get_network_details()
 
     # Retrieve all contact data based on this student
@@ -830,7 +831,7 @@ def trackContactUs():
     cursor = db_conn.cursor()
 
     try:
-        cursor.execute(select_sql, (id))
+        cursor.execute(select_sql, (id,))
         contact_data = cursor.fetchall()
         db_conn.commit()
 
