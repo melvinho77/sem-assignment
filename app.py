@@ -131,14 +131,106 @@ def get_network_details():
     except Exception as e:
         return {'Error': str(e)}
 
-@app.route('/chatbot')
-def chatbot():
-    return render_template('chatbot.html')
-
 @app.route('/redirectProgrammeHome')
 def redirectProgrammeHome():
     network_details = get_network_details()
     return render_template('programmeHome.html', network_details=network_details)
+
+# Define individual routes for each program's landing page
+@app.route('/redirectDiplomaCS')
+def redirectDiplomaCS():
+    network_details = get_network_details()
+    return render_template('programmes/Diploma in Computer Science.html', network_details=network_details)
+
+@app.route('/redirectDiplomaIS')
+def redirectDiplomaIS():
+    network_details = get_network_details()
+    return render_template('programmes/Diploma in Information Systems.html', network_details=network_details)
+
+@app.route('/redirectDiplomaIT')
+def redirectDiplomaIT():
+    network_details = get_network_details()
+    return render_template('programmes/Diploma in Information Technology.html', network_details=network_details)
+
+@app.route('/redirectDiplomaSE')
+def redirectDiplomaSE():
+    network_details = get_network_details()
+    return render_template('programmes/Diploma in Software Engineering.html', network_details=network_details)
+
+@app.route('/redirectMMwC')
+def redirectMMwC():
+    network_details = get_network_details()
+    return render_template('programmes/Management Mathematics with Computing.html', network_details=network_details)
+
+@app.route('/redirectIST')
+def redirectIST():
+    network_details = get_network_details()
+    return render_template('programmes/Interactive Software Technology.html', network_details=network_details)
+
+@app.route('/redirectDS')
+def redirectDS():
+    network_details = get_network_details()
+    return render_template('programmes/Data Science.html', network_details=network_details)
+
+@app.route('/redirectEIS')
+def redirectEIS():
+    network_details = get_network_details()
+    return render_template('programmes/Enterprise Information Systems.html', network_details=network_details)
+
+@app.route('/redirectISecurity')
+def redirectISecurity():
+    network_details = get_network_details()
+    return render_template('programmes/Information Security.html', network_details=network_details)
+
+@app.route('/redirectInternetT')
+def redirectInternetT():
+    network_details = get_network_details()
+    return render_template('programmes/Internet Technology.html', network_details=network_details)
+
+@app.route('/redirectSSD')
+def redirectSSD():
+    network_details = get_network_details()
+    return render_template('programmes/Software Systems Development.html', network_details=network_details)
+
+@app.route('/redirectSE')
+def redirectSE():
+    network_details = get_network_details()
+    return render_template('programmes/Software Engineering.html', network_details=network_details)
+
+@app.route('/redirectMasterCS')
+def redirectMasterCS():
+    network_details = get_network_details()
+    return render_template('programmes/Master of Computer Science.html', network_details=network_details)
+
+@app.route('/redirectMasterIT')
+def redirectMasterIT():
+    network_details = get_network_details()
+    return render_template('programmes/Master of Information Technology.html', network_details=network_details)
+
+@app.route('/redirectMasterSMS')
+def redirectMasterSMS():
+    network_details = get_network_details()
+    return render_template('programmes/Master of Science in Mathematical Sciences.html', network_details=network_details)
+
+@app.route('/redirectDoctorPCS')
+def redirectDoctorPCS():
+    network_details = get_network_details()
+    return render_template('programmes/Doctor of Philosophy Computer Science.html', network_details=network_details)
+
+@app.route('/redirectDoctorPIT')
+def redirectDoctorPIT():
+    network_details = get_network_details()
+    return render_template('programmes/Doctor of Philosophy Information Technology.html', network_details=network_details)
+
+@app.route('/redirectDoctorPMS')
+def redirectDoctorPMS():
+    network_details = get_network_details()
+    return render_template('programmes/Doctor of Philosophy Mathematical Sciences.html', network_details=network_details)
+
+
+
+
+
 
 @app.route('/compare', methods=['GET', 'POST'])
 def selectCompare():
