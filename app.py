@@ -799,25 +799,14 @@ def crop_image(img):
 def contact_us():
     # Call the get_network_details function to retrieve network details
     # Retrieve student Id
-    id = session.get('loggedInStudent')
+    apply_student_id = session.get('loggedInStudent')
+
+    # Get the student's name based on their student ID
+    student_name = get_student_name(apply_student_id)
     network_details = get_network_details()
-    select_sql = "SELECT * FROM students WHERE studentID  = %s"
-    cursor = db_conn.cursor()
-
-    try:
-        cursor.execute(select_sql, (id,))
-        student = cursor.fetchone()
-        db_conn.commit()
-
-        # Access student ID and name from the 'student' tuple
-        student_name = student[1]
-
-    except Exception as e:
-        db_conn.rollback()
-        return str(e)
     
     # # Pass the network_details and msg to the contactUs.html template
-    return render_template("contactUs.html", network_details=network_details, id=session.get('loggedInStudent'), student_name=student_name)
+    return render_template("contactUs.html", network_details=network_details, id=apply_student_id, student_name=student_name)
 
 @app.route("/trackContactUs")
 def trackContactUs():
