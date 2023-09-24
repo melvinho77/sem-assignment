@@ -781,8 +781,6 @@ def loadStudProfile():
     return render_template('applicationProfile.html', network_details=network_details, stud_data=stud_data)
 
 # Gwee Yong Sean
-
-
 @app.route('/login_application')
 def login_application():
     return render_template('studentLogin.html')
