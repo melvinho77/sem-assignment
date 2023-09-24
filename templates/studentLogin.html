@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Glassmorphism Login Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <style media="screen">
+        /* For screens smaller than 768px (typical smartphones) */
+        @media (max-width: 768px) {
+            body {
+                background-size: cover;
+                /* Adjust background-size for smaller screens */
+            }
+
+            .container {
+                width: 90%;
+                /* Make the container wider for smaller screens */
+                max-width: 350px;
+                /* Limit the maximum width */
+                padding: 20px;
+                text-align: center;
+                /* Reduce padding */
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #080710;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Center content vertically and horizontally */
+        }
+
+        /* Create a pseudo-element for the background blur */
+        body::before {
+            content: "";
+            background-image: url('/static/images/tarucBackground.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .login-header {
+            text-align: center;
+            /* Center the header content */
+            margin-bottom: 20px;
+            /* Add some spacing below the header */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.30);
+            width: 450px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 50px 35px;
+            backdrop-filter: blur(1px);
+            color: black;
+            /* Center the form content */
+        }
+
+        .container * {
+            outline: none;
+        }
+
+        .container input,
+        button {
+            border: none;
+        }
+
+        .container h3 {
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 42px;
+        }
+
+        .container label {
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .container input {
+            height: 50px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .container ::placeholder {
+            color: #606060;
+        }
+
+        .container button {
+            margin-top: 50px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container .link-register {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+            /* Align the link to the right */
+        }
+
+        .container .sign-up-link a {
+            color: blue;
+            font-weight: 500px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .login-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 10px;
+
+        }
+
+        hr {
+            border: 1px solid #C3C3C3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <img alt="TAR UMT logo" src="{{ url_for('static', filename='images/tarumt-logo.png')}}"
+                style="width:65%;height:65%;">
+        </div>
+        <form action="/verifyLogin" autocomplete="on" method="post">
+            <div class="login-title">
+                <h3>Online Application Login</h3>
+            </div>
+            <div class="container">
+                <h4 style="font-size:24px; margin-bottom: 10px;">User Login</h4>
+                <hr>
+
+                <label for="email">Email</label>
+                <input type="text" placeholder="Email" name="login-email">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" name="login-password">
+                <button>Log In</button>
+                <div class="link-register">
+                    <div class="sign-up-link"><a href="/regitser_student">New user? Sign up <i
+                                class='fas fa-angle-right' style='font-size:24px'></i></a></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </form>
+    <!-- CHATBOT CODE -->
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/c00f82a4-6fad-4381-844e-b4570f297e92/webchat/config.js"
+        defer></script>
+    <!-- CHATBOT CODE -->
+</body>
+
+</html>

@@ -377,13 +377,14 @@
                         </div>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingInput1"
-                                placeholder="Enter your student id (in numbers only)" required name="student_id">
+                                placeholder="Enter your student id (in numbers only)" required name="apply_student_id"
+                                value="{{ apply_student_id }}" readonly>
                             <label for="floatingInput1">Enter your id</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingInput2" placeholder="Enter your name"
-                                required name="student_name">
-                            <label for="floatingInput2">Enter your name</label>
+                                required name="student_name" value="{{ student_name }}"" readonly>
+                            <label for=" floatingInput2">Enter your name</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="categorySelect" name="category" required name="category">
@@ -459,11 +460,9 @@
         </div>
     </div>
 
-    <!-- CHATBOT CODE -->
     <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
     <script src="https://mediafiles.botpress.cloud/c00f82a4-6fad-4381-844e-b4570f297e92/webchat/config.js"
         defer></script>
-    <!-- CHATBOT CODE -->
 
     <footer class="page-foot page-foot-default section-35 bg-gray-base">
         <div class="shell">
