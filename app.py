@@ -800,6 +800,7 @@ def contact_us():
     # Call the get_network_details function to retrieve network details
     # Retrieve student Id
     id = session.get('loggedInStudent')
+    print(id)
     network_details = get_network_details()
     select_sql = "SELECT * FROM students WHERE studentID  = %s"
     cursor = db_conn.cursor()
