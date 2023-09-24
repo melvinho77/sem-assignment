@@ -320,6 +320,55 @@ def staffDirectory():
     network_details = get_network_details()
     return render_template('staffDirectory.html', staffs=staffs, staff_images=staff_images, network_details=network_details, div=div, divisions=divisions, campuses=campuses)
 
+@app.route('/staff', methods=['GET'])
+def staff():
+    staffId = request.args.get('staffId')
+
+    cursor = db_conn.cursor()
+
+    try:
+        select_sql = "SELECT * FROM staff s, division d, campus c WHERE d.divisionId = s.divisionId AND c.campusId = d.campusId AND s.staffId = %s"
+        cursor.execute(select_sql, (staffId,))
+        staff = cursor.fetchone()
+        print(staff)
+        
+        if staff:
+            staff = {
+                'staffId': staff[0],
+                'name': staff[1],
+                'prefix': staff[2],
+                'position': staff[3],
+                'role': staff[4],
+                'email': staff[5],
+                'qualification': staff[6],
+                'specialization': staff[7],
+                'interest': staff[8],
+                'divisionName': staff[11],
+                'campusName': staff[14],
+                'publications': []
+            }
+
+            select_sql = "SELECT * FROM publication WHERE staffId = %s"
+            cursor.execute(select_sql, (staffId,))
+            publications = cursor.fetchall()
+
+            if publications:
+                for publication in publications:
+                    staff['publications'].append(
+                    {'title': publication[1], 'link': publication[2]})
+
+        print(staff)
+
+    except Exception as e:
+        return str(e)
+    
+    finally:
+        cursor.close()    
+
+    network_details = get_network_details()
+    return render_template('staff.html', staff=staff, network_details=network_details)
+
+
 @app.route('/compare', methods=['GET', 'POST'])
 def selectCompare():
     select_level="SELECT DISTINCT level FROM availableProgramme"
