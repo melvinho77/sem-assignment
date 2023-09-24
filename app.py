@@ -781,8 +781,6 @@ def loadStudProfile():
     return render_template('applicationProfile.html', network_details=network_details, stud_data=stud_data)
 
 # Gwee Yong Sean
-
-
 @app.route('/login_application')
 def login_application():
     return render_template('studentLogin.html')
@@ -916,7 +914,7 @@ def get_student_name(student_id):
 def storeProgramme():
     selected_programs = request.form.getlist('selected_programs')
     apply_student_id = session.get('loggedInStudent')
-    application_date = datetime.now()
+    application_date = datetime.datetime.now()
     cursor = db_conn.cursor()
     choice = 0
     try:
