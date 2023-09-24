@@ -29,6 +29,7 @@
         .container-profile a {
             text-decoration: none;
             color: white;
+            margin: 0 5px;
         }
 
 
@@ -199,8 +200,10 @@
 <body>
     <div class="application-header">
         <img src="{{ url_for('static', filename='images/tarumt-logo.png')}}" style="width:10%;height:10%;">
-        <span class="header-title">Online Application for Admission(Pre-University and Undergraduate Programmes)</span>
+        <span class="header-title">Online Application for Admission (Pre-University and Undergraduate Programmes)</span>
         <div class="container-profile">
+            <a href="#">Online Application</a>
+            <a href="/contactUs">Contact Us</a>
             <a href="#">Log Out</a>
         </div>
     </div>
