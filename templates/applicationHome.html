@@ -537,6 +537,41 @@
     </div>
     </div>
 
+        <!-- CHATBOT CODE -->
+        <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+        <script src="https://mediafiles.botpress.cloud/c00f82a4-6fad-4381-844e-b4570f297e92/webchat/config.js"
+            defer></script>
+        <!-- CHATBOT CODE -->
+    <footer class="page-foot page-foot-default section-35 bg-gray-base">
+        <div class="shell">
+            <!-- req 8 -->
+            <div class="trackIp" style="font-size: 12px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            border-top: 1px solid #c3c3c3;">
+                <p>Host Name: {{ network_details['Host Name'] }}</p>
+                <p>IPv4 Address: {{ network_details['IPv4 Address'] }}</p>
+                <p>IPv6 Address: {{ network_details['IPv6 Address'] }}</p>
+            </div>
+            <div class="range text-center">
+                <div class="cell-xs-12">
+                    <p class="small" align="center">
+                        <span>TAR UMT &copy; 2023 All Rights Reserved <span id="notPrint"><a
+                                    href="https://www.tarc.edu.my/disclaimer.jsp"
+                                    class="link-primary-inverse">Disclaimer</a>
+                                <a href="https://www.tarc.edu.my/privacy-policy.jsp"
+                                    class="link-primary-inverse">Privacy Policy</a>
+                                and <a href="https://www.tarc.edu.my/abac-policy.jsp" class="link-primary-inverse"
+                                    target="_new">ABAC Policy</a>
+                            </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
         // JavaScript function to toggle the left content
         function toggleLeftContent() {

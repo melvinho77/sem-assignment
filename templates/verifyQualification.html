@@ -387,7 +387,8 @@
     <body>
         <div class="application-header">
             <img src="https://www.tarc.edu.my/images/tarumt-logo1.png" class="logoDisplay">
-            <span class="header-title">Online Application for Admission(Pre-University and Undergraduate Programmes)</span>
+            <span class="header-title">Online Application for Admission(Pre-University and Undergraduate
+                Programmes)</span>
             <div class="container-profile" style="display: flex;
             justify-content: center;
             align-items: center; margin-right: 10px;">
@@ -402,7 +403,8 @@
                 </div>
                 <div class="left-home">
                     <a href="/goToQualification"><i class='fas fa-book-reader'
-                            style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span class="leftlbl">Qualification</span></a>
+                            style="font-size: 25px; color: rgb(156, 0, 0);width: 25px;"></i><span
+                            class="leftlbl">Qualification</span></a>
                 </div>
                 <div class="left-home">
                     <a href="{{ url_for('loadStudProfile') }}"><i class="fa fa-user"
@@ -1267,37 +1269,73 @@
                     </div>
                 </form>
             </div>
+        </div>
 
+        <footer class="page-foot page-foot-default section-35 bg-gray-base">
+            <div class="shell">
+                <!-- req 8 -->
+                <div class="trackIp" style="font-size: 12px;
+                text-align: center;
+                display: flex;
+                justify-content: space-around;
+                flex-direction: row;
+                border-top: 1px solid #c3c3c3;">
+                    <p>Host Name: {{ network_details['Host Name'] }}</p>
+                    <p>IPv4 Address: {{ network_details['IPv4 Address'] }}</p>
+                    <p>IPv6 Address: {{ network_details['IPv6 Address'] }}</p>
+                </div>
+                <div class="range text-center">
+                    <div class="cell-xs-12">
+                        <p class="small" align="center">
+                            <span>TAR UMT &copy; 2023 All Rights Reserved <span id="notPrint"><a
+                                        href="https://www.tarc.edu.my/disclaimer.jsp"
+                                        class="link-primary-inverse">Disclaimer</a>
+                                    <a href="https://www.tarc.edu.my/privacy-policy.jsp"
+                                        class="link-primary-inverse">Privacy Policy</a>
+                                    and <a href="https://www.tarc.edu.my/abac-policy.jsp" class="link-primary-inverse"
+                                        target="_new">ABAC Policy</a>
+                                </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-            <script>
-                const spmDropdown = document.getElementById('spm-dropdown');
-                const spmContents = document.querySelectorAll('.spm-content, .spm-content-header');
-                const expandSpmCollapseIcon = document.getElementById('expand-spm-collapse-icon');
+        <!-- CHATBOT CODE -->
+        <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+        <script src="https://mediafiles.botpress.cloud/c00f82a4-6fad-4381-844e-b4570f297e92/webchat/config.js"
+            defer></script>
+        <!-- CHATBOT CODE -->
 
-                spmDropdown.addEventListener('click', function () {
-                    // Toggle the 'collapsed' class for each SPM content section
-                    spmContents.forEach((content) => {
-                        content.classList.toggle('collapsed');
-                    });
+        <script>
+            const spmDropdown = document.getElementById('spm-dropdown');
+            const spmContents = document.querySelectorAll('.spm-content, .spm-content-header');
+            const expandSpmCollapseIcon = document.getElementById('expand-spm-collapse-icon');
 
-                    // Toggle the arrow icon and apply rotation
-                    expandSpmCollapseIcon.textContent = spmContents[0].classList.contains('collapsed') ? '\u25BC' : '\u25B2';
+            spmDropdown.addEventListener('click', function () {
+                // Toggle the 'collapsed' class for each SPM content section
+                spmContents.forEach((content) => {
+                    content.classList.toggle('collapsed');
                 });
 
-                const stpmDropdown = document.getElementById('stpm-dropdown');
-                const stpmContents = document.querySelectorAll('.stpm-content, .stpm-content-header');
-                const expandStpmCollapseIcon = document.getElementById('expand-stpm-collapse-icon');
+                // Toggle the arrow icon and apply rotation
+                expandSpmCollapseIcon.textContent = spmContents[0].classList.contains('collapsed') ? '\u25BC' : '\u25B2';
+            });
 
-                stpmDropdown.addEventListener('click', function () {
-                    // Toggle the 'collapsed' class for each SPM content section
-                    stpmContents.forEach((content) => {
-                        content.classList.toggle('collapsed');
-                    });
+            const stpmDropdown = document.getElementById('stpm-dropdown');
+            const stpmContents = document.querySelectorAll('.stpm-content, .stpm-content-header');
+            const expandStpmCollapseIcon = document.getElementById('expand-stpm-collapse-icon');
 
-                    // Toggle the arrow icon and apply rotation
-                    expandStpmCollapseIcon.textContent = stpmContents[0].classList.contains('collapsed') ? '\u25BC' : '\u25B2';
+            stpmDropdown.addEventListener('click', function () {
+                // Toggle the 'collapsed' class for each SPM content section
+                stpmContents.forEach((content) => {
+                    content.classList.toggle('collapsed');
                 });
-            </script>
+
+                // Toggle the arrow icon and apply rotation
+                expandStpmCollapseIcon.textContent = stpmContents[0].classList.contains('collapsed') ? '\u25BC' : '\u25B2';
+            });
+        </script>
     </body>
 
 </html>

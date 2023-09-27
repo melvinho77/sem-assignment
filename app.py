@@ -837,14 +837,15 @@ def verifyLogin():
 @app.route('/programmePage', methods=['POST'])
 def programmePage():
     apply_student_id = session.get('loggedInStudent')
-
+    network_details = get_network_details()
     # Get the student's name based on their student ID
     student_name = get_student_name(apply_student_id)
-    return render_template('DisplayProgramme.html', student_name=student_name)
+    return render_template('DisplayProgramme.html', student_name=student_name,network_details=network_details)
 
 
 @app.route('/applyProgramme', methods=['POST'])
 def applyProgramme():
+    network_details = get_network_details()
     intake = request.form.get('intake', '')
     campus = request.form.get('campus', '')
     level = request.form.get('level', '')
@@ -892,11 +893,11 @@ def applyProgramme():
                 "programme_Id": programme_Id
             }
             programme_objects.append(programme_object)
-        return render_template('DisplayProgramme.html', programmes=programme_objects, student_name=student_name)
+        return render_template('DisplayProgramme.html', programmes=programme_objects, student_name=student_name,network_details=network_details)
 
     except Exception as e:
         # Log the exception for debugging
-        return render_template('DisplayProgramme.html', msg="Current does not have offer programme...")
+        return render_template('DisplayProgramme.html', msg="Current does not have offer programme...",network_details=network_details)
 
 
 def get_student_name(student_id):
@@ -945,7 +946,7 @@ def storeProgramme():
 def applicationHomeContent():
     apply_student_id = session.get('loggedInStudent')
     cursor = db_conn.cursor()
-
+    network_details = get_network_details()
     # Get the student's name based on their student ID
     student_name = get_student_name(apply_student_id)
 
@@ -979,12 +980,13 @@ def applicationHomeContent():
         }
 
         application_objects.append(application_object)
-    return render_template('applicationHome.html', applications=application_objects, student_name=student_name)
+    return render_template('applicationHome.html', applications=application_objects, student_name=student_name,network_details=network_details)
 
 
 @app.route('/goToQualification', methods=['GET', 'POST'])
 def goToQualification():
-    return render_template('verifyQualification.html')
+    network_details = get_network_details()
+    return render_template('verifyQualification.html',network_details=network_details)
 
 
 @app.route('/verifyApplication', methods=['GET', 'POST'])
@@ -992,6 +994,7 @@ def verifyApplication():
 
     cursor = db_conn.cursor()
     apply_student_id = session.get('loggedInStudent')
+    network_details = get_network_details()
     
     qualification = request.form.get('qualification-diploma', '')
     year = request.form.get('qualification-diploma-year', '')
@@ -1038,7 +1041,7 @@ def verifyApplication():
     print(text)
 
     if not check_year(text, year):
-        return render_template('verifyQualification.html', err_msg="The year of SPM slip incorrect or your image is too blur, please try again")
+        return render_template('verifyQualification.html', err_msg="The year of SPM slip incorrect or your image is too blur, please try again",network_details=network_details)
 
     # Split the result text into lines
     lines = text.strip().split('\n')
@@ -1058,10 +1061,10 @@ def verifyApplication():
                     checkIc = True
                 else:
                     print(f"The ic not match {words}.")
-                    return render_template('verifyQualification.html', err_msg="The IC of SPM slip does not match or your image is too blur, please try again")
+                    return render_template('verifyQualification.html', err_msg="The IC of SPM slip does not match or your image is too blur, please try again",network_details=network_details)
 
     if not checkIc:
-        return render_template('verifyQualification.html', err_msg="SPM slip is not valid or your image is too blur, please try again")
+        return render_template('verifyQualification.html', err_msg="SPM slip is not valid or your image is too blur, please try again",network_details=network_details)
 
     matchSubject = True
     gotSubject = False
@@ -1082,10 +1085,10 @@ def verifyApplication():
                 break
 
     if not gotSubject:
-        return render_template('verifyQualification.html', err_msg="The SPM slip may not completed or your image is too blur")
+        return render_template('verifyQualification.html', err_msg="The SPM slip may not completed or your image is too blur",network_details=network_details)
 
     if not matchSubject:
-        return render_template('verifyQualification.html', err_msg=msg+"Or you can try to reupload your SPM slip")
+        return render_template('verifyQualification.html', err_msg=msg+"Or you can try to reupload your SPM slip",network_details=network_details)
 
     # Count the number of subjects with a grade of "C" or better
     c_or_better_count = sum(
