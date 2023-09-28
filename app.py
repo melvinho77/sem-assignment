@@ -1076,10 +1076,10 @@ def verifyApplication():
     # Check each grade in the dictionary against the list
     for subject, grade in student_grades.items():
         # Find the list that contains the subject
-        for grades in lines:
-            if subject in grades:
+        for grades1 in lines:
+            if subject in grades1:
                 # Check if the grade in the list matches the grade in the dictionary
-                if grade not in grades:
+                if grade not in grades1:
                     matchSubject = False
                     msg += (f"The grade for {subject} does not match\n")
                     print(f"The grade for {subject} does not match.")
@@ -1139,7 +1139,7 @@ def verifyApplication():
             student_grade = grades[subject_index]
 
             # Compare the student's grade with the required grade
-            if grade_order.get(student_grade, 0) < grade_order.get(country_required_grade, 0):
+            if grade_order.get(student_grade,0) < grade_order.get(country_required_grade,0):
                 country_require = False
                 break
 
