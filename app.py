@@ -1570,7 +1570,7 @@ def studentApplyFilter():
     try:
         # Create a cursor
         cursor = db_conn.cursor()
-
+        student_id= session.get('loggedInStudent')
         # Construct the SQL query based on the selected filters
         sql = "SELECT * FROM contact WHERE 1=1 AND student = %s"
 
@@ -1579,7 +1579,7 @@ def studentApplyFilter():
         if status != '*':
             sql += f" AND status = '{status}'"
 
-        cursor.execute(sql, ('2'))
+        cursor.execute(sql, (student_id))
 
         # Fetch the filtered data
         contact_details = cursor.fetchall()
