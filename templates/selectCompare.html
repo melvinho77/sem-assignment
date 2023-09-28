@@ -362,23 +362,18 @@
                     data-lg-stick-up-offset="60px" data-md-stick-up="true" data-lg-stick-up="true"
                     class="rd-navbar rd-navbar-default">
 
-
-
-
                     <div class="rd-navbar-inner" style="padding:0;">
                         <div class="rd-navbar-panel">
                             <button data-custom-toggle=".rd-navbar-nav-wrap" data-custom-toggle-disable-on-blur="true"
                                 class="rd-navbar-toggle"><span></span></button>
 
-                            <a href="https://www.tarc.edu.my/" class="rd-navbar-brand brand"><span style="float:left;">
+                            <a href="{{ url_for('home_page', filename='../home.html') }}"
+                                class="rd-navbar-brand brand"><span style="float:left;">
                                     <img src="https://www.tarc.edu.my/images/tarumt-logo1.png" alt="logo"
                                         id="tarclogo" /></span>
                             </a>
                         </div>
-
                         <div id="notPrint" class="topbar">
-
-
 
                             &nbsp;
                         </div> <!-- END topbar -->
@@ -403,8 +398,11 @@
                                                 <!--<div id="rd-search-results-live" class="rd-search-results-live"></div>-->
                                             </div>
                                         </form>
-                                        <button data-rd-navbar-toggle=".rd-navbar-search, .rd-navbar-search-wrap"
-                                            class="rd-navbar-search-toggle"></button>
+                                        <div style="border: none; height: 40px;">
+
+                                        </div>
+                                        <!-- <button data-rd-navbar-toggle=".rd-navbar-search, .rd-navbar-search-wrap"
+                                            class="rd-navbar-search-toggle"></button> -->
                                     </div> <!-- End rd-navbar-search -->
 
 
