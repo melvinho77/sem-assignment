@@ -43,6 +43,8 @@
 
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/gold-orange.css?d=2023/08/25 23:11:30">
     <link rel="stylesheet" href="https://www.tarc.edu.my/assets/css/custom.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}" />
 
     <style>
         .float {
@@ -99,17 +101,16 @@
                     padding-left: 20px;
                 }
 
-                .relResultBtn{
+                .relResultBtn {
                     border: none;
                     background-color: transparent;
                     color: rgb(0, 94, 255);
                 }
 
-                .relResultBtn:hover{
+                .relResultBtn:hover {
                     transition: 0.3s;
                     color: rgb(108, 162, 255);
                 }
-
             </style>
             <div class="rd-navbar-wrap">
                 <nav data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
@@ -211,11 +212,11 @@
                                             </ul>
                                         </li>
                                         <li class=""><a
-                                            href="{{ url_for('staffDirectory', division='ALL', campus='Kuala Lumpur Campus') }}"
-                                            target="_blank" class="ja"><span class="fa-stack fa-lg"><i
-                                                    class="fa fa-circle fa-stack-2x gold-orange"></i><i
-                                                    class="fa fa-users fa-stack-1x fa-inverse"></i></span>Our
-                                            Team</a></li>
+                                                href="https://www.tarc.edu.my/staffDirectory.jsp?fdept=FOCS&fbrncd=KL&fdivcd="
+                                                target="_blank" class="ja"> <span class="fa-stack fa-lg"> <i
+                                                        class="fa fa-circle fa-stack-2x gold-orange"></i> <i
+                                                        class="fa fa-users fa-stack-1x fa-inverse"></i> </span> Our
+                                                Team</a></li>
                                     </ul>
                                     <div class="midSide">
 
@@ -533,7 +534,7 @@
         </section>
 
         <!-- req 1 -->
-        <div class="relevantResultContainer">   
+        <div class="relevantResultContainer">
             {% if relevantResults %}
             <div style="margin-top: 20px; margin-bottom: 20px;">
                 <ul style="display: flex;
@@ -542,7 +543,7 @@
                 flex-wrap: wrap;
                 align-items: flex-start;
                 justify-content: center;">
-                <h6>Relevant result : </h6>
+                    <h6>Relevant result : </h6>
                     {% for result in relevantResults %}
                     <li>
                         <form action="/relevantResult_display" autocomplete="on" method="POST"
